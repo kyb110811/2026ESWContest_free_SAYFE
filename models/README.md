@@ -2,7 +2,7 @@
 
 ## 역할
 
-SAY:FE가 사용하는 model 가운데 GitHub 제출본에 포함한 Vision model과, 실행 장비에서 별도로 준비해야 하는 외부 model의 범위를 설명합니다.
+SAYFE가 사용하는 model 가운데 GitHub 제출본에 포함한 Vision model과, 실행 장비에서 별도로 준비해야 하는 외부 model의 범위를 설명합니다.
 
 ## Vision model
 
