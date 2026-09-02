@@ -258,3 +258,81 @@ python3 integration/pi_rfcomm_bridge_server.py
 Whisper, whisper.cpp, NLLB-200, CTranslate2, Piper, Silero VAD, Ultralytics YOLO, OpenCV, Flask, Bleak, Nordic nRF Connect SDK, Zephyr, RPi.GPIO 등을 사용합니다. 외부 실행 파일, 대형 모델, SDK 전체, virtual environment와 실행 결과 파일은 이 저장소에 포함하지 않습니다.
 
 각 구성 요소의 역할과 확인된 license 정보는 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)를 참고하십시오.
+
+## Dataset & Model
+
+### Training Dataset
+
+비전 객체탐지 모델은 AI Hub 「건설 위험 상태 판단」 데이터셋과
+자체 제작한 건설현장 목업 촬영 데이터를 혼합하여 학습하였습니다.
+
+| 구분 | 전체 | Train | Validation |
+|---|---:|---:|---:|
+| AI Hub 데이터 | 3,200장 | 2,814장 | 386장 |
+| 자체 목업 데이터 | 250장 | 200장 | 50장 |
+| **전체** | **3,450장** | **3,014장** | **436장** |
+
+데이터 출처: [AI-Hub](https://aihub.or.kr/)
+
+AI Hub 원본 데이터는 이용정책에 따라 본 저장소에 포함하지 않으며,
+본 저장소에는 해당 데이터를 활용하여 학습한 모델 가중치 및 학습 결과물만 포함합니다.
+
+추가로 자체 제작한 건설현장 목업 환경에서 촬영한 이미지를 활용하여
+`person` 및 `excavator` 객체에 대한 추가 학습을 수행하였습니다.
+
+### Object Classes
+
+- `person`
+- `excavator`
+
+탐지된 객체 정보는 작업자와 굴착기 간 위험 상황 판단에 활용됩니다.
+
+### Training Configuration
+
+객체탐지 모델은 Ultralytics YOLO11n을 기반으로 학습하였습니다.
+
+| 항목 | 설정 |
+|---|---|
+| Base Model | YOLO11n (`yolo11n.pt`) |
+| Task | Object Detection |
+| Image Size | 640 × 640 |
+| Epochs | 80 |
+| Batch Size | 32 |
+| Pretrained | True |
+| Optimizer | Auto |
+| AMP | True |
+| Validation | True |
+
+상세 학습 설정:
+
+- [`vision/training_results/args.yaml`](vision/training_results/args.yaml)
+
+전체 epoch별 학습 결과:
+
+- [`vision/training_results/results.csv`](vision/training_results/results.csv)
+
+### Training Results
+
+최고 `mAP@0.5:0.95` 기준 성능:
+
+| Metric | Result |
+|---|---:|
+| Precision | 0.9978 |
+| Recall | 0.9988 |
+| mAP@0.5 | 0.9950 |
+| mAP@0.5:0.95 | 0.8982 |
+
+![Training Results](vision/training_results/results.png)
+
+### Normalized Confusion Matrix
+
+![Normalized Confusion Matrix](vision/training_results/confusion_matrix_normalized.png)
+
+### Model Weight
+
+최종 객체탐지 모델 가중치:
+
+- [`vision/best.pt`](vision/best.pt)
+
+AI Hub 원본 이미지 및 원본 annotation 데이터는
+데이터 이용정책에 따라 본 저장소에 포함하지 않았습니다.
