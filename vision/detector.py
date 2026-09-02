@@ -1,13 +1,3 @@
-"""Jetson YOLO detector backend.
-
-- 학습 원본: best_construction_v1.pt
-- Jetson 최종 권장: best_construction_v1.engine (TensorRT FP16)
-- 두 파일 모두 Ultralytics YOLO API로 같은 Detection 인터페이스를 반환한다.
-
-classes:
-  0 person
-  1 excavator
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -39,7 +29,7 @@ class JetsonYOLODetector(BaseDetector):
 
         requested = Path(model_path)
         if not requested.exists():
-            # engine을 기본 요청했는데 아직 export 전이면 pt로 자동 fallback
+           
             fallback = Path("best_construction_v1.pt")
             if requested.suffix == ".engine" and fallback.exists():
                 print(f"[JETSON] {requested.name} 없음 → {fallback.name} CUDA 추론으로 임시 실행")
@@ -69,7 +59,6 @@ class JetsonYOLODetector(BaseDetector):
     def set_excavator_enabled(self, enabled: bool):
         self.excavator_enabled = bool(enabled)
 
-    # main.py 호환용
     def toggle_person(self):
         self.person_enabled = not self.person_enabled
         print(f"[DETECTOR] person_enabled={self.person_enabled}")
@@ -86,7 +75,6 @@ class JetsonYOLODetector(BaseDetector):
         return False
 
     def detect(self, frame) -> List[Detection]:
-        # Ultralytics가 .pt면 CUDA, .engine이면 TensorRT backend를 자동 사용한다.
         results = self.model.predict(
             source=frame,
             imgsz=self.imgsz,
@@ -126,6 +114,4 @@ class JetsonYOLODetector(BaseDetector):
 
         return detections
 
-
-# 기존 코드에서 YOLODetector 이름을 써도 동작하도록 alias 유지
 YOLODetector = JetsonYOLODetector
