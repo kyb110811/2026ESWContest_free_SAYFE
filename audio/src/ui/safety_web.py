@@ -22,8 +22,6 @@ state = {
     "languages": ["ko", "zh", "vi"],
 }
 
-# The controller is launched only by /api/start.  Keep an explicit initial
-# value so /api/state works before the first broadcast request.
 broadcast_process = None
 
 
