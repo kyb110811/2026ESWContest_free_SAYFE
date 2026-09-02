@@ -1,25 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-construction_rules.py
 
-임베디드SW경진대회 건설안전 다국어 안내 시스템용
-건설현장 은어/현장용어 -> 표준 한국어 정규화 규칙
-
-설계 원칙
-1) 관리자 발화의 STT 결과를 바로 외국어로 번역하지 않고,
-   먼저 현장 은어/일본어투/축약 표현을 표준 한국어로 정규화한다.
-2) 위험 Fast Path에는 이 규칙을 사용하지 않는다.
-   Fast Path는 사전 검증된 안전문구/음원을 사용한다.
-3) "가스·밀폐공간" 관련 문장은 안전 의미가 달라지지 않도록
-   가능한 한 명확한 표준 안전표현으로 바꾼다.
-
-출처 구분
-- USER_PRIOR: 이전 '건설용어 은어 교정' 대화에서 사용자가 제공한 정의
-- FIELD_GLOSSARY: 건설현장 용어 자료에서 확인한 현장용례
-- SAFETY_STANDARD: KOSHA/고용노동부의 밀폐공간·유해가스 안전용어에 맞춘 표준화
-- DEMO_PATTERN: 시연용 관리자 발화 패턴. '공식 은어'라고 주장하지 않으며,
-                실제 현장 인터뷰/교수 검토 후 확정 권장
-"""
 
 from __future__ import annotations
 
@@ -27,12 +7,9 @@ import re
 from typing import Dict, List, Tuple
 
 
-# ---------------------------------------------------------------------------
-# 1. 핵심 건설 은어/현장용어 사전
-# ---------------------------------------------------------------------------
 
 TERM_RULES: Dict[str, Dict[str, str]] = {
-    # ===== 이전 대화에서 사용자가 직접 제공한 항목 =====
+  
     "가베": {
         "standard": "벽체",
         "category": "구조/위치",
@@ -58,7 +35,7 @@ TERM_RULES: Dict[str, Dict[str, str]] = {
         "note": "방수재 또는 시멘트풀을 벽체 하단 등에 밀도 있게 바르는 작업",
     },
 
-    # ===== 현장 용어 자료에서 확인한 항목 =====
+
     "가꾸목": {"standard": "각목", "category": "목공", "source": "FIELD_GLOSSARY", "note": ""},
     "갑빠": {"standard": "방수포", "category": "자재/보호", "source": "FIELD_GLOSSARY", "note": "자재를 덮는 큰 포장"},
     "고데": {"standard": "흙손", "category": "공구", "source": "FIELD_GLOSSARY", "note": ""},
@@ -120,7 +97,7 @@ TERM_RULES: Dict[str, Dict[str, str]] = {
     "리야까": {"standard": "손수레", "category": "운반", "source": "FIELD_GLOSSARY", "note": ""},
     "쇼오트": {"standard": "합선", "category": "전기/안전", "source": "FIELD_GLOSSARY", "note": ""},
 
-    # ===== 건설현장 안전 작업 용어집 추가 =====
+
 
     "나라시까기": {
         "standard": "표면 평탄화 작업",
@@ -258,16 +235,8 @@ TERM_RULES: Dict[str, Dict[str, str]] = {
 }
 
 
-# ---------------------------------------------------------------------------
-# 2. 가스·밀폐공간 안전 문장 정규화
-#
-# 아래 DEMO_PATTERN은 "현장에서 반드시 이렇게 말한다"는 뜻이 아니다.
-# 경진대회 시연에서 관리자가 자연스럽게 말할 수 있는 축약형을
-# KOSHA/고용노동부 안전표현으로 명확하게 바꾸기 위한 규칙이다.
-# ---------------------------------------------------------------------------
-
 SAFETY_PHRASE_RULES: List[Tuple[str, str, str]] = [
-    # 건설현장 용어집 문장형 정규화
+   
     (r"오늘\s*공구리\s*치니까\s*가네\s*먼저\s*잡아라",
      "오늘 콘크리트를 타설하니까 수직·수평을 먼저 맞춰라",
      "FIELD_GLOSSARY"),
@@ -278,7 +247,6 @@ SAFETY_PHRASE_RULES: List[Tuple[str, str, str]] = [
     (r"감전에\s*주의(해|해줘|해주세요|하세요)",
      "감전 위험에 주의해 주세요", "FIELD_GLOSSARY"),
 
-    # (입력 패턴, 표준 한국어, 출처구분)
     (r"가스\s*(한번\s*)?체크(해|해줘|해주세요|해\s*봐|해봐)",
      "유해가스 농도를 확인해 주세요", "DEMO_PATTERN"),
     (r"가스\s*(한번\s*)?찍어\s*(봐|봐줘|주세요)",
@@ -314,10 +282,6 @@ SAFETY_PHRASE_RULES: List[Tuple[str, str, str]] = [
 ]
 
 
-# ---------------------------------------------------------------------------
-# 3. 안전 관련 표준어 메모
-# ---------------------------------------------------------------------------
-
 SAFETY_STANDARD_TERMS: Dict[str, str] = {
     "밀폐공간": "환기가 불충분해 산소결핍, 유해가스, 화재·폭발 등의 위험이 있는 공간",
     "산소결핍": "공기 중 산소 농도가 18% 미만인 상태",
@@ -330,30 +294,18 @@ SAFETY_STANDARD_TERMS: Dict[str, str] = {
 
 
 def _normalize_spacing(text: str) -> str:
-    """기본 공백 정리."""
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
 
 def normalize_terms(text: str) -> Tuple[str, List[Dict[str, str]]]:
-    """
-    단어 단위 현장용어를 표준 한국어로 치환한다.
-
-    Returns
-    -------
-    normalized_text : str
-    matched_terms : list[dict]
-        어떤 용어가 어떤 표준어로 바뀌었는지 UI/로그에 표시할 때 사용.
-    """
+    
     normalized = text
     matched: List[Dict[str, str]] = []
 
-    # 긴 표현을 먼저 처리한다.
     for slang in sorted(TERM_RULES.keys(), key=len, reverse=True):
         info = TERM_RULES[slang]
 
-        # 일반 한국어 문장 내부에서 우연히 포함될 위험이 큰 짧은 용어는
-        # 독립된 현장용어로 사용된 경우에만 치환한다.
         if slang == "양중":
             pattern = r"(?<![가-힣])양중(?=\s*작업|\s|$|[,.!?])"
             updated, count = re.subn(
@@ -390,9 +342,7 @@ def normalize_terms(text: str) -> Tuple[str, List[Dict[str, str]]]:
 
 
 def normalize_safety_phrases(text: str) -> Tuple[str, List[Dict[str, str]]]:
-    """
-    가스/밀폐공간 관련 축약 지시를 안전 의미가 명확한 문장으로 바꾼다.
-    """
+  
     normalized = text
     matched: List[Dict[str, str]] = []
 
@@ -411,19 +361,10 @@ def normalize_safety_phrases(text: str) -> Tuple[str, List[Dict[str, str]]]:
 
 
 def normalize_construction_korean(text: str) -> Dict[str, object]:
-    """
-    STT 결과 -> 건설현장 표준 한국어 정규화.
-
-    사용 예
-    -------
-    result = normalize_construction_korean(
-        "가베 쪽 곰방 끝나면 맨홀 들어가기 전에 가스 한번 찍어봐"
-    )
-    print(result["normalized"])
-    """
+  
     original = _normalize_spacing(text)
 
-    # 문장 패턴을 먼저 처리한 뒤 일반 은어를 처리한다.
+
     stage1, safety_matches = normalize_safety_phrases(original)
     stage2, term_matches = normalize_terms(stage1)
 
