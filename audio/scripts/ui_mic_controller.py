@@ -166,7 +166,7 @@ def main():
             "GPU Worker 시작 실패"
         )
 
-    # Wait until models are loaded
+  
     while True:
         line = worker.stdout.readline()
 
