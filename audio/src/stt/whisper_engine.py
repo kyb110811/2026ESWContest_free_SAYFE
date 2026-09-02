@@ -64,10 +64,6 @@ WHISPER_TIMEOUT = float(
 _whisper_process: subprocess.Popen | None = None
 
 
-# =========================================================
-# Whisper hallucination guard
-# BridgeCast 최종본의 필터 구조를 건설안전용으로 이식
-# =========================================================
 
 HALLUCINATION_EXACT = {
     "[끝]",
@@ -108,10 +104,7 @@ def _compact_korean(
 def is_hallucination_text(
     text: str,
 ) -> bool:
-    """
-    Whisper가 무음/잡음을 실제 발화처럼 생성한
-    명백한 메타성 결과를 제거한다.
-    """
+   
 
     normalized = " ".join(
         text.strip().split()
@@ -123,8 +116,7 @@ def is_hallucination_text(
     if normalized in HALLUCINATION_EXACT:
         return True
 
-    # 짧은 괄호/대괄호 메타성 출력
-    # 예: (끝), [구독&좋아요]
+  
     if re.fullmatch(
         r"[\[\(<].{0,20}[\]\)>]",
         normalized,
@@ -138,13 +130,7 @@ def is_low_value_short_transcript(
     text: str,
     duration_seconds: float,
 ) -> bool:
-    """
-    BridgeCast의 short transcript guard를
-    건설안전 키워드에 맞춰 적용한다.
-
-    2초 미만 입력은 더 엄격하게 검사하되,
-    실제 안전 핵심어가 있으면 유지한다.
-    """
+  
 
     if duration_seconds >= 2.0:
         return False
@@ -188,8 +174,7 @@ def is_low_value_short_transcript(
     ):
         return False
 
-    # BridgeCast와 동일하게 짧고 정보량이 낮은
-    # 비안전 발화 후보를 제거
+   
     if len(
         _compact_korean(normalized)
     ) <= 12:
@@ -364,8 +349,7 @@ def _multipart_body(
     add_field("language", "ko")
     add_field("translate", "false")
 
-    # 건설현장 안전관리 도메인 initial prompt
-    # 전체 평가문장을 넣지 않고 핵심 용어만 제공한다.
+
     add_field(
         "prompt",
         (
