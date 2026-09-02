@@ -176,7 +176,6 @@ class VisionWorker:
             nearest_person = None
             nearest_proximity = None
 
-            # 모든 detector bbox 표시
             for d in detections:
                 x1, y1, x2, y2 = d.bbox
                 color = (0, 255, 0) if d.class_name == "person" else (255, 128, 0)
@@ -191,7 +190,6 @@ class VisionWorker:
                     2,
                 )
 
-            # 고정 ROI 대신, 검출된 굴착기 위치를 기준으로 매 프레임 자동 영역 생성
             if excavator is not None:
                 dynamic_zone = expand_bbox(
                     excavator.bbox,
@@ -314,7 +312,7 @@ class VisionWorker:
 
             frame_ms = (time.perf_counter() - frame_start) * 1000.0
 
-            # 기존 CSV logger와의 호환을 위해 worker_in_zone 자리에 worker_near 기록
+           
             person_bbox = nearest_person.bbox if nearest_person else None
             person_conf_log = nearest_person.confidence if nearest_person else None
             self.logger.write(
