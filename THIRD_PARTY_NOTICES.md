@@ -1,6 +1,6 @@
 # 외부 오픈소스 및 모델
 
-이 문서는 SAY:FE가 사용하는 외부 software/model과 팀 개발 application logic의 경계를 설명합니다. 공식 license 원문을 대체하지 않으며, 정확히 확인되지 않은 version 또는 배포 조건은 확정하여 기재하지 않습니다.
+이 문서는 SAYFE가 사용하는 외부 software/model과 팀 개발 application logic의 경계를 설명합니다. 공식 license 원문을 대체하지 않으며, 정확히 확인되지 않은 version 또는 배포 조건은 확정하여 기재하지 않습니다.
 
 ## 구성요소별 역할
 
@@ -114,4 +114,4 @@
 
 ## 팀 개발 영역 요약
 
-SAY:FE 팀은 위 외부 기술을 연결하는 application/integration layer를 개발했습니다. 주요 범위는 Audio pipeline orchestration, 건설현장 문장 정규화와 검증 번역, Safety Guard/Fallback, Fast Path, Vision proximity/Pixel Motion/Danger Event, BLE/RFCOMM/HTTP event integration, Raspberry Pi JSON/GPIO control, nRF5340 serial setup과 다국어 Audio routing입니다.
+SAYFE 팀은 위 외부 기술을 연결하는 application/integration layer를 개발했습니다. 주요 범위는 Audio pipeline orchestration, 건설현장 문장 정규화와 검증 번역, Safety Guard/Fallback, Fast Path, Vision proximity/Pixel Motion/Danger Event, BLE/RFCOMM/HTTP event integration, Raspberry Pi JSON/GPIO control, nRF5340 serial setup과 다국어 Audio routing입니다.
