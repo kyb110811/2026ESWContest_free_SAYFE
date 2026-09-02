@@ -9,15 +9,11 @@ import ctranslate2
 from transformers import AutoTokenizer
 
 
-# =========================================================
-# 기본 설정
-# =========================================================
-
 PROJECT_DIR = Path(__file__).resolve().parents[2]
 
 NLLB_MODEL_NAME = "facebook/nllb-200-distilled-600M"
 
-# 모델 경로는 환경변수로 바꿀 수 있게 구성
+
 CT2_MODEL_DIR = Path(
     os.getenv(
         "CONSTRUCTION_SAFETY_NLLB_MODEL",
@@ -51,18 +47,9 @@ BEAM_SIZE = 1
 MAX_DECODING_LENGTH = 48
 
 
-# =========================================================
-# 전역 모델 객체
-# 프로그램 시작 시 한 번만 로드
-# =========================================================
-
 _tokenizer = None
 _translator = None
 
-
-# =========================================================
-# 모델 검증
-# =========================================================
 
 def validate_model() -> None:
     required_files = [
@@ -85,9 +72,6 @@ def validate_model() -> None:
         )
 
 
-# =========================================================
-# 모델 로드
-# =========================================================
 
 def load_model():
     global _tokenizer
@@ -131,10 +115,6 @@ def load_model():
     return _tokenizer, _translator
 
 
-# =========================================================
-# 출력 디코딩
-# =========================================================
-
 def _decode_result(
     tokenizer,
     result,
@@ -173,10 +153,6 @@ def _decode_result(
 
     return translated
 
-
-# =========================================================
-# 중국어 + 베트남어 Batch Translation
-# =========================================================
 
 def translate_dual_batch(
     korean_text: str,
@@ -274,12 +250,6 @@ def translate_dual_batch(
     }
 
 
-# =========================================================
-# English + Chinese + Vietnamese Batch Translation
-#
-# The legacy dual functions above are intentionally left unchanged so
-# existing ZH/VI callers and benchmark baselines retain their API.
-# =========================================================
 
 def translate_triple_batch(
     korean_text: str,
@@ -450,24 +420,10 @@ def translate_triple_safe(
 
 
 
-# =========================================================
-# Safety-aware Dual Translation
-# =========================================================
-
 def translate_dual_safe(
     korean_text: str,
 ) -> dict[str, Any]:
-    """
-    건설안전 문장을 의미 단위로 분리한 뒤 번역한다.
-
-    각 의미 단위마다 Safety Guard를 적용하고,
-    안전 의미가 누락된 언어만 Safety Fallback으로
-    교체한다.
-
-    따라서 정상 번역은 최대한 유지하고,
-    위험한 번역만 안전 문장으로 대체한다.
-    """
-
+   
     from src.translation.safety_preprocessor import (
         preprocess_for_translation,
     )
@@ -488,9 +444,6 @@ def translate_dual_safe(
             "번역할 한국어 문장이 없습니다."
         )
 
-    # -----------------------------------------------------
-    # 0. 현장관리자 검증 문장 확인
-    # -----------------------------------------------------
 
     from src.translation.verified_site_translations import (
         get_verified_translation,
@@ -500,9 +453,6 @@ def translate_dual_safe(
         normalized
     )
 
-    # -----------------------------------------------------
-    # 1. 안전 전처리 + 의미 단위 분리
-    # -----------------------------------------------------
 
     safe_result = preprocess_for_translation(
         normalized
@@ -522,9 +472,6 @@ def translate_dual_safe(
     total_translation_time = 0.0
     fallback_used_any = False
 
-    # -----------------------------------------------------
-    # 2. 의미 단위별 NLLB 번역
-    # -----------------------------------------------------
 
     for unit in units:
 
@@ -551,9 +498,6 @@ def translate_dual_safe(
 
         total_translation_time += elapsed
 
-        # -------------------------------------------------
-        # 3. 해당 의미 단위의 NLLB 결과 검증
-        # -------------------------------------------------
 
         initial_validation = validate_translation(
             unit,
@@ -583,10 +527,7 @@ def translate_dual_safe(
         zh_fallback = ""
         vi_fallback = ""
 
-        # -------------------------------------------------
-        # 4. 중국어 실패 시 중국어 unit만 교체
-        # -------------------------------------------------
-
+       
         if zh_missing:
 
             fallback = apply_safety_fallback(
@@ -606,9 +547,6 @@ def translate_dual_safe(
                 zh_replaced = True
                 fallback_used_any = True
 
-        # -------------------------------------------------
-        # 5. 베트남어 실패 시 베트남어 unit만 교체
-        # -------------------------------------------------
 
         if vi_missing:
 
@@ -629,9 +567,6 @@ def translate_dual_safe(
                 vi_replaced = True
                 fallback_used_any = True
 
-        # -------------------------------------------------
-        # 6. 교체 후 해당 unit 재검증
-        # -------------------------------------------------
 
         final_validation = validate_translation(
             unit,
@@ -696,10 +631,6 @@ def translate_dual_safe(
             "번역 가능한 안전 문장이 없습니다."
         )
 
-    # -----------------------------------------------------
-    # 7. 최종 의미 단위 결합
-    # -----------------------------------------------------
-
     chinese = " ".join(
         final_zh_units
     ).strip()
@@ -708,9 +639,6 @@ def translate_dual_safe(
         final_vi_units
     ).strip()
 
-    # -----------------------------------------------------
-    # 8. 전체 문장 최종 Safety Guard
-    # -----------------------------------------------------
 
     final_validation = validate_translation(
         processed,
@@ -718,9 +646,7 @@ def translate_dual_safe(
         vietnamese,
     )
 
-    # Units are translated independently, so a compound concept spanning two
-    # source sentences is not visible to the per-unit fallback above.  Apply
-    # its complete fallback only after the joined result has been checked.
+   
     for language, missing_key, fallback_key in (
         ("zh", "zh_missing", "zh"),
         ("vi", "vi_missing", "vi"),
@@ -749,10 +675,7 @@ def translate_dual_safe(
             vietnamese = fallback_text
         fallback_used_any = True
 
-    # -----------------------------------------------------
-    # 8-1. 현장관리자 검증 번역 최종 우선 적용
-    # -----------------------------------------------------
-
+  
     verified_used = False
 
     if verified_translation is not None:
@@ -777,16 +700,13 @@ def translate_dual_safe(
             verified_zh or verified_vi
         )
 
-    # 검증 번역 적용 후 최종 Safety Guard 재검증
+    
     final_validation = validate_translation(
         processed,
         chinese,
         vietnamese,
     )
 
-    # -----------------------------------------------------
-    # 9. 초기 NLLB 전체 결과도 평가용으로 생성
-    # -----------------------------------------------------
 
     raw_chinese = " ".join(
         item["raw_zh"]
@@ -809,11 +729,10 @@ def translate_dual_safe(
         "processed": processed,
         "units": units,
 
-        # 최종 송출용 결과
+      
         "zh": chinese,
         "vi": vietnamese,
 
-        # NLLB 원본 결과
         "raw_zh": raw_chinese,
         "raw_vi": raw_vietnamese,
 
@@ -831,7 +750,7 @@ def translate_dual_safe(
             "required_concepts"
         ],
 
-        # 최종 결과
+        
         "zh_safe": final_validation[
             "zh_safe"
         ],
@@ -850,13 +769,13 @@ def translate_dual_safe(
             "all_safe"
         ],
 
-        # Fallback 사용 여부
+     
         "fallback_used": fallback_used_any,
 
-        # 현장관리자 검증 번역 사용 여부
+       
         "verified_translation_used": verified_used,
 
-        # Fallback 전 상태
+       
         "initial_zh_safe": initial_validation[
             "zh_safe"
         ],
@@ -879,9 +798,6 @@ def translate_dual_safe(
     }
 
 
-# =========================================================
-# 단독 실행 테스트
-# =========================================================
 
 if __name__ == "__main__":
 
