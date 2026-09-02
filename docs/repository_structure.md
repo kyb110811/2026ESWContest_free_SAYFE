@@ -1,6 +1,6 @@
 # 저장소 구성
 
-이 저장소는 SAY:FE의 팀 application/integration source와 실행에 필요한 소규모 asset을 장치·기능별로 구분합니다.
+이 저장소는 SAYFE의 팀 application/integration source와 실행에 필요한 소규모 asset을 장치·기능별로 구분합니다.
 
 ```text
 2026ESWContest_free_SAYFE/
