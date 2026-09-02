@@ -105,7 +105,6 @@ STT_CORRECTIONS = {
     "호왕 먼저 털어주세요": "후앙 먼저 켜주세요",
     "후황 먼저 털어주세요": "후앙 먼저 켜주세요",
 
-    # J03 및 실시간 시험에서 확인된 문맥 기반 오인식
     "포함 끄지 말고": "후앙 끄지 말고",
     "포항 끄지 말고": "후앙 끄지 말고",
     "호황 끄지 말고": "후앙 끄지 말고",
@@ -172,7 +171,6 @@ def normalize_text(text: str) -> str:
     if not normalized:
         return ""
 
-    # 긴 표현부터 교정하여 부분 치환 충돌 방지
     for wrong in sorted(
         STT_CORRECTIONS.keys(),
         key=len,
