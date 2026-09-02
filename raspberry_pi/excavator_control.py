@@ -9,10 +9,10 @@ from typing import Any
 
 PINS = [2, 3, 4, 14]
 
-# 굴착기 정지 대상 이벤트
+
 VISION_EVENT = "WORKER_NEAR_MOVING_EXCAVATOR"
 
-# 이벤트 발생 시 실행할 동작
+
 FAST_PATH_EVENT = "WORKER_IN_EQUIPMENT_ZONE"
 
 
