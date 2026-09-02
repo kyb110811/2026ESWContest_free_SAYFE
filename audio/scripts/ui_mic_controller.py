@@ -46,7 +46,7 @@ from src.audio.korean_auracast_output import (
 def main():
     env = os.environ.copy()
 
-    # UI에서 선택한 방송 언어
+ 
     selected_languages = {
         lang.strip()
         for lang in env.get(
