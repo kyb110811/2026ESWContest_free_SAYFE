@@ -14,16 +14,6 @@ class HazardDecision:
 
 
 class HazardStateMachine:
-    """CAS용 latch 상태머신.
-
-    Trigger:
-      equipment_state == RUNNING
-      AND worker_near_equipment == True
-      AND condition이 ENTER_CONFIRM_FRAMES 연속 유지
-
-    Trigger 이후에는 장비가 STOP으로 바뀌어도 active 유지.
-    사람이 근접영역에서 완전히 벗어난 뒤 manual reset으로만 해제.
-    """
 
     def __init__(self):
         self.active = False
@@ -79,7 +69,7 @@ class HazardStateMachine:
         )
 
     def reset(self) -> bool:
-        """사람이 근접영역 밖에 있을 때만 latch 해제."""
+      
         if not self.active:
             return True
 
