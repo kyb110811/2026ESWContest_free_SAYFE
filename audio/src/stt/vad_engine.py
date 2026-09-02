@@ -25,11 +25,7 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 
 
 def validate_capture_device() -> str:
-    """Fail early unless the administrator USB microphone has its ALSA ID.
-
-    Card *numbers* are assigned again whenever USB devices are reconnected.
-    The capture command therefore deliberately keeps the stable ALSA card ID
-    (``Device``) instead of using a numeric ``hw:N,M`` address.
+  ) instead of using a numeric ``hw:N,M`` address.
     """
     result = subprocess.run(
         ["arecord", "-l"],
@@ -47,8 +43,7 @@ def validate_capture_device() -> str:
             f"arecord -l:\n{cards.strip()}"
         )
 
-    # arecord -l displays this microphone as:
-    # card N: Device [Usb Audio Device], device 0: ...
+   
     if not any(
         line.lstrip().startswith("card ")
         and ": Device [" in line
@@ -125,9 +120,7 @@ def record_one_utterance() -> Path:
             raw = process.stdout.read(bytes_per_chunk)
 
             if not raw:
-                # USB/ALSA 장치를 반복해서 reopen할 때
-                # 첫 read가 일시적으로 비어 있을 수 있다.
-                # arecord가 실제 종료된 경우에만 오류로 판단한다.
+                
                 if process.poll() is not None:
                     detail = ""
                     if process.stderr is not None:
@@ -184,9 +177,7 @@ def record_one_utterance() -> Path:
                             f"발화가 너무 짧습니다: {speech_ms:.0f} ms"
                         )
 
-                    # -------------------------------------------------
-                    # Whisper hallucination 방지용 음성 에너지 Guard
-                    # -------------------------------------------------
+                
                     pcm = b"".join(recorded_frames)
                     pcm_np = np.frombuffer(
                         pcm,
@@ -211,8 +202,7 @@ def record_one_utterance() -> Path:
                         f"PEAK={peak:.0f}"
                     )
 
-                    # 저에너지 잡음/잔향은 Whisper에 보내지 않는다.
-                    # 현재 USB 마이크 실측값을 기준으로 보수적으로 시작.
+                   
                     if rms < 250 or peak < 1200:
                         print(
                             "LOW ENERGY INPUT - DROP"
