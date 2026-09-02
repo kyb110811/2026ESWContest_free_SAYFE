@@ -30,15 +30,7 @@ SILENCE = b"\x00" * CHUNK_BYTES
 
 
 class KoreanAuracastPlayback:
-    """
-    BTD 700 전용 한국어 Auracast 출력.
-
-    프로그램 실행 중 aplay를 계속 유지하고,
-    음성이 없을 때는 silence PCM을 보낸다.
-
-    한국어 WAV가 들어오면 48 kHz / stereo / S16_LE로
-    변환하여 BTD 700으로 출력한다.
-    """
+   
 
     def __init__(
         self,
@@ -112,9 +104,7 @@ class KoreanAuracastPlayback:
                 wf.getnframes()
             )
 
-        # -------------------------------------------------
-        # sample width -> S16_LE
-        # -------------------------------------------------
+      
         if width != SAMPLE_WIDTH:
             raw = audioop.lin2lin(
                 raw,
@@ -122,9 +112,6 @@ class KoreanAuracastPlayback:
                 SAMPLE_WIDTH,
             )
 
-        # -------------------------------------------------
-        # mono/stereo 정규화
-        # -------------------------------------------------
         if channels == 2:
             raw = audioop.tomono(
                 raw,
@@ -139,9 +126,6 @@ class KoreanAuracastPlayback:
                 f"{channels} channels"
             )
 
-        # -------------------------------------------------
-        # sample rate -> 48 kHz
-        # -------------------------------------------------
         if rate != TARGET_RATE:
             raw, _ = audioop.ratecv(
                 raw,
@@ -152,9 +136,6 @@ class KoreanAuracastPlayback:
                 None,
             )
 
-        # -------------------------------------------------
-        # mono -> stereo
-        # -------------------------------------------------
         raw = audioop.tostereo(
             raw,
             SAMPLE_WIDTH,
@@ -162,9 +143,7 @@ class KoreanAuracastPlayback:
             1.0,
         )
 
-        # -------------------------------------------------
-        # fixed 10 ms chunks
-        # -------------------------------------------------
+    
         chunks = []
 
         for offset in range(
@@ -252,9 +231,7 @@ class KoreanAuracastPlayback:
                 )
 
             except queue.Empty:
-                # 음성이 없어도 USB audio stream을
-                # 유지하여 BTD700 Auracast 방송이
-                # 사라지지 않게 한다.
+             
                 chunk = SILENCE
 
             try:
