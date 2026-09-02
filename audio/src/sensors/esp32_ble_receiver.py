@@ -1,5 +1,3 @@
-"""Restartable ESP32-C3 BLE gas receiver for the SAY:FE GPU worker."""
-
 from __future__ import annotations
 
 import asyncio
@@ -19,7 +17,7 @@ MQ_PATTERN = re.compile(r"(?:^|,)\s*MQ\s*=\s*(-?\d+)")
 
 
 def parse_mq(data: bytes | str) -> int | None:
-    """Extract an MQ integer from one ESP32 notification."""
+   
     message = (
         data.decode("utf-8", errors="ignore")
         if isinstance(data, bytes)
@@ -30,8 +28,7 @@ def parse_mq(data: bytes | str) -> int | None:
 
 
 class GasThresholdLatch:
-    """Fire once above threshold, then re-arm at or below it."""
-
+   
     def __init__(
         self,
         threshold: int = DEFAULT_THRESHOLD,
@@ -65,8 +62,7 @@ class GasThresholdLatch:
 
 
 class Esp32BleGasReceiver:
-    """Run Bleak in a daemon thread and reconnect without blocking Safe Path."""
-
+   
     def __init__(
         self,
         on_danger: Callable[[int], object],
@@ -182,7 +178,7 @@ def _enabled_from_environment() -> bool:
 def start_esp32_ble_gas_receiver(
     on_danger: Callable[[int], object],
 ) -> Esp32BleGasReceiver | None:
-    """Start the optional receiver; invalid configuration cannot stop startup."""
+   
     if not _enabled_from_environment():
         print("[SAY:FE GAS] BLE receiver disabled", flush=True)
         return None
@@ -205,7 +201,7 @@ def start_esp32_ble_gas_receiver(
 
 
 async def main() -> None:
-    """Compatibility entry point for manually observing threshold crossings."""
+   
     receiver = Esp32BleGasReceiver(
         lambda mq: print(f"[SAY:FE GAS] danger callback MQ={mq}", flush=True)
     )
