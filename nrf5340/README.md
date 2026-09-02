@@ -161,7 +161,7 @@ Audio Jetson에서 생성된 Stereo PCM을 nRF5340 Audio DK의 USB Audio Interfa
 
 ---
 
-## 6. SAY:FE Audio 실행 흐름
+## 6. SAYFE Audio 실행 흐름
 
 ```text
 audio/run_ui_demo.sh
