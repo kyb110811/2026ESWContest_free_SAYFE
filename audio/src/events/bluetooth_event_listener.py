@@ -1,5 +1,3 @@
-"""Bluetooth RFCOMM receiver for newline-framed Vision safety events."""
-
 from __future__ import annotations
 
 import json
@@ -17,7 +15,6 @@ FAST_PATH_EVENT = "WORKER_IN_EQUIPMENT_ZONE"
 
 
 class NewlineJsonDecoder:
-    """Incrementally decode zero or more JSON objects from stream chunks."""
 
     def __init__(self) -> None:
         self._buffer = b""
@@ -47,12 +44,12 @@ def dispatch_vision_event(
     data: dict[str, Any],
     trigger: Callable[[str], object] | None = None,
 ) -> bool:
-    """Map the one supported Vision event onto the existing Fast Path API."""
+  
     if data.get("event") != VISION_EVENT:
         return False
 
     if trigger is None:
-        # Lazy import keeps stream parsing usable on machines without audio deps.
+      
         from src.safety.fast_path import trigger_fast_path
 
         trigger = trigger_fast_path
@@ -63,8 +60,7 @@ def dispatch_vision_event(
 
 
 class BluetoothEventListener:
-    """Restartable-client RFCOMM server running in one daemon thread."""
-
+    
     def __init__(
         self,
         channel: int = 1,
@@ -133,7 +129,7 @@ class BluetoothEventListener:
                         pass
                     LOGGER.warning("[SAY:FE BT] client disconnected")
         except Exception:
-            # Bluetooth support/permissions/bind failures cannot stop Safe Path.
+           
             LOGGER.exception("[SAY:FE BT] listener unavailable; Safe Path continues")
         finally:
             if server is not None:
