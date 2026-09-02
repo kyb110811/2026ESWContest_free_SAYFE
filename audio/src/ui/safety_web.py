@@ -746,8 +746,7 @@ def index():
 
 @app.route("/api/state")
 def api_state():
-    # 컨트롤러가 마이크/ALSA 오류 등으로 종료된 경우 UI가 ON AIR로
-    # 남지 않도록 실제 자식 프로세스 상태를 반영한다.
+   
     if (
         broadcast_process is not None
         and broadcast_process.poll() is not None
