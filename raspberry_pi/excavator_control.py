@@ -24,32 +24,17 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 
 
-# ============================================================
-# GPIO
-# ============================================================
-
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
-
-# 처음에는 제어 가능 상태
-# GPIO 2는 반전이므로 HIGH
-GPIO.setup(2, GPIO.OUT, initial=GPIO.HIGH)
-
-# GPIO 3, 4, 14는 LOW
-for pin in [3, 4, 14]:
+for pin in [2, 3, 4, 14]:
     GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
 
-
 def set_all(state):
-
     for pin in PINS:
         GPIO.output(pin, state)
 
-
 def all_on():
-
-
     set_all(GPIO.HIGH)
 
     print(
@@ -60,9 +45,7 @@ def all_on():
         "GPIO14=HIGH"
     )
 
-
 def all_off():
-
     set_all(GPIO.LOW)
 
     print(
@@ -88,16 +71,7 @@ def print_status():
         )
 
 
-# ============================================================
-# JSON Decoder
-# ============================================================
-
 class NewlineJsonDecoder:
-    """
-    Bluetooth RFCOMM stream에서
-    \\n 기준으로 JSON 메시지를 분리한다.
-    """
-
     def __init__(self):
         self._buffer = b""
 
@@ -147,15 +121,7 @@ class NewlineJsonDecoder:
 
         return messages
 
-
-# ============================================================
-# Event 처리
-# ============================================================
-
-def dispatch_vision_event(
-    data: dict[str, Any]
-) -> bool:
-
+def dispatch_vision_event(data: dict[str, Any]) -> bool:
     event = data.get("event")
 
     print(
@@ -166,41 +132,18 @@ def dispatch_vision_event(
         )
     )
 
-    # --------------------------------------------------------
-    # 굴착기 근처 작업자 감지
-    # --------------------------------------------------------
-
     if event == VISION_EVENT:
-
         print(
             f"[TARGET EVENT] {VISION_EVENT}"
         )
-
         print(
             f"[EVENT MAP] "
             f"{VISION_EVENT} -> {FAST_PATH_EVENT}"
         )
-
-        # 굴착기 제어 불가능 상태
         all_off()
-
         return True
-
-
-    # --------------------------------------------------------
-    # 다른 이벤트
-    # --------------------------------------------------------
-
-    print(
-        f"[INFO] 다른 이벤트: {event}"
-    )
-
     return False
 
-
-# ============================================================
-# Bluetooth RFCOMM Listener
-# ============================================================
 
 class BluetoothEventListener:
 
@@ -210,17 +153,10 @@ class BluetoothEventListener:
     ):
 
         self.channel = channel
-
         self._stop_event = threading.Event()
-
         self._thread = None
-
         self._server = None
 
-
-    # --------------------------------------------------------
-    # 시작
-    # --------------------------------------------------------
 
     def start(self):
 
@@ -238,10 +174,6 @@ class BluetoothEventListener:
 
         self._thread.start()
 
-
-    # --------------------------------------------------------
-    # 종료
-    # --------------------------------------------------------
 
     def stop(self):
 
@@ -264,9 +196,6 @@ class BluetoothEventListener:
             )
 
 
-    # --------------------------------------------------------
-    # RFCOMM 서버
-    # --------------------------------------------------------
 
     def _run(self):
 
@@ -282,7 +211,6 @@ class BluetoothEventListener:
 
             self._server = server
 
-            # 첫 번째 잘 동작하는 코드와 동일한 방식
             server.settimeout(0.5)
 
             server.bind(
@@ -300,10 +228,6 @@ class BluetoothEventListener:
                 f"{self.channel}"
             )
 
-
-            # ------------------------------------------------
-            # 연결 대기
-            # ------------------------------------------------
 
             while not self._stop_event.is_set():
 
@@ -374,10 +298,6 @@ class BluetoothEventListener:
             self._server = None
 
 
-    # --------------------------------------------------------
-    # Client 데이터 수신
-    # --------------------------------------------------------
-
     def _receive_client(
         self,
         client: socket.socket
@@ -400,26 +320,14 @@ class BluetoothEventListener:
 
                 continue
 
-
-            # ------------------------------------------------
-            # 연결 종료
-            # ------------------------------------------------
-
             if not chunk:
 
                 return
 
-
-            # 디버깅용 RAW 데이터
             print(
                 "[BT RAW]",
                 repr(chunk)
             )
-
-
-            # ------------------------------------------------
-            # JSON 처리
-            # ------------------------------------------------
 
             for data in decoder.feed(chunk):
 
@@ -433,11 +341,6 @@ class BluetoothEventListener:
 
 
                 event = data.get("event")
-
-
-                # --------------------------------------------
-                # 대상 이벤트
-                # --------------------------------------------
 
                 if event == VISION_EVENT:
 
@@ -456,21 +359,11 @@ class BluetoothEventListener:
                             "대상 이벤트가 이미 활성화되어 있음"
                         )
 
-
-                # --------------------------------------------
-                # 다른 이벤트
-                # --------------------------------------------
-
                 else:
 
                     dispatch_vision_event(
                         data
                     )
-
-
-        # ----------------------------------------------------
-        # 연결 종료
-        # ----------------------------------------------------
 
         if event_active:
 
@@ -482,10 +375,6 @@ class BluetoothEventListener:
             # 이벤트 종료 → 다시 제어 가능
             all_on()
 
-
-# ============================================================
-# Main
-# ============================================================
 
 def main():
 
@@ -515,10 +404,7 @@ def main():
 
     print()
 
-
-    # 프로그램 시작 시 제어 가능 상태
     all_on()
-
 
     listener = BluetoothEventListener(
         channel=args.channel
@@ -529,7 +415,6 @@ def main():
 
         listener.start()
 
-        # 메인 스레드를 계속 유지
         while True:
 
             threading.Event().wait(1)
@@ -547,7 +432,6 @@ def main():
 
         listener.stop()
 
-        # 종료 시 안전하게 제어 가능 상태
         all_on()
 
         GPIO.cleanup()
@@ -556,10 +440,6 @@ def main():
             "[GPIO] cleanup 완료"
         )
 
-
-# ============================================================
-# 실행
-# ============================================================
 
 if __name__ == "__main__":
 
