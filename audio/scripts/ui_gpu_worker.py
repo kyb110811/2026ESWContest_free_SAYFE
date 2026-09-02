@@ -42,7 +42,7 @@ OUT = ROOT / "output" / "realtime_safe_path"
 TTS_ROOT = OUT / "tts"
 LOG_CSV = OUT / "safe_path_log.csv"
 
-# UI에서 선택한 언어
+
 SELECTED_LANGUAGES = {
     lang.strip()
     for lang in os.environ.get(
@@ -52,7 +52,7 @@ SELECTED_LANGUAGES = {
     if lang.strip() in ("ko", "zh", "vi")
 }
 
-# GPU worker가 담당하는 번역/TTS 언어
+
 OUTPUT_LANGUAGES = tuple(
     lang
     for lang in ("zh", "vi")
@@ -205,16 +205,11 @@ def run_one_tts_streaming(lang, text, output_path, playback):
 
 
 def warm_up_runtime():
-    """
-    실제 사용자 첫 발화 전에 Whisper/NLLB/Piper를 한 번 실행하여
-    cold-start 지연을 초기화 단계에서 흡수한다.
-    """
+    
 
     print("Runtime warm-up 시작...", flush=True)
 
-    # -----------------------------------------------------
-    # 1. Whisper warm-up
-    # -----------------------------------------------------
+    
     warmup_wav_candidates = [
         ROOT / "data" / "old_test_audio" / "stt_test.wav",
         ROOT / "vad_test" / "utterance_20260814_222842.wav",
@@ -237,9 +232,7 @@ def warm_up_runtime():
         flush=True,
     )
 
-    # -----------------------------------------------------
-    # 2. NLLB warm-up
-    # -----------------------------------------------------
+
     start = time.perf_counter()
 
     warm_translation = None
@@ -254,9 +247,7 @@ def warm_up_runtime():
     else:
         print("  NLLB warm-up    : skipped (KO only)", flush=True)
 
-    # -----------------------------------------------------
-    # 3. EN/ZH/VI Piper warm-up
-    # -----------------------------------------------------
+    
     warm_dir = Path("/tmp/construction_safety_tts_warmup")
     warm_dir.mkdir(parents=True, exist_ok=True)
 
@@ -357,17 +348,7 @@ def process_wav(wav_path: Path):
         )
         corrected = construction_result["normalized"]
 
-        # -------------------------------------------------
-        # 현장관리자 제공 21개 검증 문장 우선 매칭
-        #
-        # 1순위: Whisper STT 원문
-        # 2순위: 일반 정규화 문장
-        # 3순위: 건설용어 교정 문장
-        #
-        # 매칭되면 NLLB를 건너뛰고 검증 ZH/VI를 사용한다.
-        # 매칭되지 않으면 기존 NLLB + Safety Guard를 그대로 사용한다.
-        # -------------------------------------------------
-
+        
         from src.translation.verified_site_translations import (
             get_verified_translation,
         )
@@ -577,16 +558,13 @@ def main():
     else:
         print("NLLB preload skipped (KO only)")
 
-    # 실제 사용자 입력 전에 cold-start 제거
+
     warm_up_runtime()
 
-    # RFCOMM recv/accept are blocking, so Vision events are received by a
-    # daemon thread.  It lives in this process to share the existing Fast Path
-    # Auracast singleton and its preemption generation.
+ 
     bluetooth_listener = start_bluetooth_event_listener()
 
-    # This process inherited SAYFE_KO_FAST_PATH_FD from ui_mic_controller,
-    # so gas alerts must enter Fast Path here (never through direct playback).
+   
     def trigger_gas_fast_path(_mq):
         from src.safety.fast_path import trigger_fast_path
 
