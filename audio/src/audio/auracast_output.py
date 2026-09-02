@@ -34,7 +34,7 @@ def _load_mono_16bit(path: Path) -> tuple[np.ndarray, int]:
 
     audio = np.frombuffer(frames, dtype=np.int16)
     if channels == 2:
-        # Piper is mono today, but retain the previous down-mix behaviour.
+        
         audio = audio.reshape(-1, 2).mean(axis=1).astype(np.int16)
     elif channels != 1:
         raise RuntimeError(f"Unsupported channel count: {channels}")
@@ -371,7 +371,6 @@ class AuracastPlaybackQueue:
     def _put_chunk(self, language: Language, chunk: bytes, *, block: bool = True) -> None:
         pcm_queue = self._queue_for(language)
         if block:
-            # Keep producers bounded without making shutdown wait on a full queue.
             while not self._stopping:
                 try:
                     pcm_queue.put(chunk, timeout=0.1)
