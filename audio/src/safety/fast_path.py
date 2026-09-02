@@ -32,7 +32,7 @@ SUPPORTED_EVENTS: Final = frozenset(FAST_PATH_WAV_FILES)
 
 
 def request_korean_fast_path(wav_path: Path) -> bool:
-    """Send a KO WAV request to the mic-controller-owned BTD 700 queue."""
+   
     raw_fd = os.environ.get("SAYFE_KO_FAST_PATH_FD")
     if raw_fd is None:
         print(
@@ -59,7 +59,6 @@ def request_korean_fast_path(wav_path: Path) -> bool:
 def get_fast_path_wav_map(
     event: str,
 ) -> dict[str, Path]:
-    """Return the pre-generated KO / ZH / VI WAV paths for an event."""
 
     event = event.strip().upper()
 
@@ -85,10 +84,7 @@ def get_fast_path_wav_map(
 def get_fast_path_wavs(
     event: str,
 ) -> tuple[Path, Path]:
-    """
-    Return pre-generated ZH / VI Fast Path WAV files
-    for one structured safety event.
-    """
+    
 
     wav_paths = get_fast_path_wav_map(event)
     return wav_paths["zh"], wav_paths["vi"]
@@ -97,13 +93,7 @@ def get_fast_path_wavs(
 def trigger_fast_path(
     event: str,
 ) -> dict[str, object]:
-    """
-    Bypass STT / NLLB / realtime Piper.
-
-    Pre-generated ZH / VI safety audio is queued immediately into the
-    existing independent Auracast PCM queues.  The KO WAV path is sent by
-    IPC to ui_mic_controller, which exclusively owns the BTD 700 stream.
-    """
+   
 
     event = event.strip().upper()
 
@@ -114,8 +104,7 @@ def trigger_fast_path(
 
     playback = get_auracast_playback()
 
-    # Fast Path는 현재 재생 중이거나 대기 중인
-    # 일반 Safe Path 음성을 즉시 선점한다.
+ 
     generation = playback.preempt()
 
     zh_chunks = playback.enqueue_wav(
