@@ -38,7 +38,6 @@ VERIFIED_SITE_TRANSLATIONS = {
     },
 
 
-
     "취부 안 맞으면 다음 공정 다 틀어진다.": {
         "zh": "定位安装不准确，后续工序都会出问题。",
         "vi": "Nếu lắp đặt căn chỉnh không chính xác, các công đoạn sau đều sẽ bị sai.",
@@ -63,7 +62,6 @@ VERIFIED_SITE_TRANSLATIONS = {
         "zh": "面板吊装顺序错了，重新放下来。",
         "vi": "Thứ tự nâng các tấm panel lên bị sai, hãy hạ xuống lại.",
     },
-
 
 
     "위험하니까 전부 작업중지해": {
@@ -96,7 +94,6 @@ VERIFIED_SITE_TRANSLATIONS = {
         "vi": "Khu vực này cấm lửa, không được sử dụng nguồn lửa.",
     },
 
-
     "용접 들어가면 수정 안 돼, 취부 다시 확인해.": {
         "zh": "一旦开始焊接就不能再修改，重新确认定位安装是否正确。",
         "vi": "Một khi bắt đầu hàn sẽ không thể sửa lại, hãy kiểm tra lại việc lắp đặt căn chỉnh.",
@@ -120,17 +117,14 @@ VERIFIED_SITE_TRANSLATIONS = {
 
 
 def _normalize(text: str) -> str:
-    """
-    STT의 띄어쓰기/구두점 차이를 허용하되
-    다른 문장을 fuzzy matching 하지는 않는다.
-    """
+    
 
     text = text.strip()
 
-    # 공백 제거
+
     text = re.sub(r"\s+", "", text)
 
-    # STT에서 흔히 달라질 수 있는 구두점 제거
+
     text = re.sub(
         r"[.,!?~…·,:;\"'“”‘’(){}\[\]]",
         "",
@@ -149,8 +143,6 @@ STT_ALIASES = {
     "양종 추리니가 아리전부 피워": "양중 중이니까 아래 전부 비워",
     "양정 중이니까 안의 전복이오": "양중 중이니까 아래 전부 비워",
 
-    # 실제 관측된 전체 발화만 허용한다. 두 안전 의미 조각 중 하나만
-    # 남은 일반 문장이나 반대 의미 문장에는 적용하지 않는다.
     "배면 흔한 발견주의 주변 여기 화기 엉덩이니까 불사용금지야": "여기 화기엄금이니까 불 사용 금지야.",
 
     "나라시가 기별됐어 다시 한 번 밀어": "나라기까기 덜 됐어, 다시 한 번 밀어.",
