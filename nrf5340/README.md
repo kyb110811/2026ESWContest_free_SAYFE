@@ -2,7 +2,7 @@
 
 ## 1. 역할
 
-SAY:FE는 건설현장 안전정보를 **한국어(KOREAN), 중국어(CHINESE), 베트남어(VIETNAMESE)** 3개 언어로 전달합니다.
+SAYFE는 건설현장 안전정보를 **한국어(KOREAN), 중국어(CHINESE), 베트남어(VIETNAMESE)** 3개 언어로 전달합니다.
 
 각 언어의 Audio 출력 경로는 다음과 같이 구성됩니다.
 
@@ -10,7 +10,7 @@ SAY:FE는 건설현장 안전정보를 **한국어(KOREAN), 중국어(CHINESE), 
 - **CHINESE** → Audio Jetson → nRF5340 Audio DK → Auracast Broadcast
 - **VIETNAMESE** → Audio Jetson → nRF5340 Audio DK → Auracast Broadcast
 
-즉, **nRF5340 Audio DK는 SAY:FE의 3개 언어 중 CHINESE와 VIETNAMESE 방송의 Auracast 송출을 담당합니다.**
+즉, **nRF5340 Audio DK는 SAYFE의 3개 언어 중 CHINESE와 VIETNAMESE 방송의 Auracast 송출을 담당합니다.**
 
 Audio Jetson에서 생성된 중국어·베트남어 PCM Audio를 nRF5340 Audio DK의 USB Audio Interface로 전달하고, nRF5340 Audio DK는 이를 Auracast Broadcast로 송출합니다.
 
@@ -54,7 +54,7 @@ Audio Jetson에서 생성된 중국어·베트남어 PCM Audio를 nRF5340 Audio 
 
 nRF5340 Audio DK는 **CHINESE / VIETNAMESE 전용 Auracast 송출 경로**를 담당합니다.
 
-Galaxy 스마트폰은 SAY:FE의 필수 Software Module이나 Audio 출력 장치가 아닙니다.
+Galaxy 스마트폰은 SAYFE의 필수 Software Module이나 Audio 출력 장치가 아닙니다.
 
 실제 시연에서는 Galaxy 스마트폰의 LG ThinQ 앱을 이용하여 Auracast 방송을 검색·선택하는 제어 단말로 사용하며, 실제 방송 음성의 수신·재생은 **LG XBOOM Rock**이 담당합니다.
 
@@ -94,7 +94,7 @@ Audio Format은 다음과 같습니다.
 
 ## 4. Auracast 방송 설정
 
-SAY:FE에서는 다음 스크립트를 통해 nRF5340 Audio DK의 Auracast 방송 환경을 설정합니다.
+SAYFE에서는 다음 스크립트를 통해 nRF5340 Audio DK의 Auracast 방송 환경을 설정합니다.
 
 ```text
 audio/scripts/setup_auracast_zh_vi.py
@@ -193,7 +193,7 @@ audio/run_ui_demo.sh
                  Auracast Broadcast
 ```
 
-SAY:FE Audio 시스템에서는 하나의 Audio 처리 시스템에서 3개 언어의 출력 경로를 관리하지만, 실제 출력 장치는 언어에 따라 구분됩니다.
+SAYFE Audio 시스템에서는 하나의 Audio 처리 시스템에서 3개 언어의 출력 경로를 관리하지만, 실제 출력 장치는 언어에 따라 구분됩니다.
 
 | 언어 | 출력 경로 |
 |---|---|
@@ -217,7 +217,7 @@ SAY:FE Audio 시스템에서는 하나의 Audio 처리 시스템에서 3개 언�
 
 ## 8. nRF Connect SDK Source
 
-SAY:FE의 Auracast 송출 환경은 Nordic Semiconductor의 **nRF Connect SDK 기반 nRF Audio 환경**을 사용합니다.
+SAYFE의 Auracast 송출 환경은 Nordic Semiconductor의 **nRF Connect SDK 기반 nRF Audio 환경**을 사용합니다.
 
 경진대회 제출 및 구현 환경 확인을 위해 본 Repository에는 사용한 nRF 관련 Source를 다음 경로에 포함합니다.
 
@@ -267,13 +267,13 @@ SAY:FE에서는 Nordic에서 제공하는 nRF Audio 기반 환경 위에 다음 
 - Auracast Broadcast 연동
 - Fast Path 위험경고 우선 출력
 
-즉, **Nordic에서 제공하는 nRF Audio 환경과 SAY:FE 팀이 직접 작성한 Host-side Audio Integration Code를 결합하여 CHINESE / VIETNAMESE Auracast 안전방송 시스템을 구성하였습니다.**
+즉, **Nordic에서 제공하는 nRF Audio 환경과 SAYFE 팀이 직접 작성한 Host-side Audio Integration Code를 결합하여 CHINESE / VIETNAMESE Auracast 안전방송 시스템을 구성하였습니다.**
 
 ---
 
 ## 9. Fast Path 연동
 
-SAY:FE에서는 일반 관리자 방송뿐 아니라 위험 이벤트 발생 시 즉시 경고방송을 출력하는 **Fast Path**를 지원합니다.
+SAYFE에서는 일반 관리자 방송뿐 아니라 위험 이벤트 발생 시 즉시 경고방송을 출력하는 **Fast Path**를 지원합니다.
 
 주요 위험 이벤트는 Vision 및 Gas 시스템에서 발생합니다.
 
@@ -336,7 +336,7 @@ nRF5340 Audio DK가 담당하는 출력은 다음과 같습니다.
 
 ## 11. 실행 방법
 
-Audio Jetson의 SAY:FE 프로젝트에서 다음과 같이 실행합니다.
+Audio Jetson의 SAYFE 프로젝트에서 다음과 같이 실행합니다.
 
 ```bash
 cd ~/construction_safety
@@ -363,7 +363,7 @@ SAYFE_GAS_THRESHOLD=1000 \
 - `/dev/ttyACM0` Serial 장치 인식
 - nRF5340 USB Audio Device 인식
 - Serial / Audio 장치 접근 권한
-- SAY:FE Audio 실행 환경 구성
+- SAYFE Audio 실행 환경 구성
 
 ---
 
@@ -377,4 +377,4 @@ The original license text is provided in [`THIRD_PARTY_LICENSES.txt`](../THIRD_P
 
 nRF 관련 Source에 포함된 기존 License, Notice 및 SPDX 정보는 원본 상태를 유지합니다.
 
-Nordic Semiconductor가 제공하는 Source와 SAY:FE 팀이 작성한 Integration Code는 본 문서에서 구분하여 명시하였습니다.
+Nordic Semiconductor가 제공하는 Source와 SAYFE 팀이 작성한 Integration Code는 본 문서에서 구분하여 명시하였습니다.
