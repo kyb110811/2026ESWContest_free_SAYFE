@@ -1,0 +1,56 @@
+#
+# Copyright (c) 2024 Nordic Semiconductor
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+#
+cmake_minimum_required(VERSION 3.20.0)
+
+# Include overlay file
+set(EXTRA_DTC_OVERLAY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/../../../applications/nrf_audio/boards/nrf5340_audio_dk_nrf5340_cpuapp.overlay)
+
+# Flag which defines whether application is compiled as gateway/dongle or headset
+add_compile_definitions(HEADSET=1)
+add_compile_definitions(GATEWAY=2)
+
+
+find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+project(nrf_auraconfig)
+
+# Include application events and configuration headers
+zephyr_library_include_directories(app PRIVATE
+    ${ZEPHYR_NRF_MODULE_DIR}/samples/bluetooth/nrf_auraconfig/include
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/include
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/bluetooth
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/modules
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/utils/macros
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/audio
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/utils
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/drivers
+)
+
+add_subdirectory(${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/bluetooth bluetooth_build)
+
+target_sources(app PRIVATE ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/modules/audio_sync_timer.c)
+target_sources(app PRIVATE ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/modules/led.c)
+
+target_sources_ifdef(CONFIG_NRF_AUDIO_SD_CARD_MODULE app PRIVATE ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/modules/sd_card.c)
+target_sources_ifdef(CONFIG_NRF_AUDIO_SD_CARD_LC3_FILE app PRIVATE ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/modules/lc3_file.c)
+target_sources_ifdef(CONFIG_NRF_AUDIO_SD_CARD_LC3_STREAMER app PRIVATE ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/modules/lc3_streamer.c)
+
+FILE(GLOB app_sources src/*.c)
+
+target_sources(app PRIVATE ${app_sources})
+
+target_sources(app PRIVATE
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/audio/audio_system.c
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/audio/audio_datapath.c
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/audio/sw_codec_select.c
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/audio/le_audio_rx.c
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/modules/audio_usb.c
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/modules/audio_usb_init.c
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/modules/audio_clock.c
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/utils/device_location.c
+    ${ZEPHYR_NRF_MODULE_DIR}/applications/nrf_audio/src/utils/uicr.c
+)
+
+
