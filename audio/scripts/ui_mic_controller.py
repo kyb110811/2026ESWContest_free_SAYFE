@@ -61,11 +61,7 @@ def main():
         sorted(selected_languages),
     )
 
-    # -----------------------------------------------------
-    # Korean Auracast
-    # BTD 700에 무음 PCM을 지속 공급하여
-    # 프로그램 실행 중 KO Auracast 방송을 유지한다.
-    # -----------------------------------------------------
+  
     ko_playback = None
 
     if "ko" in selected_languages:
@@ -74,8 +70,7 @@ def main():
     else:
         print("[SAY:FE] KO channel disabled")
 
-    # Hugging Face tokenizer 내부 CPU 병렬화 비활성화
-    # NLLB CUDA/GPU 사용 및 TTS 병렬 실행에는 영향 없음
+   
     env["TOKENIZERS_PARALLELISM"] = "false"
 
     env.setdefault(
@@ -87,9 +82,7 @@ def main():
         "PYTHONPATH"
     ] = str(PROJECT)
 
-    # GPU worker의 Fast Path 스레드는 BTD 700을 직접 열지 않는다.
-    # 전용 단방향 pipe로 WAV 경로만 보내고, 이 owner 프로세스가
-    # 기존 KoreanAuracastPlayback queue에 넣는다.
+ 
     ko_fast_path_read_fd = None
     ko_fast_path_write_fd = None
     pass_fds = ()
@@ -223,12 +216,7 @@ def main():
                 destination,
             )
 
-            # -------------------------------------------------
-            # KO Auracast
-            # 관리자 한국어 원음을 별도 TTS 없이
-            # BTD 700 Auracast 방송으로 즉시 출력한다.
-            # 기존 ZH/VI 처리와 독립적으로 동작한다.
-            # -------------------------------------------------
+            
             if ko_playback is not None:
                 try:
                     ko_chunks = ko_playback.enqueue_wav(
@@ -247,14 +235,14 @@ def main():
                         error,
                     )
 
-            # Send WAV path to warm GPU worker
+      
             worker.stdin.write(
                 str(destination) + "\n"
             )
 
             worker.stdin.flush()
 
-            # Wait for this utterance to finish
+            
             while True:
                 line = worker.stdout.readline()
 
