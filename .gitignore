@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.log
+*.bak*
+*.backup
+*.zip
+*.tar
+*.tar.gz
+venv/
+venv_gpu/
+output/
+tmp/
+.DS_Store
+.vscode/
+vision_events.csv
+*.engine
+

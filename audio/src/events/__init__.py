@@ -1,0 +1,1 @@
+"""External structured-event receivers."""

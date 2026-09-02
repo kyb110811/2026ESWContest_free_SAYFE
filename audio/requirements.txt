@@ -1,0 +1,14 @@
+# Versions verified on the final Audio system on 2026-09-02.
+Flask==3.0.3
+numpy==1.24.4
+torch==2.4.1
+silero-vad==6.2.1
+bleak==0.22.3
+pyserial==3.5
+ctranslate2==4.4.0
+transformers==4.46.3
+
+# System/runtime dependencies (not installed by pip):
+# ALSA utilities (arecord/aplay), BlueZ RFCOMM, lsof, whisper.cpp server,
+# Piper executable and voice models, nRF5340 serial firmware/interface.
+

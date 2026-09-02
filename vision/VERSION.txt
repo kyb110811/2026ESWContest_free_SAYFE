@@ -1,0 +1,7 @@
+v.6
+- Automatic excavator RUNNING/STOP from camera motion
+- Pixel change + bbox movement score
+- Hazard: RUNNING + worker near excavator
+- Same Bluetooth event to Audio Jetson and Raspberry Pi
+- TEST EVENT button retained
+- Manual Reset latch retained

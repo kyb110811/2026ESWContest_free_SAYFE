@@ -1,0 +1,6 @@
+# The backup did not preserve installed package versions.
+ultralytics
+Flask
+numpy
+# OpenCV is normally supplied by the target NVIDIA/JetPack environment.
+
