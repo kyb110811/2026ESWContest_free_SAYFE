@@ -411,9 +411,6 @@ def process_wav(wav_path: Path):
             }
             translation_sec = 0.0
 
-        # ZH/VI Piper stdout is streamed to independent queues.  WAV files are
-        # still saved for evaluation, but neither WAV completion nor the peer
-        # language can delay first Auracast PCM.
         start = time.perf_counter()
 
         tts_each = {}
