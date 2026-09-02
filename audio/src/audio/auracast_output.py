@@ -1,11 +1,3 @@
-"""Non-blocking ZH/VI PCM delivery for the nRF5340 Auracast transmitter.
-
-The nRF5340 USB audio interface receives one S16_LE stereo stream:
-left is Chinese (Auracast BIG 0 / ZH) and right is Vietnamese (BIG 1 / VI).
-Each language has its own PCM queue.  The mixer never waits for a matching
-WAV: when one queue has audio, the other stereo channel is filled with silence.
-"""
-
 from __future__ import annotations
 
 import json
@@ -61,7 +53,7 @@ def _resample(audio: np.ndarray, src_rate: int) -> np.ndarray:
 
 
 def wav_to_pcm_chunks(path: Path) -> list[bytes]:
-    """Convert one completed Piper WAV into fixed-duration mono PCM chunks."""
+    
     audio, rate = _load_mono_16bit(path)
     audio = _resample(audio, rate)
     if len(audio) == 0:
@@ -75,7 +67,7 @@ def wav_to_pcm_chunks(path: Path) -> list[bytes]:
 
 
 def _piper_sample_rate(config_path: Path) -> int:
-    """Read Piper's native raw-output rate from its model configuration."""
+   
     with config_path.open(encoding="utf-8") as config_file:
         config = json.load(config_file)
     try:
@@ -85,7 +77,7 @@ def _piper_sample_rate(config_path: Path) -> int:
 
 
 class _StreamingResampler:
-    """Small stateful linear resampler that emits PCM before stdout closes."""
+   
 
     def __init__(self, source_rate: int) -> None:
         if source_rate <= 0:
@@ -141,8 +133,7 @@ class _StreamingResampler:
 
 
 class AuracastPlaybackQueue:
-    """One asynchronous stereo playback worker with independent ZH and VI queues."""
-
+ 
     def __init__(
         self,
         *,
@@ -151,8 +142,7 @@ class AuracastPlaybackQueue:
         sink: Callable[[bytes], None] | None = None,
     ) -> None:
         max_chunks = max(1, round(max_queue_seconds * 1000 / PCM_CHUNK_MS))
-        # These are intentionally separate queues: neither producer/consumer
-        # needs a completed WAV or a queue item from the other language.
+       
         self.zh_pcm_queue: queue.Queue[bytes] = queue.Queue(maxsize=max_chunks)
         self.vi_pcm_queue: queue.Queue[bytes] = queue.Queue(maxsize=max_chunks)
         self._device = device
@@ -165,10 +155,7 @@ class AuracastPlaybackQueue:
         self._first_write = {"zh": False, "vi": False}
         self._first_put = {"zh": False, "vi": False}
 
-        # Fast Path preemption generation.
-        # Safe Path producer는 시작 시 generation을 기억하고,
-        # Fast Path가 generation을 증가시키면 기존 producer의
-        # 이후 PCM은 자동으로 폐기된다.
+       
         self._generation = 0
 
         self._thread = threading.Thread(
@@ -177,11 +164,10 @@ class AuracastPlaybackQueue:
         self._thread.start()
 
     def enqueue_wav(self, language: Language, wav_path: Path) -> int:
-        """Queue one language as soon as its TTS file exists; never wait for peer."""
+      
         chunks = wav_to_pcm_chunks(wav_path)
         pcm_queue = self._queue_for(language)
-        # Reject a whole utterance before adding any of it.  This bound prevents
-        # unbounded latency/memory growth during rapid consecutive speech.
+      
         if pcm_queue.qsize() + len(chunks) > pcm_queue.maxsize:
             raise RuntimeError(f"{language} PCM queue full; utterance not queued")
         for chunk in chunks:
@@ -199,15 +185,11 @@ class AuracastPlaybackQueue:
         wav_path: Path | None = None,
         env: dict[str, str] | None = None,
     ) -> tuple[float, int]:
-        """Stream one Piper ``--output_raw`` process directly to its PCM queue.
-
-        ``wav_path`` is optional archival output.  It is written while stdout is
-        read, so saving the WAV never forms a playback barrier.
-        """
+       
         source_rate = _piper_sample_rate(config)
         started = time.perf_counter()
 
-        # Safe Path TTS 시작 시점의 generation을 저장한다.
+        
         generation = self.current_generation()
 
         self._begin_utterance(language, started)
@@ -261,11 +243,7 @@ class AuracastPlaybackQueue:
         *,
         generation: int | None = None,
     ) -> int:
-        """Read raw mono S16_LE incrementally and enqueue fixed playback frames.
-
-        This public seam also makes the no-barrier streaming behaviour testable
-        without Piper hardware/models.
-        """
+       
         resampler = _StreamingResampler(source_rate)
         pending = bytearray()
         trailing = b""
@@ -293,8 +271,7 @@ class AuracastPlaybackQueue:
                 )
                 del pending[:PCM_CHUNK_BYTES]
 
-                # Fast Path 선점으로 generation이 바뀌면
-                # 기존 Safe Path의 남은 PCM은 폐기한다.
+               
                 if (
                     generation is not None
                     and generation != self.current_generation()
@@ -340,10 +317,7 @@ class AuracastPlaybackQueue:
             return self._generation
 
     def preempt(self) -> int:
-        """
-        Immediately invalidate current Safe Path producers and
-        discard queued ZH/VI PCM before a Fast Path alert.
-        """
+        
         with self._condition:
             self._generation += 1
             generation = self._generation
@@ -379,7 +353,7 @@ class AuracastPlaybackQueue:
         return generation
 
     def stop(self) -> None:
-        """Stop promptly; no worker join can deadlock on an ALSA write."""
+      
         with self._condition:
             self._stopping = True
             self._condition.notify_all()
@@ -415,7 +389,7 @@ class AuracastPlaybackQueue:
             self._condition.notify()
 
     def _begin_utterance(self, language: Language, started: float) -> None:
-        # These markers are per TTS request (not merely per application run).
+       
         with self._condition:
             self._first_put[language] = False
             self._first_get[language] = False
@@ -447,8 +421,7 @@ class AuracastPlaybackQueue:
                 if self._stopping:
                     return
 
-            # LEFT = Chinese / ZH, RIGHT = Vietnamese / VI.  An empty queue is
-            # explicitly silence, not a barrier for the populated queue.
+            
             zh = self._take_or_silence("zh")
             vi = self._take_or_silence("vi")
             stereo = np.column_stack((
@@ -456,10 +429,6 @@ class AuracastPlaybackQueue:
                 np.frombuffer(vi, dtype="<i2"),
             )).astype("<i2", copy=False).tobytes()
             self._write(stereo, zh != SILENCE_MONO, vi != SILENCE_MONO)
-            # Keep ALSA's pipe close to real time.  Besides bounding latency,
-            # this lets an independently arriving peer PCM chunk join on the
-            # following 20 ms frame instead of being hidden behind a large pipe
-            # buffer of silence.
             self._stop_event.wait(PCM_CHUNK_MS / 1000)
 
     def _write(self, stereo: bytes, has_zh: bool, has_vi: bool) -> None:
@@ -509,7 +478,7 @@ _shared_lock = threading.Lock()
 
 
 def get_auracast_playback() -> AuracastPlaybackQueue:
-    """Return the process-wide asynchronous ZH/VI playback queue."""
+   
     global _shared_playback
     with _shared_lock:
         if _shared_playback is None:
@@ -526,11 +495,7 @@ def stop_auracast_playback() -> None:
 
 
 def play_zh_vi(zh_wav: Path, vi_wav: Path) -> tuple[Path, Path]:
-    """Legacy API kept for archived launch scripts; it is now non-blocking.
-
-    New code must enqueue each language from its own TTS completion callback so
-    it does not wait for both arguments to exist.
-    """
+   
     playback = get_auracast_playback()
     playback.enqueue_wav("zh", zh_wav)
     playback.enqueue_wav("vi", vi_wav)
