@@ -107,7 +107,7 @@ SAYFE는 안전정보의 성격에 따라 처리 경로를 두 가지로 구분�
 → 기준문장 Mapping / NLLB-200 번역
 → Safety Guard / Fallback
 → Piper TTS
-→ KR / ZH / VI 안전방송
+→ KOREAN / CHINESE / VIETNAMESE 안전방송
 ```
 
 ## Fast Path
@@ -119,7 +119,7 @@ Vision / Gas Danger Event
 → Fast Path
 → 일반 STT·번역 처리보다 우선
 → 긴급 경고 Audio
-→ KR / ZH / VI 즉시 경고방송
+→ KOREAN / CHINESE / VIETNAMESE 즉시 경고방송
 → 필요 시 Raspberry Pi GPIO 제어
 ```
 
@@ -133,6 +133,7 @@ Vision / Gas Danger Event
 | TTS | 실시간 처리 | 긴급 경고 Audio |
 | 우선순위 | 일반 | 최우선 |
 | 주요 이벤트 | 관리자 자유발화 | `WORKER_NEAR_MOVING_EXCAVATOR`, `GAS_DANGER` |
+| 출력 | KOREAN / CHINESE / VIETNAMESE | KOREAN / CHINESE / VIETNAMESE |
 
 긴급 위험상황에서는 번역의 다양성보다 **즉시성, 우선순위, 안전 의미의 확실한 전달**이 중요하기 때문에 Fast Path가 일반 방송보다 우선 처리되도록 구성했습니다.
 
@@ -151,12 +152,12 @@ flowchart LR
     NORMAL --> TRANS["Reference Mapping / NLLB-200"]
     TRANS --> GUARD["Safety Guard / Fallback"]
 
-    GUARD --> KR["KR Audio"]
-    KR --> BTD["Sennheiser BTD700"]
+    GUARD --> KOREAN["KOREAN Audio"]
+    KOREAN --> BTD["Sennheiser BTD700"]
 
     GUARD --> TTS["Piper TTS"]
-    TTS --> ZHVI["ZH / VI PCM"]
-    ZHVI --> NRF["nRF5340 Audio DK"]
+    TTS --> MULTI["CHINESE / VIETNAMESE PCM"]
+    MULTI --> NRF["nRF5340 Audio DK"]
     NRF --> AURA["Auracast Broadcast"]
     AURA --> RX["Auracast Receiver"]
     RX --> WORKER["외국인 근로자"]
@@ -204,8 +205,8 @@ GPIO
 
 ```text
 Audio Jetson
-├─ KR → Sennheiser BTD700
-└─ ZH / VI → nRF5340 Audio DK → Auracast
+├─ KOREAN → Sennheiser BTD700
+└─ CHINESE / VIETNAMESE → nRF5340 Audio DK → Auracast
 ```
 
 SAYFE는 BLE, Bluetooth RFCOMM, Auracast를 활용하여 Wi-Fi에 대한 의존도를 낮춘 장치 간 통신 구조를 구성했습니다.
@@ -218,16 +219,18 @@ SAYFE Web UI에서는 다음 세 개 언어를 선택할 수 있습니다.
 
 | 언어 | UI 표시 | Broadcast Name | 주요 출력 경로 |
 |---|---|---|---|
-| 한국어 | `KOREAN` | `KR` | Audio Jetson → Sennheiser BTD700 |
-| 중국어 | `CHINESE` | `ZH` | Audio Jetson → nRF5340 Audio DK → Auracast |
-| 베트남어 | `VIETNAMESE` | `VI` | Audio Jetson → nRF5340 Audio DK → Auracast |
+| 한국어 | `KOREAN` | `KOREAN` | Audio Jetson → Sennheiser BTD700 |
+| 중국어 | `CHINESE` | `CHINESE` | Audio Jetson → nRF5340 Audio DK → Auracast |
+| 베트남어 | `VIETNAMESE` | `VIETNAMESE` | Audio Jetson → nRF5340 Audio DK → Auracast |
+
+### Audio Output
 
 ```text
                          Audio Jetson
                               │
                ┌──────────────┼──────────────┐
                │              │              │
-              KR             ZH             VI
+           KOREAN         CHINESE       VIETNAMESE
                │              │              │
                ↓              └──────┬───────┘
       Sennheiser BTD700               │
@@ -239,10 +242,17 @@ SAYFE Web UI에서는 다음 세 개 언어를 선택할 수 있습니다.
                                       │
                                       ↓
                               Auracast Broadcast
+                         CHINESE / VIETNAMESE
                                       │
                                       ↓
                               Auracast Receiver
 ```
+
+실제 시연에서는 사용자가 `KOREAN`, `CHINESE`, `VIETNAMESE` 중 원하는 언어를 선택하여 해당 안전방송을 수신할 수 있도록 구성했습니다.
+
+- `KOREAN` → Sennheiser BTD700 기반 한국어 방송
+- `CHINESE` → nRF5340 Audio DK 기반 Auracast 중국어 방송
+- `VIETNAMESE` → nRF5340 Audio DK 기반 Auracast 베트남어 방송
 
 실제 시연에서는 Galaxy 스마트폰의 LG ThinQ 앱을 이용해 Auracast 방송을 검색·선택하고, LG XBOOM Rock 등의 Auracast Receiver를 통해 방송을 수신할 수 있도록 구성했습니다.
 
@@ -430,9 +440,9 @@ SAYFE는 현장 관리자가 복잡한 터미널 명령어 없이 방송을 제�
 
 - 방송 시작 / 종료
 - 송출 언어 선택
-  - KOREAN
-  - CHINESE
-  - VIETNAMESE
+  - `KOREAN`
+  - `CHINESE`
+  - `VIETNAMESE`
 - 현재 ON AIR 상태 표시
 - 관리자 안전지시 표시
 - 건설현장 용어 보정 결과 확인
@@ -516,7 +526,7 @@ Auracast Broadcast
 SAYFE에서는 중국어와 베트남어 Audio를 언어별 Stream으로 분리한 뒤 각각의 방송에 매핑할 수 있도록 Integration Logic을 구성했습니다.
 
 ```text
-Jetson ZH / VI PCM
+Jetson CHINESE / VIETNAMESE PCM
 ↓
 Audio Stream 분리
 ↓
@@ -529,7 +539,7 @@ BIG / Subgroup / BIS
 Auracast Broadcast
 ```
 
-한국어는 Sennheiser BTD700을 이용한 별도 KR Audio 경로로 송출합니다.
+한국어는 Sennheiser BTD700을 이용한 별도 `KOREAN` Audio 경로로 송출합니다.
 
 ### 관련 코드
 
@@ -537,6 +547,8 @@ Auracast Broadcast
 - [`audio/src/audio/auracast_output.py`](audio/src/audio/auracast_output.py)
 - [`audio/scripts/ui_gpu_worker.py`](audio/scripts/ui_gpu_worker.py)
 - [`audio/run_ui_demo.sh`](audio/run_ui_demo.sh)
+
+> `zh`, `vi`는 코드 내부에서 사용하는 언어 코드 및 파일명이며, 실제 사용자에게 표시되는 Broadcast Name은 각각 `CHINESE`, `VIETNAMESE`입니다.
 
 nRF 관련 상세 구성:
 
@@ -665,7 +677,7 @@ Fast Path
 ↓
 긴급 경고 Audio 우선
 ↓
-KR / ZH / VI 경고방송
+KOREAN / CHINESE / VIETNAMESE 경고방송
 ```
 
 이를 통해 일반 작업지시와 즉시 대응이 필요한 긴급 위험경고를 서로 다른 우선순위로 처리할 수 있도록 구성했습니다.
@@ -688,7 +700,7 @@ Whisper STT → NLLB Translation → Piper TTS를 Jetson에서 직접 수행하�
 
 ## 18.3 언어별 독립 Auracast Stream
 
-중국어·베트남어 Audio를 언어별 PCM Stream으로 분리하고 nRF5340 Audio DK의 Auracast 구조에 매핑해 근로자가 필요한 언어 방송을 선택적으로 수신할 수 있도록 구성했습니다.
+중국어·베트남어 Audio를 언어별 PCM Stream으로 분리하고 nRF5340 Audio DK의 Auracast 구조에 매핑해 근로자가 `CHINESE`, `VIETNAMESE` 방송 중 필요한 언어를 선택적으로 수신할 수 있도록 구성했습니다.
 
 ---
 
@@ -787,7 +799,7 @@ Vision 객체탐지 모델은 **Ultralytics YOLO11n** 기반으로 학습했습�
 
 | Metric | Result |
 |---|---:|
-| ZH / VI Both Ready Mean | **1.509 s** |
+| CHINESE / VIETNAMESE Both Ready Mean | **1.509 s** |
 
 ### End-to-End
 
@@ -888,13 +900,13 @@ AI Hub 건설안전 데이터의 기존 Class 체계와 실제 시연에서 필�
 |---|---|
 | NVIDIA Jetson Orin Nano 8GB | 관리자 음성 입력, VAD, STT, 현장용어 정규화, 번역, TTS, BLE 수신, Audio System |
 | NVIDIA Jetson Orin Nano | Vision AI, YOLO 객체탐지, 위험영역 판단 및 Event 생성 |
-| nRF5340 Audio DK | 중국어·베트남어 Audio의 LC3 Encoding 및 Auracast Broadcast |
+| nRF5340 Audio DK | CHINESE / VIETNAMESE Audio의 LC3 Encoding 및 Auracast Broadcast |
 | ESP32-C3 | MQ Gas Sensor 측정, BLE 전송 및 경고 제어 |
 | Raspberry Pi 4B | RFCOMM Event 수신, JSON 처리, GPIO 장치 제어 |
 | Camera | Vision 영상 입력 |
 | Microphone | 관리자 한국어 음성 입력 |
-| Sennheiser BTD700 | 한국어 Audio 송출 |
-| Auracast Receiver | 중국어·베트남어 방송 수신 |
+| Sennheiser BTD700 | KOREAN Audio 송출 |
+| Auracast Receiver | CHINESE / VIETNAMESE 방송 수신 |
 
 ---
 
@@ -913,7 +925,7 @@ AI Hub 건설안전 데이터의 기존 Class 체계와 실제 시연에서 필�
 | Gas | ESP32-C3 / Bleak | Gas Sensor BLE 통신 |
 | Communication | Bluetooth RFCOMM / HTTP | 위험 Event 전달 |
 | Control | RPi.GPIO | 물리 장치 제어 |
-| Auracast | nRF5340 Audio DK / nRF Audio | 언어별 Broadcast |
+| Auracast | nRF5340 Audio DK / nRF Audio | CHINESE / VIETNAMESE Broadcast |
 | Logging | CSV / JSON | 방송·처리·위험 Event 기록 |
 
 ---
@@ -1075,8 +1087,8 @@ bash run.sh
 "오늘 콘크리트 타설 작업을 진행하니
 먼저 직각을 정확히 맞추십시오."
 
-├─ KR → Sennheiser BTD700
-└─ ZH / VI → NLLB → Piper → nRF5340 → Auracast
+├─ KOREAN → Sennheiser BTD700
+└─ CHINESE / VIETNAMESE → NLLB → Piper → nRF5340 → Auracast
 ```
 
 ---
@@ -1108,7 +1120,7 @@ Audio Jetson
 ↓
 GAS_DANGER
 ↓
-다국어 긴급 경고
+KOREAN / CHINESE / VIETNAMESE 긴급 경고
 ```
 
 ---
@@ -1121,7 +1133,7 @@ STT·번역·TTS를 Jetson에서 직접 처리하여 클라우드 의존도를 �
 
 ## 다국어 동시 안전방송
 
-관리자의 한국어 지시를 한국어·중국어·베트남어로 처리하고 언어별 Audio Stream으로 전달합니다.
+관리자의 한국어 지시를 `KOREAN`, `CHINESE`, `VIETNAMESE`로 처리하고 언어별 Audio Stream으로 전달합니다.
 
 ## 건설현장 특화 언어처리
 
