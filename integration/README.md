@@ -2,7 +2,7 @@
 
 ## 역할
 
-SAY:FE의 Vision, Audio, Gas Sensor, ESP32-C3, nRF5340 Audio DK 간 이벤트 및 오디오 연결 구조를 설명합니다.
+SAYFE의 Vision, Audio, Gas Sensor, ESP32-C3, nRF5340 Audio DK 간 이벤트 및 오디오 연결 구조를 설명합니다.
 
 Vision에서 감지한 위험 이벤트를 Audio 모듈로 전달하고, ESP32-C3에서 수집한 가스 센서 데이터를 BLE 통신으로 수신하여 위험 상황 감지 및 다국어 안전 방송에 활용합니다.
 
