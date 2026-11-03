@@ -1,5 +1,7 @@
 # SAYFE
 
+**Quick Links:** [Overview](#1-프로젝트-개요) | [System Architecture](#5-전체-시스템-구성) | [Performance Evaluation](#19-성능-평가) | [Repository Structure](#23-repository-structure) | [Team](#28-team)
+
 > **모두의 안전을, 각자의 언어로.**  
 > **Edge AI 기반 건설현장 실시간 다국어 안전소통 및 위험대응 시스템**
 
@@ -162,7 +164,6 @@ flowchart LR
     AURA --> RX["Auracast Receiver"]
     RX --> WORKER["외국인 근로자"]
 
-   ```text
 CAM1["Camera 1"] --> VJ["Vision Jetson Orin Nano"]
 CAM2["Camera 2"] --> VJ
 
@@ -179,8 +180,6 @@ EXESP --> INTERLOCK["Relay / 안전 인터록 / 조작 제한"]
 GAS["MQ Gas Sensor"] --> GESP["ESP32-C3 / Gas Node"]
 GESP --> ACT["Buzzer / Fan / Door"]
 GESP -->|BLE| AJ
-```
-
 ```
 
 ---
@@ -917,8 +916,6 @@ AI Hub 건설안전 데이터의 기존 Class 체계와 실제 시연에서 필�
 
 # 22. Software Stack
 
-# 22. Software Stack
-
 | 영역                 | 기술                           | 역할                                          |
 | ------------------ | ---------------------------- | ------------------------------------------- |
 | UI                 | Flask                        | 방송 제어 및 상태·결과 확인                            |
@@ -943,71 +940,21 @@ AI Hub 건설안전 데이터의 기존 Class 체계와 실제 시연에서 필�
 
 ```text
 2026ESWContest_free_SAYFE/
-│
-├── audio/
-│   ├── run_ui_demo.sh
-│   │
-│   ├── scripts/
-│   │   ├── setup_auracast_zh_vi.py
-│   │   ├── ui_mic_controller.py
-│   │   └── ui_gpu_worker.py
-│   │
-│   └── src/
-│       ├── ui/
-│       │   └── safety_web.py
-│       │
-│       ├── stt/
-│       │   ├── vad_engine.py
-│       │   └── whisper_engine.py
-│       │
-│       ├── safety/
-│       │   ├── normalizer.py
-│       │   └── construction_rules.py
-│       │
-│       ├── translation/
-│       │   └── nllb_engine.py
-│       │
-│       └── audio/
-│           ├── korean_auracast_output.py
-│           └── auracast_output.py
-│
-├── vision/
-│   ├── best.pt
-│   └── training_results/
-│       ├── args.yaml
-│       ├── results.csv
-│       ├── results.png
-│       └── confusion_matrix_normalized.png
-│
-├── esp32_gas/
-│   └── MQ Gas Sensor / BLE
-│
-├── raspberry_pi/
-│   └── RFCOMM JSON Event / GPIO        # 초기 개발·예선 단계 Legacy
-│
-├── integration/
-│   └── pi_rfcomm_bridge_server.py      # 초기 Jetson-Raspberry Pi 연동 Legacy
-│
-├── nrf5340/
-│   ├── README.md
-│   └── ncs/
-│       └── v3.4.0/
-│           └── nrf/
-│               ├── applications/
-│               │   └── nrf_audio/
-│               └── samples/
-│                   └── bluetooth/
-│                       └── nrf_auraconfig/
-│
-├── models/
-│
-├── docs/
-│
-├── THIRD_PARTY_LICENSES.txt
+├── SAYFE_yeongjun_FP16/   # Vision·AudioDetection 개발 자료
+├── audio/                 # 관리자 음성 처리 및 다국어 안전방송
+├── docs/                  # 시스템 구조 및 개발 문서
+├── esp32_excavator/       # BLE·Relay 기반 굴착기 조작 제한
+├── esp32_gas/             # 가스 위험 판단 및 물리 장치 제어
+├── integration/           # 시스템 연동 자료
+├── models/                # 모델 관련 자료 및 설명
+├── nrf5340/               # nRF Audio·Auracast 관련 자료
+├── vision/                # Dual Camera·YOLO26m 위험판정 설명
+├── .gitignore
 ├── THIRD_PARTY_NOTICES.md
 └── README.md
 ```
-> `raspberry_pi/` 및 일부 RFCOMM 관련 코드는 초기 개발·예선 단계에서 사용한 구현입니다. 최종 시스템에서는 Jetson 간 위험 이벤트 전달을 유선 LAN으로 변경하고, 굴착기 제어는 ESP32-C3 + BLE + Relay 구조로 개선했습니다.
+
+> 위 목록은 현재 저장소의 실제 최상위 경로를 기준으로 합니다. Raspberry Pi·RFCOMM은 초기 개발 단계의 구성으로, 최종 시스템의 Jetson 간 위험 이벤트 전달은 유선 LAN, 굴착기 제어는 ESP32-C3·BLE·Relay 방식입니다.
 
 Repository 상세 구성:
 
