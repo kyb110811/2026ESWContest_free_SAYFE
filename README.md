@@ -28,7 +28,7 @@ SAYFE는 이러한 문제를 해결하기 위해 다음 기능을 하나의 시�
 3. **Auracast 기반 언어별 안전방송 송출**
 4. **Vision AI 기반 작업자·중장비 위험상황 자동 감지**
 5. **ESP32-C3 + Gas Sensor 기반 환경 위험 감지**
-6. **Vision·Gas 위험 이벤트의 무선 통신 기반 실시간 전달**
+6. **Vision·Gas 위험 이벤트의 실시간 전달 및 연동**
 7. **ESP32-C3 기반 굴착기 조작 제한 및 안전장치 제어**
 8. **Web UI 기반 방송 제어 및 방송·위험 이벤트 이력 관리**
 
@@ -69,7 +69,7 @@ SAYFE는 이러한 한계를 보완하기 위해 **음성·영상·환경센서�
 
 ## 3.2 Vision AI 기반 위험 감지
 
-Camera 영상에서 작업자와 굴착기를 탐지하고, 객체 간 거리와 굴착기 움직임을 함께 분석하여 위험상황을 판단합니다.
+2대의 Camera 영상에서 작업자와 중장비를 탐지하고, 각 Camera에서 작업자와 중장비의 Bounding Box 겹침 여부를 기반으로 위험상태를 판단합니다. Homography 기반 위치 정보는 두 Camera 간 동일 작업자 매칭을 보조하며, 두 Camera의 판단 결과를 종합해 최종 SAFE / DANGER 상태를 결정합니다.
 
 ---
 
@@ -80,8 +80,7 @@ ESP32-C3와 MQ Gas Sensor를 이용해 가스 상태를 측정하고 위험 Thre
 ---
 
 ## 3.4 실제 물리 장치 제어
-
-Vision AI가 작업자의 위험구역 진입을 감지하면 별도의 ESP32-C3 제어 경로로 위험 이벤트를 전달하고, 릴레이 제어를 통해 모형 굴착기의 조작을 제한합니다.
+Vision AI가 작업자와 중장비의 근접 위험상황을 감지하면 별도의 ESP32-C3 제어 경로로 위험 이벤트를 전달하고, 릴레이 제어를 통해 모형 굴착기의 조작을 제한합니다.
 
 위험상황이 해제되더라도 장비가 즉시 재가동되지 않도록 래치 기반 안전 인터록을 적용했으며, 관리자가 상태를 확인한 뒤 조작 제한을 해제하도록 설계했습니다.
 ---
@@ -133,10 +132,10 @@ Vision / Gas Danger Event
 | 실시간 번역 | 사용 | 우회 |
 | TTS | 실시간 처리 | 긴급 경고 Audio |
 | 우선순위 | 일반 | 최우선 |
-| 주요 이벤트 | 관리자 자유발화 | `WORKER_NEAR_MOVING_EXCAVATOR`, `GAS_DANGER` |
+| 주요 이벤트 | 관리자 자유발화 | Vision Danger Event / Gas Danger Event |
 | 출력 | KOREAN / CHINESE / VIETNAMESE | KOREAN / CHINESE / VIETNAMESE |
 
-긴급 위험상황에서는 번역의 다양성보다 **즉시성, 우선순위, 안전 의미의 확실한 전달**이 중요하기 때문에 Fast Path가 일반 방송보다 우선 처리되도록 구성했습니다.
+긴급 위험상황에서는 **실시간 안전 의미의 확실한 전달**이 중요하기 때문에 Fast Path가 일반 방송보다 우선 처리되도록 구성했습니다.
 
 ---
 
@@ -163,17 +162,25 @@ flowchart LR
     AURA --> RX["Auracast Receiver"]
     RX --> WORKER["외국인 근로자"]
 
-    CAM["Camera"] --> VJ["Vision Jetson Orin Nano"]
-    VJ --> YOLO["YOLO11n"]
-    YOLO --> RULE["Proximity + Motion Logic"]
-    RULE --> VEVENT["Vision Danger Event"]
+   ```text
+CAM1["Camera 1"] --> VJ["Vision Jetson Orin Nano"]
+CAM2["Camera 2"] --> VJ
 
-    VEVENT -->|Bluetooth RFCOMM| AJ
-    VEVENT -->|HTTP / RFCOMM| PI["Raspberry Pi 4B"]
-    PI --> GPIO["GPIO / 모형 장비 제어"]
+VJ --> YOLO["YOLO26m"]
+YOLO --> BBOX["Camera별 BBox 겹침 기반 위험 판단"]
+BBOX --> MATCH["Homography 기반 동일 작업자 매칭 보조"]
+MATCH --> FUSION["두 Camera 결과 종합"]
+FUSION --> VEVENT["Final SAFE / DANGER"]
 
-    GAS["MQ Gas Sensor"] --> ESP["ESP32-C3"]
-    ESP -->|BLE| AJ
+VEVENT -->|위험 이벤트| AJ
+VEVENT --> EXESP["ESP32-C3 / 굴착기 제어"]
+EXESP --> INTERLOCK["Relay / 안전 인터록 / 조작 제한"]
+
+GAS["MQ Gas Sensor"] --> GESP["ESP32-C3 / Gas Node"]
+GESP --> ACT["Buzzer / Fan / Door"]
+GESP -->|BLE| AJ
+```
+
 ```
 
 ---
@@ -183,25 +190,23 @@ flowchart LR
 ```text
 MQ Gas Sensor
 ↓
-ESP32-C3
+Gas ESP32-C3
+├─ Buzzer / Fan / Door 제어
+└─ BLE → Audio Jetson → 긴급 다국어 경고방송
+```
+
+```text
+Vision Jetson
+↓ Wired LAN
+Audio Jetson
+```
+
+```text
+Vision Jetson
 ↓ BLE
-Audio Jetson
-```
-
-```text
-Vision Jetson
-↓ Bluetooth RFCOMM
-Audio Jetson
-```
-
-```text
-Vision Jetson
-↓ HTTP / RFCOMM
-Raspberry Pi
-↓
-GPIO
-↓
-모형 굴착기 / 안전장치
+Excavator ESP32-C3
+↓ Relay
+모형 굴착기 조작 제한
 ```
 
 ```text
@@ -210,7 +215,7 @@ Audio Jetson
 └─ CHINESE / VIETNAMESE → nRF5340 Audio DK → Auracast
 ```
 
-SAYFE는 BLE, Bluetooth RFCOMM, Auracast를 활용하여 Wi-Fi에 대한 의존도를 낮춘 장치 간 통신 구조를 구성했습니다.
+Vision Jetson과 Audio Jetson은 유선 LAN으로 연결하여 Vision 위험 이벤트를 전달합니다. 각 ESP32-C3와 Jetson 간 통신에는 BLE를 사용하며, Gas ESP32-C3는 Audio Jetson으로 가스 위험 상태를 전달하고, 굴착기 제어 ESP32-C3는 Vision Jetson으로부터 위험 제어 신호를 수신합니다. 작업자 대상 다국어 음성방송에는 nRF5340 Audio DK 기반 Auracast를 적용했습니다.
 
 ---
 
@@ -593,70 +598,59 @@ Homography는 위험 여부를 직접 판단하는 기준이 아니라, 서로 �
 # 15. Vision 위험 이벤트 및 물리 제어
 
 ```text
+Vision Jetson에서 최종 DANGER 상태가 발생하면 위험 이벤트를 두 경로로 동시에 전달합니다.
+
 Vision Danger Event
 ↓
-Bluetooth RFCOMM
+Wired LAN
 ↓
 Audio Jetson
 ↓
-위험 경고 방송
-```
+사전 검수된 긴급 경고 Audio
+↓
+다국어 위험 경고방송
 
 동시에:
 
-```text
 Vision Danger Event
 ↓
-localhost HTTP
+BLE
 ↓
-pi_rfcomm_bridge_server.py
+Excavator ESP32-C3
 ↓
-Bluetooth RFCOMM
+Relay
 ↓
-Raspberry Pi
-↓
-JSON Event Parsing
-↓
-GPIO
-↓
-모형 굴착기 / 안전장치 제어
+모형 굴착기 조작 제한
 ```
 
-이를 통해 SAYFE는 **AI 위험판단 → 위험정보 전달 → 물리적 안전제어**까지 연결되는 구조를 구현했습니다.
+위험상황 발생 시 굴착기 조작을 제한하고, 위험상황이 해제된 이후에도 장비가 즉시 재가동되지 않도록 래치 기반 안전 인터록을 적용했습니다. 관리자가 상태를 확인한 뒤 조작 제한을 해제해야 다시 정상 조작이 가능합니다.
 
+이를 통해 SAYFE는 Vision AI 위험판단부터 긴급 다국어 경고방송과 실제 장비 조작 제한까지 하나의 안전 대응 흐름으로 연결했습니다.
 ---
 
 # 16. Gas Sensor / ESP32-C3
 
-ESP32-C3는 MQ Gas Sensor 값을 측정하고 환경 상태를 판단합니다.
+Gas Node는 MQ Gas Sensor와 ESP32-C3로 구성되어 있으며, 현장의 가스 위험 상태를 독립적으로 감지하고 대응합니다.
 
 ```text
 MQ Gas Sensor
 ↓
 ESP32-C3
 ↓
-NORMAL / WARNING / DANGER
-↓
-BLE
-↓
-Audio Jetson
+Gas Danger 판단
+├─ Buzzer 작동
+├─ Fan 작동
+├─ Door 제어
+└─ BLE → Audio Jetson
+              ↓
+       긴급 다국어 경고방송
 ```
 
-예시 상태:
+가스 위험이 감지되면 ESP32-C3가 Audio Jetson의 처리 결과를 기다리지 않고 부저·환기팬·출입문을 직접 제어합니다.
 
-```text
-NORMAL
-WARNING
-DANGER
-```
+동시에 BLE를 통해 위험 상태를 Audio Jetson으로 전달하여 사전에 검수된 긴급 경고 음원을 우선 송출합니다.
 
-위험 상태에서는 다음 안전 대응으로 확장할 수 있도록 구성했습니다.
-
-- LED 위험 상태 표시
-- Buzzer 경고
-- Fan 동작
-- Door / Gate 제어
-- 긴급 다국어 방송
+이를 통해 음성 처리 또는 네트워크 상태와 관계없이 현장 안전장치가 독립적으로 대응할 수 있도록 구성했습니다.
 
 ---
 
@@ -700,9 +694,9 @@ Whisper STT → NLLB Translation → Piper TTS를 Jetson에서 직접 수행하�
 
 ---
 
-## 18.4 Bluetooth 기반 독립 통신
+## 18.4 안전 기능별 독립 통신 구조
 
-BLE 및 RFCOMM 기반 장치 간 통신을 활용하여 Wi-Fi 환경에 대한 의존도를 낮췄습니다.
+Vision Jetson과 Audio Jetson 간에는 유선 LAN을 사용하고, Gas 및 굴착기 제어 ESP32-C3와 Jetson 간에는 BLE를 적용했습니다. 위험 감지·장치 제어·경고방송 경로를 기능별로 분리하여 특정 통신 경로의 처리 지연이 다른 안전 기능에 미치는 영향을 줄이도록 구성했습니다.
 
 ---
 
@@ -714,7 +708,9 @@ BLE 및 RFCOMM 기반 장치 간 통신을 활용하여 Wi-Fi 환경에 대한 �
 
 ## 18.6 AI 판단과 물리 제어 연결
 
-Vision AI가 생성한 위험 이벤트를 Raspberry Pi GPIO 장치 제어까지 연결하여 단순 위험 알림을 넘어 실제 안전제어로 확장 가능한 구조를 구현했습니다.
+Vision AI가 생성한 위험 이벤트를 BLE를 통해 굴착기 제어용 ESP32-C3에 전달하고, Relay 제어를 통해 모형 굴착기의 조작을 제한합니다.
+
+또한 위험상황이 해제된 이후에도 장비가 즉시 재가동되지 않도록 래치 기반 안전 인터록을 적용하여, 단순 위험 알림을 넘어 실제 장비 제어까지 연결되는 안전 대응 구조를 구현했습니다.
 
 ---
 
@@ -722,7 +718,11 @@ Vision AI가 생성한 위험 이벤트를 Raspberry Pi GPIO 장치 제어까지
 
 ## 19.1 Vision Model
 
-Vision 객체탐지 모델은 **Ultralytics YOLO11n** 기반으로 학습했습니다.
+초기 자체학습 모델
+
+초기 개발 단계에서는 person, excavator 2개 Class를 대상으로 Ultralytics YOLO11n 기반 객체탐지 모델을 직접 학습했습니다.
+
+Dataset은 AI Hub 건설현장 데이터 3,200장과 실제 시연 환경을 보완하기 위해 직접 촬영한 목업 데이터 250장으로 구성했습니다.
 
 ### Dataset
 
@@ -755,7 +755,15 @@ Vision 객체탐지 모델은 **Ultralytics YOLO11n** 기반으로 학습했습�
 | mAP@0.5 | **99.49%** |
 | mAP@0.5:0.95 | **89.70%** |
 
-관련 결과:
+위 결과는 초기 개발 단계에서 직접 학습한 YOLO11n 모델의 Validation 결과이며, 최종 시스템에 적용한 YOLO26m의 성능 지표가 아닙니다.
+
+### 최종 적용 모델
+
+실제 시연 환경에서 사람과 중장비에 대한 검출 안정성을 높이기 위해 최종 시스템에는 건설현장 객체 탐지에 특화된 YOLO26m 모델을 적용했습니다.
+
+최종 Vision System은 YOLO26m의 객체 검출 결과를 기반으로 각 Camera에서 작업자와 중장비의 Bounding Box 겹침 여부를 판단하고, Homography 기반 위치 정보를 동일 작업자 매칭의 보조 정보로 활용합니다. 이후 두 Camera의 판단 결과를 종합하여 최종 SAFE / DANGER 상태를 결정합니다.
+
+초기 자체학습 모델 관련 결과:
 
 - [`vision/training_results/args.yaml`](vision/training_results/args.yaml)
 - [`vision/training_results/results.csv`](vision/training_results/results.csv)
@@ -821,19 +829,20 @@ Vision 객체탐지 모델은 **Ultralytics YOLO11n** 기반으로 학습했습�
 
 # 20. 개발 과정의 주요 문제와 해결
 
-## 20.1 Jetson 간 Bluetooth RFCOMM 연결
+## 20.1 Jetson 간 위험 이벤트 전달 구조 개선
 
 ### 문제
 
-Vision Jetson과 Audio Jetson의 Bluetooth Pairing / Trust 상태가 정상이어도 실제 RFCOMM 연결 및 Event 전송이 실패하는 문제가 발생했습니다.
+초기에는 Vision Jetson과 Audio Jetson 사이의 위험 이벤트 전달에 Bluetooth RFCOMM을 적용했습니다. 그러나 Pairing / Trust 상태가 정상이어도 실제 연결이 불안정하거나 Event 전송이 실패하는 문제가 발생했습니다.
 
 ### 해결
 
-- Pairing 단계와 RFCOMM Application 통신 단계 분리
-- 연결 상태와 Session 지속 확인
-- 장치별 Bluetooth 통신 단계 독립 검증
-- 연결 실패 시 재연결 가능한 구조로 개선
+- Bluetooth Pairing과 Application 통신 단계를 분리하여 원인을 분석
+- RFCOMM 연결 및 Event 전송 안정성 반복 검증
+- 안전 이벤트 전달의 안정성과 재현성을 높이기 위해 최종 시스템에서는 Vision Jetson과 Audio Jetson을 유선 LAN으로 연결
+- ESP32-C3와 각 Jetson 간 제어·센서 통신에는 BLE를 유지하여 기능별 통신 경로를 분리
 
+이를 통해 Jetson 간 핵심 위험 이벤트 전달 경로를 안정화하고, 센서·제어 노드의 BLE 통신과 분리된 구조로 개선했습니다.
 ---
 
 ## 20.2 nRF5340 Audio DK 구조 분석
@@ -892,37 +901,41 @@ AI Hub 건설안전 데이터의 기존 Class 체계와 실제 시연에서 필�
 
 # 21. Hardware
 
-| Hardware | 역할 |
-|---|---|
-| NVIDIA Jetson Orin Nano 8GB | 관리자 음성 입력, VAD, STT, 현장용어 정규화, 번역, TTS, BLE 수신, Audio System |
-| NVIDIA Jetson Orin Nano | Vision AI, YOLO 객체탐지, 위험영역 판단 및 Event 생성 |
-| nRF5340 Audio DK | CHINESE / VIETNAMESE Audio의 LC3 Encoding 및 Auracast Broadcast |
-| ESP32-C3 | MQ Gas Sensor 측정, BLE 전송 및 경고 제어 |
-| Raspberry Pi 4B | RFCOMM Event 수신, JSON 처리, GPIO 장치 제어 |
-| Camera | Vision 영상 입력 |
-| Microphone | 관리자 한국어 음성 입력 |
-| Sennheiser BTD700 | KOREAN Audio 송출 |
-| Auracast Receiver | CHINESE / VIETNAMESE 방송 수신 |
+| Hardware                    | 역할                                                                                           |
+| --------------------------- | -------------------------------------------------------------------------------------------- |
+| NVIDIA Jetson Orin Nano 8GB | 관리자 음성 입력, VAD, STT, 현장용어 정규화, 번역, TTS, Audio System                                         |
+| NVIDIA Jetson Orin Nano     | Dual Camera 입력, YOLO26m 객체탐지, Camera별 위험판정, Homography 기반 동일 작업자 매칭 보조 및 최종 SAFE / DANGER 판단 |
+| nRF5340 Audio DK            | CHINESE / VIETNAMESE Audio의 LC3 Encoding 및 Auracast Broadcast                                |
+| Gas ESP32-C3                | MQ Gas Sensor 측정, 가스 위험 판단, Buzzer / Fan / Door 제어 및 BLE 위험 이벤트 전송                           |
+| Excavator ESP32-C3          | Vision Jetson의 BLE 제어 신호 수신, Relay 기반 모형 굴착기 조작 제한                                           |
+| Camera × 2                  | 서로 다른 시점의 Vision 영상 입력                                                                       |
+| Microphone                  | 관리자 한국어 음성 입력                                                                                |
+| Sennheiser BTD700           | KOREAN Audio 송출                                                                              |
+| Auracast Receiver           | CHINESE / VIETNAMESE 방송 수신|
 
 ---
 
 # 22. Software Stack
 
-| 영역 | 기술 | 역할 |
-|---|---|---|
-| UI | Flask | 방송 제어 및 상태·결과 확인 |
-| VAD | Silero VAD | 관리자 발화 구간 검출 |
-| STT | Whisper / whisper.cpp | 한국어 Speech-to-Text |
-| Normalization | Python Rule Engine | 건설현장 은어·전문용어 정규화 |
-| Translation | NLLB-200 / CTranslate2 | 중국어·베트남어 번역 |
-| Translation Safety | Safety Guard / Fallback | 안전 의미 검사 |
-| TTS | Piper | 다국어 음성 생성 |
-| Vision | Ultralytics YOLO11n / OpenCV | Person / Excavator Detection |
-| Gas | ESP32-C3 / Bleak | Gas Sensor BLE 통신 |
-| Communication | Bluetooth RFCOMM / HTTP | 위험 Event 전달 |
-| Control | RPi.GPIO | 물리 장치 제어 |
-| Auracast | nRF5340 Audio DK / nRF Audio | CHINESE / VIETNAMESE Broadcast |
-| Logging | CSV / JSON | 방송·처리·위험 Event 기록 |
+# 22. Software Stack
+
+| 영역                 | 기술                           | 역할                                          |
+| ------------------ | ---------------------------- | ------------------------------------------- |
+| UI                 | Flask                        | 방송 제어 및 상태·결과 확인                            |
+| VAD                | Silero VAD                   | 관리자 발화 구간 검출                                |
+| STT                | Whisper / whisper.cpp        | 한국어 Speech-to-Text                          |
+| Normalization      | Python Rule Engine           | 건설현장 은어·전문용어 정규화                            |
+| Translation        | NLLB-200 / CTranslate2       | 중국어·베트남어 번역                                 |
+| Translation Safety | Safety Guard / Fallback      | 안전 의미 검사                                    |
+| TTS                | Piper                        | 다국어 음성 생성                                   |
+| Vision             | YOLO26m / OpenCV             | Person / Machinery Detection 및 Camera별 위험판정 |
+| Vision Matching    | Homography                   | Dual Camera 간 동일 작업자 매칭 보조                  |
+| Gas                | ESP32-C3 / BLE               | Gas Sensor 측정 및 위험 이벤트 전달                   |
+| Communication      | Wired LAN / BLE              | Jetson 간 위험 이벤트 및 ESP32-C3 제어·센서 통신         |
+| Control            | ESP32-C3 / Relay             | 모형 굴착기 및 안전장치 제어                            |
+| Auracast           | nRF5340 Audio DK / nRF Audio | CHINESE / VIETNAMESE Broadcast              |
+| Logging            | CSV / JSON                   | 방송·처리·위험 Event 기록                           |
+
 
 ---
 
@@ -970,10 +983,10 @@ AI Hub 건설안전 데이터의 기존 Class 체계와 실제 시연에서 필�
 │   └── MQ Gas Sensor / BLE
 │
 ├── raspberry_pi/
-│   └── RFCOMM JSON Event / GPIO
+│   └── RFCOMM JSON Event / GPIO        # 초기 개발·예선 단계 Legacy
 │
 ├── integration/
-│   └── pi_rfcomm_bridge_server.py
+│   └── pi_rfcomm_bridge_server.py      # 초기 Jetson-Raspberry Pi 연동 Legacy
 │
 ├── nrf5340/
 │   ├── README.md
@@ -994,6 +1007,7 @@ AI Hub 건설안전 데이터의 기존 Class 체계와 실제 시연에서 필�
 ├── THIRD_PARTY_NOTICES.md
 └── README.md
 ```
+> `raspberry_pi/` 및 일부 RFCOMM 관련 코드는 초기 개발·예선 단계에서 사용한 구현입니다. 최종 시스템에서는 Jetson 간 위험 이벤트 전달을 유선 LAN으로 변경하고, 굴착기 제어는 ESP32-C3 + BLE + Relay 구조로 개선했습니다.
 
 Repository 상세 구성:
 
@@ -1003,22 +1017,9 @@ Repository 상세 구성:
 
 # 24. 실행 방법
 
-실행 전 장비별 Python 환경, Bluetooth Pairing / Trust, ALSA, Serial, Camera 및 GPIO 권한을 설정해야 합니다.
+실행 전 Audio / Vision Jetson의 Python 환경, Camera, Audio Device, 유선 LAN 연결 및 ESP32-C3 BLE 연결 상태를 확인합니다.
 
-## Step 1. Vision → Raspberry Pi Bridge
-
-```bash
-python3 integration/pi_rfcomm_bridge_server.py
-```
-
-## Step 2. Raspberry Pi Control
-
-```bash
-cd raspberry_pi
-python3 excavator_control.py
-```
-
-## Step 3. Audio System
+## Step 1. Audio System
 
 ```bash
 cd audio
@@ -1050,7 +1051,7 @@ ui_gpu_worker.py
 ↓
 STT
 ↓
-정규화
+현장용어 정규화
 ↓
 번역
 ↓
@@ -1059,65 +1060,82 @@ TTS
 Audio Output
 ```
 
-## Step 4. Vision System
+## Step 2. Vision System
 
 ```bash
 cd vision
 bash run.sh
 ```
 
+Vision System은 2대의 Camera 영상을 입력받아 위험상태를 판단하며, 최종 DANGER 발생 시 유선 LAN을 통해 Audio Jetson으로 위험 이벤트를 전달합니다.
+
+동시에 BLE를 통해 굴착기 제어용 ESP32-C3에 제어 신호를 전달하여 모형 굴착기의 조작을 제한합니다.
+
+## Step 3. ESP32-C3 Nodes
+
+* Gas ESP32-C3: MQ Gas Sensor 측정, Buzzer / Fan / Door 제어 및 BLE 위험 이벤트 전송
+* Excavator ESP32-C3: Vision Jetson의 BLE 제어 신호 수신 및 Relay 기반 굴착기 조작 제한
+
+
 ---
 
 # 25. Demo Scenario
 
-## Scenario A — 관리자 현장 안전지시
-
-```text
-관리자:
-"오늘 공구리 치니까 가네 먼저 잡아라."
-
-↓ STT
-
-↓ 현장용어 정규화
-
-"오늘 콘크리트 타설 작업을 진행하니
-먼저 직각을 정확히 맞추십시오."
-
-├─ KOREAN → Sennheiser BTD700
-└─ CHINESE / VIETNAMESE → NLLB → Piper → nRF5340 → Auracast
-```
-
----
-
-## Scenario B — Vision Danger
-
-```text
-작업자와 이동 중인 굴착기 근접
+## Scenario A — Vision Danger
+작업자가 굴착기와 근접
 ↓
-Vision AI
+Dual Camera + YOLO26m
 ↓
-WORKER_NEAR_MOVING_EXCAVATOR
+Camera별 BBox 겹침 기반 위험 판단
 ↓
-위험 이벤트
-├─ Audio Jetson → 긴급 위험방송
-└─ Raspberry Pi → GPIO 장치 제어
-```
+두 Camera 결과 종합
+↓
+Final DANGER
+├─ BLE → Excavator ESP32-C3 → Relay → 굴착기 조작 제한
+└─ Wired LAN → Audio Jetson → 긴급 다국어 경고방송
 
----
+위험상황이 해제된 이후에도 굴착기가 즉시 재가동되지 않도록 래치 기반 안전 인터록을 적용하며, 관리자가 상태를 확인한 뒤 조작 제한을 해제합니다.
 
-## Scenario C — Gas Danger
+## Scenario B — Gas Danger
+MQ Gas Sensor 위험 Threshold 초과
+↓
+Gas ESP32-C3
+├─ Buzzer 작동
+├─ Fan 작동
+├─ Door 제어
+└─ BLE → Audio Jetson → 긴급 다국어 경고방송
 
-```text
-MQ Gas Sensor Threshold 초과
+가스 위험 대응 장치는 Audio 처리와 독립적으로 동작하여 위험 발생 시 즉시 대응합니다.
+
+## Scenario C — 관리자 현장 작업지시
+관리자 한국어 발화
 ↓
-ESP32-C3
-↓ BLE
-Audio Jetson
+STT
 ↓
-GAS_DANGER
+건설현장 은어·전문용어 정규화
 ↓
-KOREAN / CHINESE / VIETNAMESE 긴급 경고
-```
+NLLB 번역
+↓
+Piper TTS
+↓
+KOREAN / CHINESE / VIETNAMESE 방송
+
+관리자의 일반 작업지시는 Safe Path를 통해 처리하여 작업자에게 각 언어의 음성으로 전달합니다.
+
+## Scenario D — 일반 방송 중 위험 발생
+일반 작업지시 방송 진행
+↓
+Vision / Gas Danger 발생
+↓
+Fast Path 우선 처리
+↓
+일반 방송보다 긴급 위험 경고 우선 송출
+↓
+위험 대응 완료
+↓
+일반 방송 처리 재개
+
+이를 통해 SAYFE는 일반 작업지시가 진행 중인 상황에서도 긴급 위험 이벤트가 발생하면 안전 대응을 우선할 수 있도록 구성했습니다.
 
 ---
 
@@ -1141,7 +1159,7 @@ STT·번역·TTS를 Jetson에서 직접 처리하여 클라우드 의존도를 �
 
 ## 위험상황 자동 대응
 
-위험 이벤트를 Audio 경고뿐 아니라 Raspberry Pi GPIO 장치 제어까지 연결했습니다.
+위험 이벤트를 긴급 다국어 경고방송뿐 아니라 ESP32-C3 기반 안전장치 및 굴착기 조작 제한까지 연결했습니다.
 
 ## End-to-End Safety Platform
 
@@ -1174,10 +1192,9 @@ STT·번역·TTS를 Jetson에서 직접 처리하여 클라우드 의존도를 �
 
 버스, 지하철, 공항과 같이 다국어 안내방송이 필요한 환경으로 확장할 수 있습니다.
 
-## 통신 인프라가 취약한 현장
+## 외부 네트워크가 불안정한 현장
 
-터널, 지하, 해저, 산악, 오지 등 기존 네트워크 구축이 어려운 환경에서 Bluetooth 기반 독립 통신 구조를 활용할 수 있습니다.
-
+주요 AI 처리를 Jetson에서 로컬로 수행하고, 시스템 내부의 위험 이벤트 전달과 장치 제어에는 유선 LAN과 BLE를 사용하여 외부 인터넷이나 클라우드 연결이 불안정한 환경에서도 핵심 안전 기능을 수행할 수 있도록 구성했습니다.
 ## Multimodal Safety AI
 
 향후 Vision, 음성, 가스, 환경센서 데이터를 동시에 분석하여 복합적인 위험상황을 판단하는 Multimodal AI로 확장할 수 있습니다.
@@ -1193,8 +1210,8 @@ STT·번역·TTS를 Jetson에서 직접 처리하여 클라우드 의존도를 �
 | 이름 | 역할 | 주요 담당 |
 |---|---|---|
 | 김예빈 | Edge AI 음성처리 | Whisper STT, 다국어 번역, Piper TTS, Jetson 음성처리 Pipeline, 전체 시스템 통합 |
-| 정영준 | 임베디드·통신 시스템 | nRF5340 Auracast, Raspberry Pi 위험 Event 제어, ESP MQ Gas Sensor 및 경광장치 |
-| 홍서연 | Vision AI / 팀장 | Jetson YOLO 기반 작업자·중장비 검출, 위험영역 판단, 위험 Event 생성 및 통신 |
+| 정영준 | 임베디드·통신 시스템 | nRF5340 Auracast, ESP32-C3 기반 위험 대응 및 장치 제어, ESP MQ Gas Sensor 및 경광장치 |
+| 홍서연 | Vision AI / 팀장 | Dual Camera 기반 YOLO26m 객체 검출, BBox 기반 위험판정, Homography 기반 동일 작업자 매칭 보조 |
 
 ## 공동 수행
 
@@ -1210,26 +1227,26 @@ STT·번역·TTS를 Jetson에서 직접 처리하여 클라우드 의존도를 �
 
 # 29. Third-Party Software
 
-SAYFE는 다음 외부 Software / Framework / Model을 사용합니다.
+SAYFE는 개발 및 최종 시스템 구현 과정에서 다음 외부 Software / Framework / Model을 사용합니다.
 
-- Whisper / whisper.cpp
-- NLLB-200
-- CTranslate2
-- Piper
-- Silero VAD
-- Ultralytics YOLO11n
-- OpenCV
-- Flask
-- Bleak
-- Nordic nRF Connect SDK / nRF Audio
-- RPi.GPIO
+Whisper / whisper.cpp
+NLLB-200
+CTranslate2
+Piper
+Silero VAD
+Ultralytics YOLO11n — 초기 자체학습 모델
+YOLO26m / Construction-Hazard-Detection — 최종 Vision 적용 모델
+OpenCV
+Flask
+Bleak
+Nordic nRF Connect SDK / nRF Audio
+RPi.GPIO — 초기 개발·예선 단계 Legacy 코드
 
 외부 대형 Model, Virtual Environment 및 AI Hub 원본 Dataset은 Repository에 포함하지 않습니다.
 
 AI Hub 원본 데이터는 데이터 이용정책에 따라 Repository에 포함하지 않으며, 해당 데이터를 이용해 학습한 Model Weight 및 Training Result만 포함합니다.
 
-Nordic nRF 관련 Source는 실제 nRF5340 Auracast 구현 환경 확인을 위해 `nrf5340/ncs/` 경로에 포함하며, SAYFE 팀 작성 Integration Code와 구분하여 관리합니다.
-
+Nordic nRF 관련 Source는 실제 nRF5340 Auracast 구현 환경 확인을 위해 nrf5340/ncs/ 경로에 포함하며, SAYFE 팀 작성 Integration Code와 구분하여 관리합니다.
 ---
 
 # 30. License & Notices
