@@ -12,6 +12,6 @@
 | `nrf5340/` | 중국어·베트남어 Auracast 방송 및 Nordic 관련 소스 |
 | `models/` | 최종 모델과 이전·실험 모델의 구분 및 외부 모델 안내 |
 | `docs/` | 최종 시스템 구조와 문서 안내 |
-| `SAYFE_yeongjun_FP16/` | 별도 Vision·AudioDetection 개발 자료와 측정 기록. 최종 시스템 설명은 메인 README 참조 |
+| `SAYFE_FP16/` | 별도 Vision·AudioDetection 개발 자료와 측정 기록. 최종 시스템 설명은 메인 README 참조 |
 
 최상위 문서로 `README.md`와 `THIRD_PARTY_NOTICES.md`가 있습니다. `raspberry_pi/` 폴더는 현재 저장소에 없습니다. RFCOMM 관련 자료는 최종 결선의 Jetson 간 통신 경로가 아닙니다.

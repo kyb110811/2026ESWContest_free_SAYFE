@@ -940,7 +940,7 @@ AI Hub 건설안전 데이터의 기존 Class 체계와 실제 시연에서 필�
 
 ```text
 2026ESWContest_free_SAYFE/
-├── SAYFE_yeongjun_FP16/   # Vision·AudioDetection 개발 자료
+├── SAYFE_FP16/   # Vision·AudioDetection 개발 자료
 ├── audio/                 # 관리자 음성 처리 및 다국어 안전방송
 ├── docs/                  # 시스템 구조 및 개발 문서
 ├── esp32_excavator/       # BLE·Relay 기반 굴착기 조작 제한
