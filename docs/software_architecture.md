@@ -1,45 +1,27 @@
 # 소프트웨어 구조
 
-## Audio Safe Path와 Fast Path
+최종 결선의 처리 경로는 [메인 README](../README.md)를 기준으로 합니다.
 
-```mermaid
-flowchart LR
-    UI[Audio Flask UI] --> MIC[ui_mic_controller.py]
-    MIC --> VAD[vad_engine.py]
-    MIC --> KO[korean_auracast_output.py<br/>BTD700]
-    MIC --> GPU[ui_gpu_worker.py]
-    GPU --> STT[whisper_engine.py]
-    STT --> NORM[normalizer.py<br/>construction_rules.py]
-    NORM --> MAP[verified_site_translations.py]
-    MAP --> TRANS[nllb_engine.py]
-    TRANS --> GUARD[safety_guard.py<br/>safety_fallback.py]
-    GUARD --> TTS[Piper ZH/VI]
-    TTS --> AURA[auracast_output.py<br/>nRF5340]
+## Audio
 
-    VE[Vision RFCOMM Event] --> FP[fast_path.py]
-    GAS[ESP32 BLE / GAS_DANGER] --> FP
-    FP --> WAV[assets/fast_path/ko,zh,vi]
-    FP --> KO
-    FP --> AURA
+```text
+Safe Path: 관리자 한국어 PTT → STT → 현장용어 보정 → NLLB 번역 → TTS → 언어별 방송
+Fast Path: Vision / Gas DANGER → 일반 방송 선점 → 사전 검수된 다국어 경고 음원
 ```
 
-Safe Path는 관리자 발화를 STT·정규화·번역·TTS로 처리합니다. Fast Path는 Vision/Gas event가 발생하면 Safe Path ZH/VI queue를 선점하고 사전 생성된 KO/ZH/VI WAV를 즉시 전달합니다.
+한국어는 BTD700, 중국어·베트남어는 nRF5340 Audio DK의 Auracast 경로로 출력합니다.
 
-## Vision과 장치 제어
+## Vision과 장비 제어
 
-```mermaid
-flowchart LR
-    VUI[web_main.py] --> DET[detector.py]
-    DET --> PROX[proximity.py]
-    PROX --> MOTION[motion_detector.py]
-    MOTION --> DECIDE[event_logic.py]
-    DECIDE --> SEND[event_sender.py]
-    SEND -->|Bluetooth RFCOMM| AUDIO[Audio Fast Path]
-    SEND -->|POST /event| BRIDGE[pi_rfcomm_bridge_server.py]
-    BRIDGE -->|newline JSON /dev/rfcomm0| PI[excavator_control.py]
-    PI --> GPIO[BCM GPIO 2, 3, 4, 14]
+```text
+Dual Camera → Construction-Hazard-Detection 계열 YOLO26m 객체 검출
+→ Camera별 Bounding Box 기반 위험판정
+→ Homography 기반 지면 좌표·동일 작업자 매칭 보조
+→ 두 Camera 결과 통합 → 최종 SAFE / DANGER
 ```
 
-## 외부 실행 구성
+최종 DANGER는 유선 LAN으로 Audio Jetson에 전달되고, BLE로 Excavator ESP32-C3에 전달됩니다. 장비 조작 제한은 안전 인터록과 관리자 확인 후 해제 절차를 따릅니다.
 
-whisper-server/Whisper model, NLLB CTranslate2 model, Piper 실행 파일과 voice model은 실행 장비에 별도로 구성합니다. `integration/pi_rfcomm_bridge_server.py`는 Vision sender와 같은 loopback network context에서 실행되어야 하며 Host의 `rfcomm` 명령과 `/dev/rfcomm0` 접근 권한이 필요합니다.
+## Gas
+
+Gas ESP32-C3가 MQ Gas Sensor 값을 바탕으로 위험을 판단하고 Buzzer / Fan / Door를 직접 제어합니다. 위험 이벤트는 BLE로 Audio Jetson에 전달되어 Fast Path 방송을 시작합니다.

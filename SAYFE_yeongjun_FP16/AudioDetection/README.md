@@ -1,5 +1,7 @@
 # SAYFE AudioDetection
 
+> **Experimental / Not used in final demonstration:** 이 위험 음향 감지 자료는 별도 실험 기능입니다. 최종 결선 핵심 기능과 모델은 [메인 README](../../README.md)와 [모델 안내](../../models/README.md)를 기준으로 확인하십시오.
+
 세 카메라(CAM1·CAM2·CAM3)의 USB 마이크를 따로 입력받아 공식 [PretrainedSED](https://github.com/fschmid56/PretrainedSED)의
 `frame_mn06_strong_1`로 실시간 Sound Event Detection을 수행한다.
 원본 코드 revision은 `1aa47e482f7e89904cba2338999345025d8b4e36`으로 고정했다.

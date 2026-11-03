@@ -1,60 +1,19 @@
-# 실행 흐름
+# 최종 결선 실행 흐름
 
-## 1. Audio
+실행 환경과 명령의 기준은 [메인 README의 실행 방법](../README.md#24-실행-방법)입니다.
 
-```text
-run_ui_demo.sh
-├─ scripts/setup_auracast_zh_vi.py
-│  └─ serial /dev/ttyACM0 → nRF5340 ZH/VI 방송 설정
-└─ src/ui/safety_web.py → Flask UI
-   └─ scripts/ui_mic_controller.py
-      ├─ src/stt/vad_engine.py → Microphone + Silero VAD
-      ├─ src/audio/korean_auracast_output.py → BTD700 한국어 출력
-      └─ scripts/ui_gpu_worker.py
-         ├─ src/stt/whisper_engine.py → whisper-server
-         ├─ src/safety/normalizer.py + construction_rules.py
-         ├─ src/translation/verified_site_translations.py
-         ├─ src/translation/nllb_engine.py
-         ├─ src/translation/safety_guard.py + safety_fallback.py
-         ├─ Piper → 중국어·베트남어 TTS
-         ├─ src/audio/auracast_output.py → ZH/VI PCM
-         ├─ src/events/bluetooth_event_listener.py → Vision Fast Path
-         ├─ src/sensors/esp32_ble_receiver.py → GAS_DANGER
-         └─ src/safety/fast_path.py → assets/fast_path/{ko,zh,vi}
-```
+## Audio
 
-Audio worker는 시작 시 STT/TTS pipeline warm-up을 위해 `audio/data/old_test_audio/stt_test.wav`를 사용합니다.
+`audio/run_ui_demo.sh`가 Audio UI를 시작합니다. 관리자의 한국어 PTT 입력은 STT → 현장용어 보정 → NLLB 번역 → TTS를 거쳐 언어별 방송으로 전달됩니다. Vision 또는 Gas 위험 이벤트가 들어오면 Fast Path가 일반 방송을 선점하고 사전 검수된 다국어 경고 음원을 송출합니다.
 
-## 2. Vision
+## Vision
 
-```text
-run.sh → best.pt 선택 → web_main.py
-├─ detector.py → Ultralytics YOLO
-├─ proximity.py → 작업자-굴착기 근접 판단
-├─ motion_detector.py → 굴착기 Pixel Motion
-├─ event_logic.py → Danger 판단과 latch
-└─ event_sender.py
-   ├─ Bluetooth RFCOMM → Audio Fast Path
-   └─ HTTP POST 127.0.0.1:8765/event
-      → integration/pi_rfcomm_bridge_server.py
-      → /dev/rfcomm0 → Raspberry Pi
-```
+메인 README는 Vision 실행 명령으로 `vision/run.sh`를 안내하지만, 이 파일은 현재 체크아웃에 포함되어 있지 않습니다. 최종 시스템 설명상 Vision은 Construction-Hazard-Detection 계열 YOLO26m으로 객체를 검출하고 Camera별 위험을 판단합니다. Homography는 두 Camera 간 동일 작업자 매칭을 보조하며, 두 결과를 통합해 최종 SAFE / DANGER를 결정합니다.
 
-## 3. Raspberry Pi
+최종 DANGER는 유선 LAN으로 Audio Jetson에, BLE로 Excavator ESP32-C3에 전달합니다. ESP32-C3의 Relay가 모형 굴착기 조작을 제한하며, 위험 해제 후에도 관리자 확인 전까지 안전 인터록을 유지합니다.
 
-```text
-excavator_control.py
-├─ Bluetooth RFCOMM channel 1
-├─ newline-delimited JSON decoder
-├─ WORKER_NEAR_MOVING_EXCAVATOR event mapping
-└─ RPi.GPIO → BCM 2, 3, 4, 14
-```
+## Gas
 
-## 4. 장비 시작 순서
+Gas ESP32-C3가 MQ Gas Sensor를 측정하고 위험을 판단합니다. 위험 시 Buzzer / Fan / Door를 직접 제어하며 BLE로 Audio Jetson에 위험 이벤트를 보냅니다.
 
-1. 장비별 Python 환경, 외부 model, Bluetooth pairing, device 권한을 준비합니다.
-2. Vision Host에서 Raspberry Pi RFCOMM 연결과 `pi_rfcomm_bridge_server.py`를 시작합니다.
-3. Raspberry Pi control을 시작합니다.
-4. NVIDIA Jetson Orin Nano 8GB에 nRF5340 Audio DK를 연결하고 Audio를 시작합니다.
-5. Vision을 시작합니다.
-6. Audio/Vision UI에서 방송과 감지를 시작합니다.
+이전 Raspberry Pi·RFCOMM·Pixel Motion 실행 안내는 최종 결선 실행 흐름에 해당하지 않습니다.

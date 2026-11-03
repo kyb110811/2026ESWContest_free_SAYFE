@@ -1,5 +1,7 @@
 # Vision Heartbeat integration
 
+> **개발 기록 / Previous development note:** 이 문서는 해당 날짜의 별도 개발·검증 기록이며 최종 결선 시스템 명세가 아닙니다. 최종 구조는 [메인 README](../../README.md)를 기준으로 확인하십시오.
+
 ## Current deployment state
 
 Both `config.json` and `config.example.json` have `heartbeat.enabled=false`.

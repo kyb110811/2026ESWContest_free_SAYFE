@@ -1,43 +1,26 @@
 # SAYFE 전체 시스템 구조
 
-SAYFE는 관리자 음성 Safe Path, Vision Fast Path, Gas Fast Path를 NVIDIA Jetson Orin Nano 8GB의 Audio 시스템에서 통합하고 언어별 출력 장치로 routing합니다.
+최종 결선 시스템의 기준은 [메인 README](../README.md)입니다.
 
 ```mermaid
 flowchart LR
-    MIC[관리자 음성] --> AUDIO[NVIDIA Jetson Orin Nano 8GB<br/>Audio System]
-    AUDIO --> SAFE[Safe Path]
+    MIC[관리자 한국어 음성] --> AUDIO[Audio Jetson]
+    AUDIO --> SAFE["Safe Path: STT → 용어 보정 → NLLB → TTS"]
+    SAFE --> KO["한국어 → BTD700"]
+    SAFE --> ZHVI["중국어·베트남어 → nRF5340 Auracast"]
 
-    CAM[Camera] --> VISION[YOLO + Proximity + Pixel Motion]
-    VISION --> EVENT[WORKER_NEAR_MOVING_EXCAVATOR]
-    EVENT -->|Bluetooth RFCOMM| FAST[Audio Fast Path]
-    EVENT -->|localhost HTTP| BRIDGE[pi_rfcomm_bridge_server.py]
-    BRIDGE -->|RFCOMM| RPI[Raspberry Pi]
-    RPI --> GPIO[GPIO 장치 제어]
+    CAM[Dual Camera] --> VISION["Vision Jetson: YOLO26m"]
+    VISION --> RISK["Camera별 위험판정 → Homography 매칭 보조 → 결과 통합"]
+    RISK --> FINAL["최종 SAFE / DANGER"]
+    FINAL -->|DANGER / 유선 LAN| FAST[Audio Fast Path]
+    FINAL -->|DANGER / BLE| EX["Excavator ESP32-C3 → Relay → 조작 제한"]
 
-    MQ[MQ Gas Sensor] --> ESP[ESP32-C3]
-    ESP -->|BLE| AUDIO
-    AUDIO -->|GAS_DANGER| FAST
-
-    SAFE --> KO[한국어]
-    FAST --> KO
-    KO --> BTD[Sennheiser BTD700]
-
-    SAFE --> ZHVI[중국어·베트남어]
-    FAST --> ZHVI
-    ZHVI --> NRF[nRF5340 Audio DK]
-    NRF --> AURA[Auracast Broadcast]
-    AURA -. 방송 검색 .-> GALAXY[Galaxy 스마트폰<br/>LG ThinQ 앱]
-    GALAXY -. 방송 선택 .-> LG[LG xboom Rock<br/>Auracast 수신·재생]
-    AURA --> LG
-    LG --> WORKER[외국인 근로자]
+    MQ[MQ Gas Sensor] --> GAS["Gas ESP32-C3: 위험 판단"]
+    GAS --> ACT["Buzzer / Fan / Door"]
+    GAS -->|위험 이벤트 / BLE| FAST
+    FAST --> WARN[사전 검수된 다국어 경고 음원 우선 송출]
+    WARN --> KO
+    WARN --> ZHVI
 ```
 
-## 데이터 경로 요약
-
-| 경로 | 입력 | 핵심 처리 | 최종 출력 |
-|---|---|---|---|
-| Safe Path | 관리자 한국어 음성 | VAD, STT, 정규화, 번역, TTS | BTD700 또는 nRF5340 Auracast |
-| Vision Fast Path | Camera 영상 | YOLO, 근접 판단, Pixel Motion, 위험 이벤트 | KO/ZH/VI 긴급 경고 + Raspberry Pi GPIO |
-| Gas Fast Path | MQ 측정값 | ESP32-C3 BLE, Threshold, `GAS_DANGER` | KO/ZH/VI 긴급 경고 |
-
-실제 시연에서는 Galaxy 스마트폰의 LG ThinQ 앱으로 Auracast 방송을 검색·선택했습니다. Galaxy는 별도의 SAYFE software module이나 방송 재생 장치가 아니며, Auracast 방송 수신과 음성 재생은 LG xboom Rock이 담당했습니다.
+Fast Path는 일반 안전방송보다 위험 경고를 우선 처리합니다. 굴착기는 위험상황이 해제된 뒤에도 안전 인터록을 유지하며, 관리자 확인 후 정상 조작으로 복귀합니다.

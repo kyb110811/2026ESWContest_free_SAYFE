@@ -21,7 +21,7 @@ Audio Jetson에서 생성된 중국어·베트남어 PCM Audio를 nRF5340 Audio 
 ## 2. 전체 Audio 출력 구조
 
 ```text
-                  관리자 한국어 음성 / 위험 이벤트
+                    관리자 한국어 음성
                               ↓
                    NVIDIA Jetson Orin Nano 8GB
                               ↓
@@ -51,6 +51,8 @@ Audio Jetson에서 생성된 중국어·베트남어 PCM Audio를 nRF5340 Audio 
 ```
 
 한국어(KOREAN)는 nRF5340 Auracast 경로를 사용하지 않고 **BTD700을 통해 별도로 출력**합니다.
+
+Vision·Gas 위험 이벤트는 위 STT·번역·TTS 단계를 거치지 않습니다. Fast Path가 사전 검수된 다국어 경고 음원을 일반 방송보다 우선 출력합니다.
 
 nRF5340 Audio DK는 **CHINESE / VIETNAMESE 전용 Auracast 송출 경로**를 담당합니다.
 
@@ -339,18 +341,18 @@ nRF5340 Audio DK가 담당하는 출력은 다음과 같습니다.
 Audio Jetson의 SAYFE 프로젝트에서 다음과 같이 실행합니다.
 
 ```bash
-cd ~/construction_safety
+cd audio
 ./run_ui_demo.sh
 ```
 
 Gas Sensor 연동까지 포함한 실제 통합 실행 환경에서는 다음과 같이 실행할 수 있습니다.
 
 ```bash
-cd ~/construction_safety
+cd audio
 
 SAYFE_GAS_ENABLED=1 \
-SAYFE_GAS_MAC=80:F1:B2:64:32:02 \
-SAYFE_GAS_THRESHOLD=1000 \
+SAYFE_GAS_MAC=<GAS_SENSOR_BT_MAC> \
+SAYFE_GAS_THRESHOLD=<THRESHOLD> \
 ./run_ui_demo.sh
 ```
 
@@ -373,7 +375,7 @@ This project uses software components provided by Nordic Semiconductor ASA.
 
 The applicable Nordic Semiconductor software components are distributed under the Nordic 5-Clause License.
 
-The original license text is provided in [`THIRD_PARTY_LICENSES.txt`](../THIRD_PARTY_LICENSES.txt).
+포함된 nRF Audio 소스의 라이선스 원문은 [`nrf_audio/LICENSE`](ncs/v3.4.0/nrf/applications/nrf_audio/LICENSE)를 참조하십시오. 개별 구성요소의 기존 License, Notice 및 SPDX 정보도 원본 상태를 유지합니다.
 
 nRF 관련 Source에 포함된 기존 License, Notice 및 SPDX 정보는 원본 상태를 유지합니다.
 

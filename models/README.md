@@ -1,51 +1,23 @@
 # Model 구성
 
-## 외부 Model
+최종 결선 시스템의 모델 역할은 [메인 README](../README.md)를 기준으로 합니다. 외부 모델의 배포 조건과 고지는 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)를 참고하십시오.
 
-다음 Model과 실행 자산은 파일 크기 및 배포 조건을 고려하여 저장소에 포함하지 않습니다.
+## 최종 결선에서 사용하는 모델
 
-### 1. Whisper 음성 인식 Model
+| 영역 | 모델 | 역할 |
+|---|---|---|
+| STT | Whisper / whisper.cpp | 관리자 한국어 음성 인식 |
+| 번역 | NLLB-200 / CTranslate2 | 중국어·베트남어 번역 |
+| TTS | Piper | 중국어·베트남어 음성 생성 |
+| VAD | Silero VAD | 관리자 발화 구간 검출 |
+| Vision | Construction-Hazard-Detection 계열 YOLO26m | Dual Camera의 작업자·중장비 객체 검출 |
 
-- **출처:** [GitHub - openai/whisper](https://github.com/openai/whisper)
-- **실행 도구:** [GitHub - ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp)
-- **용도:** 건설현장 내 한국어 음성 방송을 텍스트로 변환(STT)
-- **최적화:** whisper.cpp 기반 음성 인식으로 로컬 환경에서 실행
-- **배포:** Whisper Pretrained Weight 및 whisper.cpp 실행 파일은 저장소에 포함하지 않음
+Vision은 YOLO26m 검출 결과를 바탕으로 Camera별 Bounding Box 위험판정을 수행합니다. Homography 기반 지면 좌표는 두 Camera 간 동일 작업자 매칭을 보조하며, 두 결과를 종합해 최종 SAFE / DANGER를 결정합니다.
 
-### 2. NLLB-200 다국어 번역 Model
+## Previous / Experimental
 
-- **출처:** [Hugging Face - facebook/nllb-200-distilled-600M](https://huggingface.co/facebook/nllb-200-distilled-600M)
-- **실행 도구:** [GitHub - OpenNMT/CTranslate2](https://github.com/OpenNMT/CTranslate2)
-- **용도:** 한국어 안전 방송을 중국어·베트남어로 자동 번역
-- **최적화:** CTranslate2 형식으로 변환하여 다국어 번역 추론 실행
-- **배포:** 원본 Pretrained Weight 및 CTranslate2 변환 모델 파일은 저장소에 포함하지 않음
+- 메인 README의 초기 자체 학습 `person` / `excavator` 2-class YOLO11n 결과는 이전 개발 자료입니다. 최종 Vision 모델의 성능 자료가 아닙니다. 메인 README가 링크한 `vision/best.pt`와 `vision/training_results/`는 현재 체크아웃에 포함되어 있지 않습니다.
+- `SAYFE_yeongjun_FP16/AudioDetection/`의 위험 음향 분류는 별도 실험·개발 자료입니다. 메인 README의 최종 결선 핵심 기능에 포함되지 않습니다.
+- 이전 문서에 기재된 EfficientAT `dymn10_as` 위험 음향 분류 모델 역시 **Experimental / Not used in final demonstration**으로 구분합니다.
 
-### 3. Piper 다국어 음성 합성 Model
-
-- **출처:** [GitHub - rhasspy/piper](https://github.com/rhasspy/piper)
-- **Voice Model:** [Piper Voices](https://huggingface.co/rhasspy/piper-voices)
-- **용도:** 번역된 중국어·베트남어 안전 방송 문장을 음성으로 변환(TTS)
-- **최적화:** ONNX 기반 로컬 음성 합성으로 외부 클라우드 의존 없이 실행
-- **배포:** 중국어·베트남어 Voice Model 및 Piper 실행 파일은 저장소에 포함하지 않음
-
-### 4. YOLO26m 건설현장 객체 검출 Model
-
-- **출처:** [Hugging Face - yihong1120/Construction-Hazard-Detection](https://huggingface.co/yihong1120/Construction-Hazard-Detection)
-- **용도:** 작업자·중장비·안전장비 객체 검출
-- **최적화:** Jetson Orin Nano에서 TensorRT FP16 엔진으로 변환하여 사용
-- **배포:** 원본 가중치 및 변환된 엔진 파일은 저장소에 포함하지 않음
-
-### 5. EfficientAT dymn10_as 위험 음향 분류 Model
-
-- **출처:** [GitHub - fschmid56/EfficientAT](https://github.com/fschmid56/EfficientAT)
-- **모델:** EfficientAT `dymn10_as` (Dynamic MobileNet 기반 음향 이벤트 분류 모델)
-- **용도:** 건설현장 내 폭발음(Explosion) 및 사이렌(Siren) 등 위험 음향 실시간 감지
-- **학습:** 사전 학습된 백본과 Siren 분류 가중치는 고정하고, Explosion 클래스만 추가 학습
-- **최적화:** Jetson Orin Nano에서 1~1.5초 오디오 입력 기반 실시간 음향 분류
-- **배포:** 원본 Pretrained Weight 및 추가 학습 Checkpoint는 저장소에 포함하지 않음
-
----
-
-각 Model과 실행 자산은 장비별 실행 환경에서 별도로 준비해야 합니다.
-
-외부 구성요소의 역할 및 관련 사항은 [`../THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md)를 참고하십시오.
+외부 Whisper, NLLB, Piper, 최종 YOLO26m 모델 자산은 장비 환경에서 별도로 준비합니다. 초기 모델과 실험 자료를 최종 적용 모델로 해석하지 마십시오.

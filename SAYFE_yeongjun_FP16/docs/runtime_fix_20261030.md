@@ -1,5 +1,7 @@
 # 2026-10-30 위험 표시·RESET·FPS 수정
 
+> **개발 기록 / Previous development note:** 이 문서는 해당 날짜의 별도 개발·검증 기록이며 최종 결선 시스템 명세가 아닙니다. 최종 구조는 [메인 README](../../README.md)를 기준으로 확인하십시오.
+
 > 이 문서는 21:31 당시의 성능 측정과 이전 표시 정책 기록이다. 이후 요청으로 최종 DANGER를 LATCH로 유지하고, SITE SAFE 확인 후에만 RESET하는 정책으로 변경했다. 현재 동작은 README.md와 INTEGRATION.md를 따른다.
 
 수정 범위는 `/home/hansungelec/SAYFE_yeongjun`이다. 모델·confidence·입력 해상도·카메라 장치는 변경하지 않았다.

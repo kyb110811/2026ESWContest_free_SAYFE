@@ -1,5 +1,7 @@
 # Vision Jetson ↔ 굴착기 ESP32-C3 통합
 
+> **개발 기록 / Previous development note:** 이 문서는 해당 날짜의 별도 개발·검증 기록이며 최종 결선 시스템 명세가 아닙니다. 최종 구조는 [메인 README](../../README.md)를 기준으로 확인하십시오.
+
 기본값은 DRY-RUN이다. 별도 활성화 없이는 BLE 제어 명령을 쓰지 않는다.
 `excavator_danger`만 구현했으며 `reset` 전송 경로는 없다.
 실제 제한 적용·ACK·해제는 모두 미검증 상태로 유지한다.

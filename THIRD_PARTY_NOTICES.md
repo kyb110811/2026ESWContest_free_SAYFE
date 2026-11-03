@@ -58,16 +58,16 @@
 
 ### Ultralytics YOLO
 
-- 역할: Vision의 사람·굴착기 object detection framework
+- 역할: 최종 Vision의 Construction-Hazard-Detection 계열 YOLO26m 객체 검출. 초기 자체 학습 YOLO11n은 이전 개발 모델
 - 구분: 외부 software
 - Upstream: <https://github.com/ultralytics/ultralytics>
 - License: 사용 형태에 따라 AGPL-3.0 또는 Ultralytics Enterprise 조건이 적용될 수 있으므로 실제 적용 조건 확인 필요
-- 팀 개발 범위: detector integration, class filtering, proximity logic, Pixel Motion, Danger Event
-- 팀 artifact: `vision/best.pt` 정보는 [`models/README.md`](models/README.md)에 별도 기록
+- 팀 개발 범위: Dual Camera 객체 검출 연동, Camera별 Bounding Box 위험판정, Homography 기반 동일 작업자 매칭 보조, 결과 통합 및 Danger Event
+- 이전 개발 모델: 메인 README의 자체 학습 YOLO11n 결과는 [`models/README.md`](models/README.md)에 구분하여 기록. 메인 README가 링크한 `vision/best.pt`는 현재 체크아웃에 포함되지 않음
 
 ### OpenCV / NumPy
 
-- 역할: Vision frame 처리, Pixel Motion 계산, Audio PCM/data 처리
+- 역할: Vision 영상 처리와 Homography 기반 매칭 보조, Audio PCM/data 처리
 - 구분: 외부 software
 - Upstream: <https://opencv.org>, <https://numpy.org>
 - License: OpenCV 현재 release는 Apache-2.0, NumPy는 BSD-3-Clause
@@ -108,10 +108,10 @@
 
 ### RPi.GPIO
 
-- 역할: Raspberry Pi의 모형 굴착기·안전장치 GPIO 제어
+- 역할: 초기 개발·예선 단계 Raspberry Pi GPIO 제어 자료. 최종 결선의 굴착기 제어 경로는 ESP32-C3 / BLE / Relay
 - 구분: 외부 Python package
 - License/version: 실제 Raspberry Pi 설치 package 기준 확인 필요
 
 ## 팀 개발 영역 요약
 
-SAYFE 팀은 위 외부 기술을 연결하는 application/integration layer를 개발했습니다. 주요 범위는 Audio pipeline orchestration, 건설현장 문장 정규화와 검증 번역, Safety Guard/Fallback, Fast Path, Vision proximity/Pixel Motion/Danger Event, BLE/RFCOMM/HTTP event integration, Raspberry Pi JSON/GPIO control, nRF5340 serial setup과 다국어 Audio routing입니다.
+SAYFE 팀의 최종 결선 통합 범위는 Audio pipeline orchestration, 건설현장 문장 정규화와 번역, Safety Guard/Fallback, Fast Path, Dual Camera 기반 Vision 위험판정, Jetson 간 유선 LAN 위험 이벤트 전달, ESP32-C3와의 BLE 연동, Gas Node의 현장 장치 대응, 굴착기 Relay 제어 및 nRF5340 다국어 Audio routing입니다. RFCOMM·Raspberry Pi GPIO 관련 자료는 이전 개발 단계에 해당합니다.

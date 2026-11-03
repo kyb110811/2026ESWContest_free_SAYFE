@@ -1,31 +1,15 @@
-# ESP32-C3 Gas Sensor 모듈
+# ESP32-C3 Gas Node
 
-## 역할
-
-MQ Gas Sensor의 측정값을 읽고 BLE notification으로 Audio 시스템에 전달합니다. 위험 여부는 ESP32-C3가 아니라 NVIDIA Jetson Orin Nano 8GB의 Audio receiver가 설정 Threshold와 비교하여 판단합니다.
-
-## 입력
-
-- MQ Gas Sensor 측정값
-
-## 처리 과정
+최종 결선 Gas Node는 MQ Gas Sensor와 ESP32-C3로 구성됩니다. [메인 README](../README.md)에 따라 ESP32-C3가 가스 위험을 판단하고 현장 장치를 직접 제어합니다.
 
 ```text
-MQ Gas Sensor → ESP32-C3 측정 → BLE notification
-→ Audio receiver → Threshold 판단 → GAS_DANGER
+MQ Gas Sensor → Gas ESP32-C3 → 위험 판단
+                           ├─ Buzzer 작동
+                           ├─ Fan 작동
+                           ├─ Door 제어
+                           └─ BLE → Audio Jetson → Fast Path 다국어 경고
 ```
 
-## 출력
+현장 장치 대응은 Audio Jetson의 음성 처리 결과를 기다리지 않습니다. 위험 판단의 세부 임계값은 이 문서에서 새로 정의하지 않습니다.
 
-- BLE를 통한 MQ 측정값
-- Audio Fast Path에서 생성되는 KO/ZH/VI 가스 위험 경고
-
-## 주요 파일
-
-| 파일 | 역할 |
-|---|---|
-| `sketch_aug18a.ino` | MQ 측정, ESP32-C3 상태 동작, BLE service/characteristic 제공 |
-
-## 실행 방법
-
-Arduino 형식의 source를 ESP32-C3 환경에서 build·flash하고 Audio 실행 시 장치 주소와 Threshold를 환경에 맞게 설정합니다. 정확한 board/library version은 이 저장소에서 특정하지 않습니다.
+`sketch_aug18a.ino`는 이 폴더에 포함된 ESP32-C3 소스입니다. 이전의 “ESP32-C3는 측정값만 보내고 Audio Jetson이 모든 위험을 판단한다”는 설명은 최종 시스템 구성에 해당하지 않습니다.
