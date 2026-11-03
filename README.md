@@ -28,9 +28,9 @@ SAYFE는 이러한 문제를 해결하기 위해 다음 기능을 하나의 시�
 3. **Auracast 기반 언어별 안전방송 송출**
 4. **Vision AI 기반 작업자·중장비 위험상황 자동 감지**
 5. **ESP32-C3 + Gas Sensor 기반 환경 위험 감지**
-6. **Bluetooth 기반 위험 이벤트 전달**
-7. **Raspberry Pi GPIO 기반 물리 장치 제어**
-8. **Web UI 기반 방송 제어 및 방송·처리 이력 관리**
+6. **Vision·Gas 위험 이벤트의 무선 통신 기반 실시간 전달**
+7. **ESP32-C3 기반 굴착기 조작 제한 및 안전장치 제어**
+8. **Web UI 기반 방송 제어 및 방송·위험 이벤트 이력 관리**
 
 ---
 
@@ -81,8 +81,9 @@ ESP32-C3와 MQ Gas Sensor를 이용해 가스 상태를 측정하고 위험 Thre
 
 ## 3.4 실제 물리 장치 제어
 
-Vision AI가 생성한 위험 이벤트를 Raspberry Pi로 전달하여 GPIO를 통해 모형 굴착기 또는 안전장치의 동작을 제어할 수 있도록 구현했습니다.
+Vision AI가 작업자의 위험구역 진입을 감지하면 별도의 ESP32-C3 제어 경로로 위험 이벤트를 전달하고, 릴레이 제어를 통해 모형 굴착기의 조작을 제한합니다.
 
+위험상황이 해제되더라도 장비가 즉시 재가동되지 않도록 래치 기반 안전 인터록을 적용했으며, 관리자가 상태를 확인한 뒤 조작 제한을 해제하도록 설계했습니다.
 ---
 
 ## 3.5 Local Edge AI
@@ -118,9 +119,9 @@ Vision 또는 Gas Sensor에서 긴급 위험이 감지되었을 때 사용하는
 Vision / Gas Danger Event
 → Fast Path
 → 일반 STT·번역 처리보다 우선
-→ 긴급 경고 Audio
-→ KOREAN / CHINESE / VIETNAMESE 즉시 경고방송
-→ 필요 시 Raspberry Pi GPIO 제어
+→ 사전 검수된 긴급 경고 Audio 즉시 송출
+→ KOREAN / CHINESE / VIETNAMESE 긴급 경고방송
+→ ESP32-C3 기반 안전장치 대응
 ```
 
 | 구분 | Safe Path | Fast Path |
@@ -558,40 +559,35 @@ nRF 관련 상세 구성:
 
 # 14. Vision AI
 
-Vision System은 Camera 영상을 입력받아 `person`과 `excavator`를 탐지합니다.
+Vision System은 2대의 Camera 영상을 입력받아 건설현장의 작업자와 중장비를 실시간으로 탐지합니다.
 
-```text
-Camera
+Dual Camera
 ↓
-YOLO11n
+YOLO26m
 ↓
-Person / Excavator Detection
+Person / Machinery Detection
 ↓
-Proximity Logic
+Camera별 BBox 겹침 기반 위험 판단
 ↓
-Excavator Motion
+Homography 기반 동일 작업자 매칭 보조
 ↓
-Danger Event
+두 Camera 판단 결과 종합
 ↓
-Bluetooth RFCOMM
-```
+Final SAFE / DANGER
 
-단순히 객체가 가까이 있다는 이유만으로 위험으로 판단하지 않고 다음 요소를 함께 사용합니다.
+최종 시스템에는 건설현장 객체 탐지에 특화된 YOLO26m 모델을 적용했습니다.
 
-- Person Detection
-- Excavator Detection
-- 작업자와 굴착기의 거리
-- 위험영역 진입 여부
-- 굴착기 움직임 여부
+각 Camera에서는 검출된 작업자와 중장비의 Bounding Box 관계를 이용해 근접 및 겹침 여부를 판단하고, 이를 기반으로 개별 Camera의 위험 상태를 생성합니다.
 
-조건이 충족되면 다음 위험 이벤트를 생성합니다.
+- 작업자 및 중장비 객체 검출
+- 작업자와 중장비 Bounding Box의 겹침 여부 확인
+- Camera별 SAFE / DANGER 판단
+- Homography 기반 지면 좌표 변환을 활용한 두 Camera 간 동일 작업자 매칭 보조
+- 두 Camera의 판단 결과를 종합한 최종 SAFE / DANGER 결정
 
-```text
-WORKER_NEAR_MOVING_EXCAVATOR
-```
+Homography는 위험 여부를 직접 판단하는 기준이 아니라, 서로 다른 각도에서 촬영된 두 Camera 영상에서 동일 작업자를 대응시키기 위한 보조 정보로 사용합니다.
 
-생성된 위험 이벤트는 Audio Jetson과 Raspberry Pi로 전달됩니다.
-
+이를 통해 단일 Camera에서 발생할 수 있는 사각지대와 검출 불안정을 보완하고, 두 Camera의 결과를 종합해 최종 위험 상태를 결정합니다.
 ---
 
 # 15. Vision 위험 이벤트 및 물리 제어
