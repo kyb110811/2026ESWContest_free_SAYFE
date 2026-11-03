@@ -1,0 +1,26 @@
+{
+  "model_name": "frame_mn06",
+  "device": "cpu",
+  "cpu_threads": 2,
+  "sample_rate": 16000,
+  "window_seconds": 10.0,
+  "hop_seconds": 0.5,
+  "decision_seconds": 1.0,
+  "min_audio_seconds": 1.0,
+  "stale_seconds": 3.0,
+  "danger_threshold": 0.5,
+  "top1_min_score": 0.2,
+  "clear_threshold": 0.25,
+  "release_seconds": 1.5,
+  "cooldown_seconds": 5.0,
+  "host": "0.0.0.0",
+  "port": 5011,
+  "zone_port": 5012,
+  "vision_event_enabled": true,
+  "vision_event_port": 5010,
+  "cameras": [
+    {"id": "CAM1", "name": "Logitech C922", "alsa_device": "plughw:CARD=Webcam,DEV=0"},
+    {"id": "CAM2", "name": "Logitech 046d:0825", "alsa_device": "plughw:CARD=U0x46d0x825,DEV=0"},
+    {"id": "CAM3", "name": "SunplusIT FHD60F", "alsa_device": "plughw:CARD=FHD60F,DEV=0", "video_match": "FHD60F"}
+  ]
+}

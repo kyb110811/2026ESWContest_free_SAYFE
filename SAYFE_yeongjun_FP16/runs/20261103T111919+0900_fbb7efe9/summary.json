@@ -1,0 +1,2037 @@
+{
+  "run_id": "20261103T111919+0900_fbb7efe9",
+  "project": "SAYFE",
+  "mode": "normal",
+  "scenario": "기본 2카메라 관측",
+  "measurement_duration_s": 24.660439243,
+  "processed_frames_recorded": 665,
+  "total_inference_fps_recorded": 26.966267447517744,
+  "cameras": {
+    "CAM1": {
+      "processed_frames": 356,
+      "skipped_capture_frames": 362,
+      "scheduler_deadline_misses": 1,
+      "inference_fps": 14.436077009498222,
+      "captured_frames": 720,
+      "capture_errors": 0,
+      "capture_fps": 29.196560243928985,
+      "actual": {
+        "width": 640,
+        "height": 480,
+        "configured_fps": 30.0,
+        "fourcc": "MJPG",
+        "property_set_accepted": {
+          "fourcc": true,
+          "width": true,
+          "height": true,
+          "fps": true,
+          "buffer_size": true
+        }
+      },
+      "recorded_execution_share": 0.5353383458646617,
+      "timing_ms": {
+        "inference_ms": {
+          "count": 356,
+          "mean": 20.481848058973434,
+          "p50": 18.456775499998912,
+          "p95": 29.614753000259952
+        },
+        "capture_to_decision_ms": {
+          "count": 356,
+          "mean": 53.593930966292135,
+          "p50": 48.2208135,
+          "p95": 75.62692175000001
+        },
+        "dispatch_gap_ms": {
+          "count": 355,
+          "mean": 67.27867898591549,
+          "p50": 65.571601,
+          "p95": 83.2154814
+        },
+        "completion_gap_ms": {
+          "count": 355,
+          "mean": 64.95433668169014,
+          "p50": 65.099566,
+          "p95": 85.0291733
+        }
+      },
+      "max_completion_gap_ms": 119.632081
+    },
+    "CAM2": {
+      "processed_frames": 309,
+      "skipped_capture_frames": 11,
+      "scheduler_deadline_misses": 0,
+      "inference_fps": 12.530190438019524,
+      "captured_frames": 322,
+      "capture_errors": 0,
+      "capture_fps": 13.057350553534908,
+      "actual": {
+        "width": 640,
+        "height": 480,
+        "configured_fps": 30.0,
+        "fourcc": "MJPG",
+        "property_set_accepted": {
+          "fourcc": true,
+          "width": true,
+          "height": true,
+          "fps": true,
+          "buffer_size": true
+        }
+      },
+      "recorded_execution_share": 0.46466165413533833,
+      "timing_ms": {
+        "inference_ms": {
+          "count": 309,
+          "mean": 19.395836783175515,
+          "p50": 18.194086000221432,
+          "p95": 22.793414400257458
+        },
+        "capture_to_decision_ms": {
+          "count": 309,
+          "mean": 63.768986171521036,
+          "p50": 62.621309,
+          "p95": 94.66036639999999
+        },
+        "dispatch_gap_ms": {
+          "count": 308,
+          "mean": 68.70764390259741,
+          "p50": 67.5414575,
+          "p95": 87.72889614999997
+        },
+        "completion_gap_ms": {
+          "count": 308,
+          "mean": 68.68281371753247,
+          "p50": 66.64644799999999,
+          "p95": 86.94715034999999
+        }
+      },
+      "max_completion_gap_ms": 112.807109
+    }
+  },
+  "timing_ms": {
+    "preprocess_ms": {
+      "count": 665,
+      "mean": 3.2520337097717253,
+      "p50": 2.0578499998009647,
+      "p95": 8.29800339979556
+    },
+    "inference_ms": {
+      "count": 665,
+      "mean": 19.977220263151544,
+      "p50": 18.268618000547576,
+      "p95": 25.964404600017588
+    },
+    "postprocess_ms": {
+      "count": 665,
+      "mean": 8.178893502262962,
+      "p50": 5.4648650002491195,
+      "p95": 16.084719799982846
+    },
+    "detector_ms": {
+      "count": 665,
+      "mean": 33.50987102406015,
+      "p50": 30.449885,
+      "p95": 44.840846799999994
+    },
+    "queue_age_ms": {
+      "count": 665,
+      "mean": 23.054397500751882,
+      "p50": 19.949984,
+      "p95": 56.23897179999998
+    },
+    "capture_to_result_ms": {
+      "count": 665,
+      "mean": 56.71199421353384,
+      "p50": 51.194454,
+      "p95": 90.99269699999999
+    },
+    "camera_skew_ms": {
+      "count": 627,
+      "mean": 36.43796779425837,
+      "p50": 33.791786,
+      "p95": 79.2734059
+    },
+    "zone_ms": {
+      "count": 665,
+      "mean": 0.06943068721804511,
+      "p50": 0.058628,
+      "p95": 0.1110342
+    },
+    "site_ms": {
+      "count": 665,
+      "mean": 0.5370733533834586,
+      "p50": 0.469723,
+      "p95": 0.8268257999999999
+    },
+    "risk_ms": {
+      "count": 665,
+      "mean": 0.7898968436090225,
+      "p50": 0.762093,
+      "p95": 1.3180743999999995
+    },
+    "capture_to_decision_ms": {
+      "count": 665,
+      "mean": 58.32188894887218,
+      "p50": 52.648705,
+      "p95": 92.2318028
+    },
+    "homography_ms": {
+      "count": 665,
+      "mean": 0.1833928030075188,
+      "p50": 0.147241,
+      "p95": 0.42635459999999986
+    },
+    "scheduler_wait_ms": {
+      "count": 665,
+      "mean": 0.1845145804511278,
+      "p50": 0.140808,
+      "p95": 0.25679579999999996
+    },
+    "camera_processing_wait_ms": {
+      "count": 665,
+      "mean": 0.43580440150375943,
+      "p50": 0.246158,
+      "p95": 1.0819199999999995
+    },
+    "dispatch_gap_ms": {
+      "count": 663,
+      "mean": 67.94251185822021,
+      "p50": 66.140623,
+      "p95": 85.9438081
+    },
+    "completion_gap_ms": {
+      "count": 663,
+      "mean": 66.68641952790347,
+      "p50": 65.942258,
+      "p95": 86.08934570000001
+    }
+  },
+  "resources": {
+    "cpu_system_percent": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null
+    },
+    "cpu_process_percent": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null
+    },
+    "ram_used_bytes": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null
+    },
+    "process_rss_bytes": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null
+    },
+    "gpu_percent": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null
+    },
+    "gpu_allocator_bytes": {
+      "count": 0,
+      "mean": null,
+      "p50": null,
+      "p95": null
+    }
+  },
+  "stale_results_recorded": 0,
+  "risk_states_recorded": {
+    "SAFE": 406,
+    "DANGER": 259
+  },
+  "risk_implemented": true,
+  "final_risk_state": {
+    "project": "SAYFE",
+    "version": "0.3.1",
+    "run_id": "20261103T111919+0900_fbb7efe9",
+    "mode": "normal",
+    "site_state": "SAFE",
+    "risk": "SAFE",
+    "risk_implemented": true,
+    "persons": [],
+    "fusion_table": {
+      "SAFE": {
+        "SAFE": "SAFE",
+        "DANGER": "SAFE",
+        "UNKNOWN": "SAFE"
+      },
+      "DANGER": {
+        "SAFE": "SAFE",
+        "DANGER": "DANGER",
+        "UNKNOWN": "DANGER"
+      },
+      "UNKNOWN": {
+        "SAFE": "SAFE",
+        "DANGER": "DANGER",
+        "UNKNOWN": "SAFE"
+      }
+    },
+    "person_matching": "camera_display_label",
+    "risk_method": "expanded_excavator_bbox",
+    "camera_states": {
+      "CAM1": "UNKNOWN",
+      "CAM2": "UNKNOWN"
+    },
+    "camera_reasons": {
+      "CAM1": [
+        "PROCESS_STOPPED",
+        "INFERENCE_UNAVAILABLE",
+        "CAMERA_STOPPED"
+      ],
+      "CAM2": [
+        "PROCESS_STOPPED",
+        "INFERENCE_UNAVAILABLE",
+        "CAMERA_STOPPED"
+      ]
+    },
+    "observation_fault": true,
+    "judged_person_count": 0,
+    "unjudged_person_count": 0,
+    "intrusion_detected": false,
+    "revision": 6,
+    "decision_ns": 4533420677446,
+    "reasons": [
+      "NO_JUDGED_PERSONS"
+    ],
+    "restriction_required": false,
+    "control_status": "ERROR",
+    "control_connected": false,
+    "hazard_latched": false,
+    "danger_streak": {
+      "CAM1": 0,
+      "CAM2": 0
+    },
+    "release_candidate": false,
+    "reset_allowed": false,
+    "reset_block_reason": "NO_CURRENT_LATCH",
+    "episode_id": null,
+    "trigger_evidence": {},
+    "latest_danger_evidence": {},
+    "excavator_ble": {
+      "enabled": true,
+      "connected": false,
+      "pending": false,
+      "command": null,
+      "episode_id": null,
+      "last_sent": null,
+      "last_error": "지정된 굴착기 ESP32 MAC/이름을 찾을 수 없습니다",
+      "status": "ERROR",
+      "connection_state": "DISCONNECTED",
+      "heartbeat_status": "DISCONNECTED",
+      "online": false,
+      "fault": true,
+      "last_heartbeat_at": null,
+      "heartbeat_age_sec": null,
+      "heartbeat_count": 0,
+      "heartbeat_timeout_sec": 3.0,
+      "last_heartbeat_error": null,
+      "ack_verified": false
+    },
+    "admin_reset_status": "VISION_RELEASED_NO_BLE",
+    "excavator_box_offset_px": 23,
+    "observation": "UNAVAILABLE",
+    "running": false,
+    "inference_alive": false,
+    "pipeline_error": null,
+    "total_inference_fps": 22.0,
+    "camera_skew_ms": null,
+    "calibration": {
+      "CAM1": {
+        "status": "READY",
+        "reasons": [],
+        "error": null,
+        "revision": 1,
+        "calibration_id": "b230731847f74d6a949fa5b1bf7b36f6",
+        "imported_legacy": false,
+        "origin": "D",
+        "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+        "world_xy_m": [
+          [
+            0.0,
+            0.6
+          ],
+          [
+            0.84,
+            0.6
+          ],
+          [
+            0.84,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "image_size": [
+          640,
+          480
+        ],
+        "image_points": [
+          [
+            132.8000030517578,
+            292.3428649902344
+          ],
+          [
+            493.94287109375,
+            307.1999816894531
+          ],
+          [
+            627.6571655273438,
+            432.9142761230469
+          ],
+          [
+            18.514286041259766,
+            408.9142761230469
+          ]
+        ],
+        "physical_alignment_verified": false,
+        "profile_id": "legacy",
+        "version": 2,
+        "method": "getPerspectiveTransform",
+        "transform_valid": true,
+        "quality_evaluated": false,
+        "quality_approved": false,
+        "quality_approval": "LEGACY_UNVERIFIED",
+        "calibration_point_count": 4,
+        "used_point_count": 4,
+        "validation_point_count": 0,
+        "mean_error_m": null,
+        "rmse_m": null,
+        "max_error_m": null
+      },
+      "CAM2": {
+        "status": "READY",
+        "reasons": [],
+        "error": null,
+        "revision": 1,
+        "calibration_id": "68814979beb04dd79be3bc8c4d6f0088",
+        "imported_legacy": false,
+        "origin": "D",
+        "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+        "world_xy_m": [
+          [
+            0.0,
+            0.6
+          ],
+          [
+            0.84,
+            0.6
+          ],
+          [
+            0.84,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "image_size": [
+          640,
+          480
+        ],
+        "image_points": [
+          [
+            57.14285659790039,
+            412.34820556640625
+          ],
+          [
+            209.14285278320312,
+            243.20535278320312
+          ],
+          [
+            488.0,
+            243.20535278320312
+          ],
+          [
+            592.0,
+            418.0625
+          ]
+        ],
+        "physical_alignment_verified": false,
+        "profile_id": "legacy",
+        "version": 2,
+        "method": "getPerspectiveTransform",
+        "transform_valid": true,
+        "quality_evaluated": false,
+        "quality_approved": false,
+        "quality_approval": "LEGACY_UNVERIFIED",
+        "calibration_point_count": 4,
+        "used_point_count": 4,
+        "validation_point_count": 0,
+        "mean_error_m": null,
+        "rmse_m": null,
+        "max_error_m": null
+      }
+    },
+    "scheduler": {
+      "mode": "NORMAL",
+      "backend_concurrency": 1,
+      "priority_weight": 1.0,
+      "observation_budget_ms": 500.0,
+      "budget_is_guaranteed": false,
+      "estimated_service_ms": 36.29863,
+      "capacity_limited": false,
+      "mode_execution_counts": {
+        "NORMAL": {
+          "CAM1": 356,
+          "CAM2": 309
+        }
+      },
+      "cameras": {
+        "CAM1": {
+          "selected": 356,
+          "started": 356,
+          "completed": 356,
+          "failed": 0,
+          "deadline_misses": 1,
+          "max_completion_gap_ms": 119.632081,
+          "execution_share": 0.5353383458646617,
+          "priority": false,
+          "reason": "UNKNOWN",
+          "last_dispatch_ns": 4533326543351,
+          "last_completion_ns": 4533369344598
+        },
+        "CAM2": {
+          "selected": 309,
+          "started": 309,
+          "completed": 309,
+          "failed": 0,
+          "deadline_misses": 0,
+          "max_completion_gap_ms": 112.807109,
+          "execution_share": 0.46466165413533833,
+          "priority": false,
+          "reason": "UNKNOWN",
+          "last_dispatch_ns": 4533288385511,
+          "last_completion_ns": 4533326196675
+        }
+      }
+    },
+    "external": {
+      "audio": "미연결",
+      "esp32": "미연결",
+      "auracast": "미연결",
+      "control": "BLE 연결 대기"
+    },
+    "recording": {
+      "directory": "/home/hansungelec/SAYFE_yeongjun_FP16_copy/runs/20261103T111919+0900_fbb7efe9",
+      "dropped": 0,
+      "written": 687,
+      "failures": 0,
+      "last_error": null,
+      "degraded": false,
+      "queue_size": 0
+    },
+    "cameras": [
+      {
+        "id": "CAM1",
+        "name": "Logitech C922",
+        "source": "/dev/v4l/by-id/usb-046d_C922_Pro_Stream_Webcam_716A275F-video-index0",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG",
+        "health": "STOPPED",
+        "opened": false,
+        "error": null,
+        "capture_count": 720,
+        "capture_errors": 0,
+        "capture_ns": 4533374487746,
+        "capture_age_ms": 521.9005289999999,
+        "capture_fps": 22.5,
+        "capture_elapsed_s": 25.136725722,
+        "actual": {
+          "width": 640,
+          "height": 480,
+          "configured_fps": 30.0,
+          "fourcc": "MJPG",
+          "property_set_accepted": {
+            "fourcc": true,
+            "width": true,
+            "height": true,
+            "fps": true,
+            "buffer_size": true
+          }
+        },
+        "thread_alive": false,
+        "observation_valid": false,
+        "risk": "UNKNOWN",
+        "risk_reasons": [
+          "PROCESS_STOPPED",
+          "INFERENCE_UNAVAILABLE",
+          "CAMERA_STOPPED"
+        ],
+        "inference_fps": 11.0,
+        "result_age_ms": 589.98,
+        "result": {
+          "detections": [
+            {
+              "class_id": 8,
+              "class_name": "excavator",
+              "model_class_name": "machinery",
+              "bbox": [
+                158.0,
+                61.5,
+                402.0,
+                306.5625
+              ],
+              "confidence": 0.9227616190910339
+            }
+          ],
+          "inference_start_ns": 4533326794118,
+          "inference_end_ns": 4533367637586,
+          "predict_call_ms": 40.422068,
+          "detector_ms": 40.843468,
+          "extract_ms": 0.4214,
+          "preprocess_ms": 2.025206000325852,
+          "inference_ms": 18.092638999405608,
+          "postprocess_ms": 18.540377000135777,
+          "input_shape_json": "[1, 3, 480, 640]",
+          "input_dtype": "torch.float32",
+          "camera_id": "CAM1",
+          "scheduler_mode": "NORMAL",
+          "scheduler_reason": "WEIGHTED_WAIT",
+          "scheduler_priority_reason": "UNKNOWN",
+          "scheduler_weight": 1.0,
+          "scheduled_ns": 4533326543351,
+          "scheduler_deadline_ns": 4533788133529,
+          "dispatch_gap_ms": 72.570277,
+          "frame_seq": 718,
+          "capture_ns": 4533306406370,
+          "result_ns": 4533367729336,
+          "scheduler_wait_ms": 0.250767,
+          "queue_age_ms": 20.387748,
+          "capture_to_result_ms": 61.322966,
+          "camera_skew_ms": null,
+          "result_stale": 0,
+          "skipped_capture_frames": 1,
+          "detections_count": 1,
+          "zone_ms": 0.110087,
+          "homography_ms": 0.265871,
+          "risk_ms": 0.894676,
+          "camera_processing_wait_ms": 0.239118,
+          "ground": {
+            "camera_id": "CAM1",
+            "frame_seq": 718,
+            "capture_ns": 4533306406370,
+            "calibration": {
+              "status": "READY",
+              "reasons": [],
+              "error": null,
+              "revision": 1,
+              "calibration_id": "b230731847f74d6a949fa5b1bf7b36f6",
+              "imported_legacy": false,
+              "origin": "D",
+              "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+              "world_xy_m": [
+                [
+                  0.0,
+                  0.6
+                ],
+                [
+                  0.84,
+                  0.6
+                ],
+                [
+                  0.84,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ]
+              ],
+              "image_size": [
+                640,
+                480
+              ],
+              "image_points": [
+                [
+                  132.8000030517578,
+                  292.3428649902344
+                ],
+                [
+                  493.94287109375,
+                  307.1999816894531
+                ],
+                [
+                  627.6571655273438,
+                  432.9142761230469
+                ],
+                [
+                  18.514286041259766,
+                  408.9142761230469
+                ]
+              ],
+              "physical_alignment_verified": false,
+              "profile_id": "legacy",
+              "version": 2,
+              "method": "getPerspectiveTransform",
+              "transform_valid": true,
+              "quality_evaluated": false,
+              "quality_approved": false,
+              "quality_approval": "LEGACY_UNVERIFIED",
+              "calibration_point_count": 4,
+              "used_point_count": 4,
+              "validation_point_count": 0,
+              "mean_error_m": null,
+              "rmse_m": null,
+              "max_error_m": null
+            },
+            "valid": true,
+            "persons": [],
+            "danger_zone_image_px": null
+          },
+          "risk_assessment": {
+            "camera_id": "CAM1",
+            "frame_seq": 718,
+            "state": "UNKNOWN",
+            "reasons": [
+              "PERSON_NOT_DETECTED"
+            ],
+            "persons": [],
+            "intrusion": false,
+            "valid_person_count": 0,
+            "invalid_person_count": 0,
+            "danger_boxes": [
+              {
+                "detection_index": 0,
+                "bbox": [
+                  135.0,
+                  38.5,
+                  425.0,
+                  329.5625
+                ],
+                "excavator_bbox": [
+                  158.0,
+                  61.5,
+                  402.0,
+                  306.5625
+                ]
+              }
+            ],
+            "risk_method": "expanded_excavator_bbox"
+          },
+          "camera_risk": "UNKNOWN",
+          "person_count": 0,
+          "danger_person_count": 0,
+          "ground_details_json": "{\"camera_id\":\"CAM1\",\"frame_seq\":718,\"capture_ns\":4533306406370,\"calibration\":{\"status\":\"READY\",\"reasons\":[],\"error\":null,\"revision\":1,\"calibration_id\":\"b230731847f74d6a949fa5b1bf7b36f6\",\"imported_legacy\":false,\"origin\":\"D\",\"coordinate_system\":\"D_X_RIGHT_Y_TO_A_METRES\",\"world_xy_m\":[[0.0,0.6],[0.84,0.6],[0.84,0.0],[0.0,0.0]],\"image_size\":[640,480],\"image_points\":[[132.8000030517578,292.3428649902344],[493.94287109375,307.1999816894531],[627.6571655273438,432.9142761230469],[18.514286041259766,408.9142761230469]],\"physical_alignment_verified\":false,\"profile_id\":\"legacy\",\"version\":2,\"method\":\"getPerspectiveTransform\",\"transform_valid\":true,\"quality_evaluated\":false,\"quality_approved\":false,\"quality_approval\":\"LEGACY_UNVERIFIED\",\"calibration_point_count\":4,\"used_point_count\":4,\"validation_point_count\":0,\"mean_error_m\":null,\"rmse_m\":null,\"max_error_m\":null},\"valid\":true,\"persons\":[],\"danger_zone_image_px\":null}",
+          "risk_details_json": "{\"camera_id\":\"CAM1\",\"frame_seq\":718,\"state\":\"UNKNOWN\",\"reasons\":[\"PERSON_NOT_DETECTED\"],\"persons\":[],\"intrusion\":false,\"valid_person_count\":0,\"invalid_person_count\":0,\"danger_boxes\":[{\"detection_index\":0,\"bbox\":[135.0,38.5,425.0,329.5625],\"excavator_bbox\":[158.0,61.5,402.0,306.5625]}],\"risk_method\":\"expanded_excavator_bbox\"}",
+          "publication_status": "PUBLISHED",
+          "decision_ns": 4533369344598,
+          "site_ms": 0.518718,
+          "capture_to_decision_ms": 62.938228,
+          "site_state": "SAFE",
+          "final_risk": "SAFE",
+          "hazard_latched": 0,
+          "risk_episode_id": null,
+          "risk_revision": 6,
+          "decision_stale": 0,
+          "completion_gap_ms": 81.211069,
+          "scheduler_deadline_missed": 0
+        },
+        "calibration": {
+          "status": "READY",
+          "reasons": [],
+          "error": null,
+          "revision": 1,
+          "calibration_id": "b230731847f74d6a949fa5b1bf7b36f6",
+          "imported_legacy": false,
+          "origin": "D",
+          "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+          "world_xy_m": [
+            [
+              0.0,
+              0.6
+            ],
+            [
+              0.84,
+              0.6
+            ],
+            [
+              0.84,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "image_size": [
+            640,
+            480
+          ],
+          "image_points": [
+            [
+              132.8000030517578,
+              292.3428649902344
+            ],
+            [
+              493.94287109375,
+              307.1999816894531
+            ],
+            [
+              627.6571655273438,
+              432.9142761230469
+            ],
+            [
+              18.514286041259766,
+              408.9142761230469
+            ]
+          ],
+          "physical_alignment_verified": false,
+          "profile_id": "legacy",
+          "version": 2,
+          "method": "getPerspectiveTransform",
+          "transform_valid": true,
+          "quality_evaluated": false,
+          "quality_approved": false,
+          "quality_approval": "LEGACY_UNVERIFIED",
+          "calibration_point_count": 4,
+          "used_point_count": 4,
+          "validation_point_count": 0,
+          "mean_error_m": null,
+          "rmse_m": null,
+          "max_error_m": null
+        },
+        "ground": {
+          "camera_id": "CAM1",
+          "frame_seq": 718,
+          "capture_ns": 4533306406370,
+          "calibration": {
+            "status": "READY",
+            "reasons": [],
+            "error": null,
+            "revision": 1,
+            "calibration_id": "b230731847f74d6a949fa5b1bf7b36f6",
+            "imported_legacy": false,
+            "origin": "D",
+            "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+            "world_xy_m": [
+              [
+                0.0,
+                0.6
+              ],
+              [
+                0.84,
+                0.6
+              ],
+              [
+                0.84,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "image_size": [
+              640,
+              480
+            ],
+            "image_points": [
+              [
+                132.8000030517578,
+                292.3428649902344
+              ],
+              [
+                493.94287109375,
+                307.1999816894531
+              ],
+              [
+                627.6571655273438,
+                432.9142761230469
+              ],
+              [
+                18.514286041259766,
+                408.9142761230469
+              ]
+            ],
+            "physical_alignment_verified": false,
+            "profile_id": "legacy",
+            "version": 2,
+            "method": "getPerspectiveTransform",
+            "transform_valid": true,
+            "quality_evaluated": false,
+            "quality_approved": false,
+            "quality_approval": "LEGACY_UNVERIFIED",
+            "calibration_point_count": 4,
+            "used_point_count": 4,
+            "validation_point_count": 0,
+            "mean_error_m": null,
+            "rmse_m": null,
+            "max_error_m": null
+          },
+          "valid": true,
+          "persons": [],
+          "danger_zone_image_px": null,
+          "observation_valid": false
+        }
+      },
+      {
+        "id": "CAM2",
+        "name": "Logitech 046d:0825",
+        "source": "/dev/v4l/by-id/usb-046d_0825_D6055E10-video-index0",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG",
+        "health": "STOPPED",
+        "opened": false,
+        "error": null,
+        "capture_count": 322,
+        "capture_errors": 0,
+        "capture_ns": 4533398316558,
+        "capture_age_ms": 498.07171700000004,
+        "capture_fps": 11.5,
+        "capture_elapsed_s": 25.136038129,
+        "actual": {
+          "width": 640,
+          "height": 480,
+          "configured_fps": 30.0,
+          "fourcc": "MJPG",
+          "property_set_accepted": {
+            "fourcc": true,
+            "width": true,
+            "height": true,
+            "fps": true,
+            "buffer_size": true
+          }
+        },
+        "thread_alive": false,
+        "observation_valid": false,
+        "risk": "UNKNOWN",
+        "risk_reasons": [
+          "PROCESS_STOPPED",
+          "INFERENCE_UNAVAILABLE",
+          "CAMERA_STOPPED"
+        ],
+        "inference_fps": 11.0,
+        "result_age_ms": 633.99,
+        "result": {
+          "detections": [
+            {
+              "class_id": 8,
+              "class_name": "excavator",
+              "model_class_name": "machinery",
+              "bbox": [
+                95.875,
+                15.75,
+                280.46875,
+                391.75
+              ],
+              "confidence": 0.6770471334457397
+            }
+          ],
+          "inference_start_ns": 4533288618293,
+          "inference_end_ns": 4533323693905,
+          "predict_call_ms": 34.708487,
+          "detector_ms": 35.075612,
+          "extract_ms": 0.367125,
+          "preprocess_ms": 2.0531109994408325,
+          "inference_ms": 18.10694399955537,
+          "postprocess_ms": 12.572573000397824,
+          "input_shape_json": "[1, 3, 480, 640]",
+          "input_dtype": "torch.float32",
+          "camera_id": "CAM2",
+          "scheduler_mode": "NORMAL",
+          "scheduler_reason": "WEIGHTED_WAIT",
+          "scheduler_priority_reason": "UNKNOWN",
+          "scheduler_weight": 1.0,
+          "scheduled_ns": 4533288385511,
+          "scheduler_deadline_ns": 4533753701442,
+          "dispatch_gap_ms": 67.390583,
+          "frame_seq": 320,
+          "capture_ns": 4533262394365,
+          "result_ns": 4533323837338,
+          "scheduler_wait_ms": 0.232782,
+          "queue_age_ms": 26.223928,
+          "capture_to_result_ms": 61.442973,
+          "camera_skew_ms": 19.943915,
+          "result_stale": 0,
+          "skipped_capture_frames": 0,
+          "detections_count": 1,
+          "zone_ms": 0.115527,
+          "homography_ms": 0.26168,
+          "risk_ms": 1.05411,
+          "camera_processing_wait_ms": 0.821295,
+          "ground": {
+            "camera_id": "CAM2",
+            "frame_seq": 320,
+            "capture_ns": 4533262394365,
+            "calibration": {
+              "status": "READY",
+              "reasons": [],
+              "error": null,
+              "revision": 1,
+              "calibration_id": "68814979beb04dd79be3bc8c4d6f0088",
+              "imported_legacy": false,
+              "origin": "D",
+              "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+              "world_xy_m": [
+                [
+                  0.0,
+                  0.6
+                ],
+                [
+                  0.84,
+                  0.6
+                ],
+                [
+                  0.84,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ]
+              ],
+              "image_size": [
+                640,
+                480
+              ],
+              "image_points": [
+                [
+                  57.14285659790039,
+                  412.34820556640625
+                ],
+                [
+                  209.14285278320312,
+                  243.20535278320312
+                ],
+                [
+                  488.0,
+                  243.20535278320312
+                ],
+                [
+                  592.0,
+                  418.0625
+                ]
+              ],
+              "physical_alignment_verified": false,
+              "profile_id": "legacy",
+              "version": 2,
+              "method": "getPerspectiveTransform",
+              "transform_valid": true,
+              "quality_evaluated": false,
+              "quality_approved": false,
+              "quality_approval": "LEGACY_UNVERIFIED",
+              "calibration_point_count": 4,
+              "used_point_count": 4,
+              "validation_point_count": 0,
+              "mean_error_m": null,
+              "rmse_m": null,
+              "max_error_m": null
+            },
+            "valid": true,
+            "persons": [],
+            "danger_zone_image_px": null
+          },
+          "risk_assessment": {
+            "camera_id": "CAM2",
+            "frame_seq": 320,
+            "state": "UNKNOWN",
+            "reasons": [
+              "PERSON_NOT_DETECTED"
+            ],
+            "persons": [],
+            "intrusion": false,
+            "valid_person_count": 0,
+            "invalid_person_count": 0,
+            "danger_boxes": [
+              {
+                "detection_index": 0,
+                "bbox": [
+                  72.875,
+                  0.0,
+                  303.46875,
+                  414.75
+                ],
+                "excavator_bbox": [
+                  95.875,
+                  15.75,
+                  280.46875,
+                  391.75
+                ]
+              }
+            ],
+            "risk_method": "expanded_excavator_bbox"
+          },
+          "camera_risk": "UNKNOWN",
+          "person_count": 0,
+          "danger_person_count": 0,
+          "ground_details_json": "{\"camera_id\":\"CAM2\",\"frame_seq\":320,\"capture_ns\":4533262394365,\"calibration\":{\"status\":\"READY\",\"reasons\":[],\"error\":null,\"revision\":1,\"calibration_id\":\"68814979beb04dd79be3bc8c4d6f0088\",\"imported_legacy\":false,\"origin\":\"D\",\"coordinate_system\":\"D_X_RIGHT_Y_TO_A_METRES\",\"world_xy_m\":[[0.0,0.6],[0.84,0.6],[0.84,0.0],[0.0,0.0]],\"image_size\":[640,480],\"image_points\":[[57.14285659790039,412.34820556640625],[209.14285278320312,243.20535278320312],[488.0,243.20535278320312],[592.0,418.0625]],\"physical_alignment_verified\":false,\"profile_id\":\"legacy\",\"version\":2,\"method\":\"getPerspectiveTransform\",\"transform_valid\":true,\"quality_evaluated\":false,\"quality_approved\":false,\"quality_approval\":\"LEGACY_UNVERIFIED\",\"calibration_point_count\":4,\"used_point_count\":4,\"validation_point_count\":0,\"mean_error_m\":null,\"rmse_m\":null,\"max_error_m\":null},\"valid\":true,\"persons\":[],\"danger_zone_image_px\":null}",
+          "risk_details_json": "{\"camera_id\":\"CAM2\",\"frame_seq\":320,\"state\":\"UNKNOWN\",\"reasons\":[\"PERSON_NOT_DETECTED\"],\"persons\":[],\"intrusion\":false,\"valid_person_count\":0,\"invalid_person_count\":0,\"danger_boxes\":[{\"detection_index\":0,\"bbox\":[72.875,0.0,303.46875,414.75],\"excavator_bbox\":[95.875,15.75,280.46875,391.75]}],\"risk_method\":\"expanded_excavator_bbox\"}",
+          "publication_status": "PUBLISHED",
+          "decision_ns": 4533326196675,
+          "site_ms": 0.676903,
+          "capture_to_decision_ms": 63.80231,
+          "site_state": "SAFE",
+          "final_risk": "SAFE",
+          "hazard_latched": 0,
+          "risk_episode_id": null,
+          "risk_revision": 5,
+          "decision_stale": 0,
+          "completion_gap_ms": 72.495233,
+          "scheduler_deadline_missed": 0
+        },
+        "calibration": {
+          "status": "READY",
+          "reasons": [],
+          "error": null,
+          "revision": 1,
+          "calibration_id": "68814979beb04dd79be3bc8c4d6f0088",
+          "imported_legacy": false,
+          "origin": "D",
+          "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+          "world_xy_m": [
+            [
+              0.0,
+              0.6
+            ],
+            [
+              0.84,
+              0.6
+            ],
+            [
+              0.84,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "image_size": [
+            640,
+            480
+          ],
+          "image_points": [
+            [
+              57.14285659790039,
+              412.34820556640625
+            ],
+            [
+              209.14285278320312,
+              243.20535278320312
+            ],
+            [
+              488.0,
+              243.20535278320312
+            ],
+            [
+              592.0,
+              418.0625
+            ]
+          ],
+          "physical_alignment_verified": false,
+          "profile_id": "legacy",
+          "version": 2,
+          "method": "getPerspectiveTransform",
+          "transform_valid": true,
+          "quality_evaluated": false,
+          "quality_approved": false,
+          "quality_approval": "LEGACY_UNVERIFIED",
+          "calibration_point_count": 4,
+          "used_point_count": 4,
+          "validation_point_count": 0,
+          "mean_error_m": null,
+          "rmse_m": null,
+          "max_error_m": null
+        },
+        "ground": {
+          "camera_id": "CAM2",
+          "frame_seq": 320,
+          "capture_ns": 4533262394365,
+          "calibration": {
+            "status": "READY",
+            "reasons": [],
+            "error": null,
+            "revision": 1,
+            "calibration_id": "68814979beb04dd79be3bc8c4d6f0088",
+            "imported_legacy": false,
+            "origin": "D",
+            "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+            "world_xy_m": [
+              [
+                0.0,
+                0.6
+              ],
+              [
+                0.84,
+                0.6
+              ],
+              [
+                0.84,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "image_size": [
+              640,
+              480
+            ],
+            "image_points": [
+              [
+                57.14285659790039,
+                412.34820556640625
+              ],
+              [
+                209.14285278320312,
+                243.20535278320312
+              ],
+              [
+                488.0,
+                243.20535278320312
+              ],
+              [
+                592.0,
+                418.0625
+              ]
+            ],
+            "physical_alignment_verified": false,
+            "profile_id": "legacy",
+            "version": 2,
+            "method": "getPerspectiveTransform",
+            "transform_valid": true,
+            "quality_evaluated": false,
+            "quality_approved": false,
+            "quality_approval": "LEGACY_UNVERIFIED",
+            "calibration_point_count": 4,
+            "used_point_count": 4,
+            "validation_point_count": 0,
+            "mean_error_m": null,
+            "rmse_m": null,
+            "max_error_m": null
+          },
+          "valid": true,
+          "persons": [],
+          "danger_zone_image_px": null,
+          "observation_valid": false
+        }
+      }
+    ],
+    "events": [
+      {
+        "record_id": "8294e726c1db4cf89d2776ccd6f3b193",
+        "event_id": "d2dfb39f2a2740ff94f13676efbab452",
+        "kind": "startup",
+        "time_kst": "2026-11-03T11:19:19.388+09:00",
+        "timestamp_ns": 4503334257760,
+        "mode": "normal",
+        "scenario": "기본 2카메라 관측"
+      },
+      {
+        "record_id": "cc4b0982e0e54baf8b63e891af1c8b4d",
+        "event_id": "b5d2a3571b53475ebf862517cbe29aa5",
+        "kind": "warmup_completed",
+        "time_kst": "2026-11-03T11:19:24.812+09:00",
+        "timestamp_ns": 4508757978901,
+        "warmup_ms": 877.506191
+      },
+      {
+        "record_id": "b93633b34782493cb129815fa691886d",
+        "event_id": "9a948b0d22894e778d729afd452aa4e3",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:24.918+09:00",
+        "timestamp_ns": 4508864285209,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "CAMERA_WAITING",
+            "NO_RESULT",
+            "NO_ASSESSMENT"
+          ],
+          "CAM2": [
+            "CAMERA_WAITING",
+            "NO_RESULT",
+            "NO_ASSESSMENT"
+          ]
+        },
+        "hazard_latched": false,
+        "release_candidate": false,
+        "reasons": [
+          "NO_JUDGED_PERSONS"
+        ],
+        "revision": 1
+      },
+      {
+        "record_id": "7fb342172c60407cbb9fd0b867cef0e8",
+        "event_id": "6da67f2c936045aea1ec3fe1f8a6da5e",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:24.918+09:00",
+        "timestamp_ns": 4508864412672,
+        "camera_id": "CAM1",
+        "health": "WAITING",
+        "valid": false,
+        "error": "캡처 준비 중"
+      },
+      {
+        "record_id": "423faf180e544488b550250b0c70c06d",
+        "event_id": "f8d414e3cf82481d86a4c3ebce3e1c77",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:24.918+09:00",
+        "timestamp_ns": 4508864454243,
+        "camera_id": "CAM2",
+        "health": "WAITING",
+        "valid": false,
+        "error": "캡처 준비 중"
+      },
+      {
+        "record_id": "c4fdadede407463da558a3c4e7a72318",
+        "event_id": "664dd9391e4e4fd7a1d8e928eb82a591",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:25.536+09:00",
+        "timestamp_ns": 4509482460541,
+        "camera_id": "CAM1",
+        "health": "OBSERVING",
+        "valid": false,
+        "error": null
+      },
+      {
+        "record_id": "f394878f7eb64a24850f1e671f7a9c8b",
+        "event_id": "e516b74c57c64af8a8e116231cb00fe1",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:26.365+09:00",
+        "timestamp_ns": 4510311610019,
+        "camera_id": "CAM1",
+        "health": "OBSERVING",
+        "valid": true,
+        "error": null
+      },
+      {
+        "record_id": "a25331e78bfb4d69895c9aefb76b5cdf",
+        "event_id": "081119eb5f4f4a00aee37bcb35986967",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:28.187+09:00",
+        "timestamp_ns": 4512132993883,
+        "camera_id": "CAM2",
+        "health": "OBSERVING",
+        "valid": false,
+        "error": null
+      },
+      {
+        "record_id": "d33f24096b894091bf987a317910b487",
+        "event_id": "3738007390d441f1af7acea64b5e0d59",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:28.226+09:00",
+        "timestamp_ns": 4512172120144,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "PERSON_NOT_DETECTED"
+          ],
+          "CAM2": [
+            "CAMERA_STATE_HOLD"
+          ]
+        },
+        "hazard_latched": false,
+        "release_candidate": false,
+        "reasons": [
+          "NO_JUDGED_PERSONS"
+        ],
+        "revision": 2
+      },
+      {
+        "record_id": "ce16a5b277b44fcc8562cbcb1134124f",
+        "event_id": "7c01c2d8ee5040a1bf34cdd4b8218bda",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:28.291+09:00",
+        "timestamp_ns": 4512236996671,
+        "camera_id": "CAM2",
+        "health": "OBSERVING",
+        "valid": true,
+        "error": null
+      },
+      {
+        "record_id": "a36431de1e704083a9e0a62740936177",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "risk_candidate",
+        "time_kst": "2026-11-03T11:19:34.201+09:00",
+        "timestamp_ns": 4518147184380,
+        "evidence": {
+          "camera_id": "CAM1",
+          "frame_seq": 262,
+          "capture_ns": 4518102438376,
+          "persons": [
+            {
+              "observation_id": "CAM1:262:1",
+              "kind": "person",
+              "bbox": [
+                412.9375,
+                193.5,
+                470.5859375,
+                300.625
+              ],
+              "anchor": [
+                441.76171875,
+                300.625
+              ],
+              "xy": [
+                0.7267364143116345,
+                0.6381540288729254
+              ],
+              "eligible": false,
+              "reliability": "UNRELIABLE",
+              "reasons": [
+                "OUTSIDE_CALIBRATED_GROUND"
+              ],
+              "warnings": [
+                "BBOX_FOOT_CONTACT_UNVERIFIED"
+              ],
+              "confidence": 0.8019360303878784,
+              "zone_inside": true,
+              "state": "DANGER",
+              "track_id": "person1",
+              "person_id": "person1",
+              "tracking_method": "camera_pixels_only",
+              "fusion_track_id": "person1"
+            }
+          ],
+          "fused_persons": [
+            {
+              "person_id": "person1",
+              "track_id": "person1",
+              "track_ids": {
+                "CAM1": "person1"
+              },
+              "camera_states": {
+                "CAM1": "DANGER",
+                "CAM2": "UNKNOWN"
+              },
+              "state": "DANGER",
+              "judged": true,
+              "camera_person_ids": {
+                "CAM1": "person1"
+              },
+              "observations": {
+                "CAM1": {
+                  "observation_id": "CAM1:262:1",
+                  "kind": "person",
+                  "bbox": [
+                    412.9375,
+                    193.5,
+                    470.5859375,
+                    300.625
+                  ],
+                  "anchor": [
+                    441.76171875,
+                    300.625
+                  ],
+                  "xy": [
+                    0.7267364143116345,
+                    0.6381540288729254
+                  ],
+                  "eligible": false,
+                  "reliability": "UNRELIABLE",
+                  "reasons": [
+                    "OUTSIDE_CALIBRATED_GROUND"
+                  ],
+                  "warnings": [
+                    "BBOX_FOOT_CONTACT_UNVERIFIED"
+                  ],
+                  "confidence": 0.8019360303878784,
+                  "zone_inside": true,
+                  "state": "DANGER",
+                  "track_id": "person1",
+                  "person_id": "person1",
+                  "tracking_method": "camera_pixels_only"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "record_id": "7b94c8c59d134dd6817538ccccb2d71c",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "hazard_latched",
+        "time_kst": "2026-11-03T11:19:34.201+09:00",
+        "timestamp_ns": 4518147274689,
+        "trigger_evidence": {
+          "CAM1": {
+            "camera_id": "CAM1",
+            "frame_seq": 262,
+            "capture_ns": 4518102438376,
+            "persons": [
+              {
+                "observation_id": "CAM1:262:1",
+                "kind": "person",
+                "bbox": [
+                  412.9375,
+                  193.5,
+                  470.5859375,
+                  300.625
+                ],
+                "anchor": [
+                  441.76171875,
+                  300.625
+                ],
+                "xy": [
+                  0.7267364143116345,
+                  0.6381540288729254
+                ],
+                "eligible": false,
+                "reliability": "UNRELIABLE",
+                "reasons": [
+                  "OUTSIDE_CALIBRATED_GROUND"
+                ],
+                "warnings": [
+                  "BBOX_FOOT_CONTACT_UNVERIFIED"
+                ],
+                "confidence": 0.8019360303878784,
+                "zone_inside": true,
+                "state": "DANGER",
+                "track_id": "person1",
+                "person_id": "person1",
+                "tracking_method": "camera_pixels_only",
+                "fusion_track_id": "person1"
+              }
+            ],
+            "fused_persons": [
+              {
+                "person_id": "person1",
+                "track_id": "person1",
+                "track_ids": {
+                  "CAM1": "person1"
+                },
+                "camera_states": {
+                  "CAM1": "DANGER",
+                  "CAM2": "UNKNOWN"
+                },
+                "state": "DANGER",
+                "judged": true,
+                "camera_person_ids": {
+                  "CAM1": "person1"
+                },
+                "observations": {
+                  "CAM1": {
+                    "observation_id": "CAM1:262:1",
+                    "kind": "person",
+                    "bbox": [
+                      412.9375,
+                      193.5,
+                      470.5859375,
+                      300.625
+                    ],
+                    "anchor": [
+                      441.76171875,
+                      300.625
+                    ],
+                    "xy": [
+                      0.7267364143116345,
+                      0.6381540288729254
+                    ],
+                    "eligible": false,
+                    "reliability": "UNRELIABLE",
+                    "reasons": [
+                      "OUTSIDE_CALIBRATED_GROUND"
+                    ],
+                    "warnings": [
+                      "BBOX_FOOT_CONTACT_UNVERIFIED"
+                    ],
+                    "confidence": 0.8019360303878784,
+                    "zone_inside": true,
+                    "state": "DANGER",
+                    "track_id": "person1",
+                    "person_id": "person1",
+                    "tracking_method": "camera_pixels_only"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "record_id": "e533add6c53a4ed18e98b5518fa84c52",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:34.201+09:00",
+        "timestamp_ns": 4518147352006,
+        "risk": "DANGER",
+        "site_state": "DANGER",
+        "persons": [
+          {
+            "person_id": "person1",
+            "track_id": "person1",
+            "track_ids": {
+              "CAM1": "person1"
+            },
+            "camera_states": {
+              "CAM1": "DANGER",
+              "CAM2": "UNKNOWN"
+            },
+            "state": "DANGER",
+            "judged": true,
+            "camera_person_ids": {
+              "CAM1": "person1"
+            },
+            "observations": {
+              "CAM1": {
+                "observation_id": "CAM1:262:1",
+                "kind": "person",
+                "bbox": [
+                  412.9375,
+                  193.5,
+                  470.5859375,
+                  300.625
+                ],
+                "anchor": [
+                  441.76171875,
+                  300.625
+                ],
+                "xy": [
+                  0.7267364143116345,
+                  0.6381540288729254
+                ],
+                "eligible": false,
+                "reliability": "UNRELIABLE",
+                "reasons": [
+                  "OUTSIDE_CALIBRATED_GROUND"
+                ],
+                "warnings": [
+                  "BBOX_FOOT_CONTACT_UNVERIFIED"
+                ],
+                "confidence": 0.8019360303878784,
+                "zone_inside": true,
+                "state": "DANGER",
+                "track_id": "person1",
+                "person_id": "person1",
+                "tracking_method": "camera_pixels_only"
+              }
+            }
+          }
+        ],
+        "camera_states": {
+          "CAM1": "DANGER",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "PERSON_IN_EXCAVATOR_BOX"
+          ],
+          "CAM2": [
+            "PERSON_NOT_DETECTED"
+          ]
+        },
+        "hazard_latched": true,
+        "release_candidate": false,
+        "reasons": [
+          "FUSED_PERSON_DANGER"
+        ],
+        "revision": 3
+      },
+      {
+        "record_id": "cbaab3cdb9b54d46979756cf88222954",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:42.861+09:00",
+        "timestamp_ns": 4526807439834,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "PERSON_NOT_DETECTED"
+          ],
+          "CAM2": [
+            "PERSON_NOT_DETECTED"
+          ]
+        },
+        "hazard_latched": true,
+        "release_candidate": true,
+        "reasons": [
+          "NO_JUDGED_PERSONS",
+          "ZONE_CLEAR_RESET_CANDIDATE"
+        ],
+        "revision": 4
+      },
+      {
+        "record_id": "75aaccd84a5a43a0bd2ed5a46c1903b0",
+        "event_id": "ec23bc22af754d31a3c9506ae75b50f6",
+        "kind": "admin_reset_requested",
+        "time_kst": "2026-11-03T11:19:44.422+09:00",
+        "timestamp_ns": 4528368563176,
+        "episode_id": "3e951d8453684f78b9165e0dd864bb43"
+      },
+      {
+        "record_id": "7136ae4fd5ad4696b169a568d8b5b130",
+        "event_id": "d8f083ad435346ccacd7d51acbe04331",
+        "kind": "admin_reset_validation",
+        "time_kst": "2026-11-03T11:19:44.423+09:00",
+        "timestamp_ns": 4528369083846,
+        "episode_id": "3e951d8453684f78b9165e0dd864bb43",
+        "accepted": true,
+        "cameras": [
+          "CAM1",
+          "CAM2"
+        ]
+      },
+      {
+        "record_id": "7797f20fe8ee441e8453ff4ba59a2e6b",
+        "event_id": "8e759acfcf95476b9de1137486957110",
+        "kind": "admin_reset_transmission",
+        "time_kst": "2026-11-03T11:19:44.424+09:00",
+        "timestamp_ns": 4528369733932,
+        "episode_id": "3e951d8453684f78b9165e0dd864bb43",
+        "status": "SKIPPED",
+        "reason": "BLE_DISCONNECTED",
+        "device_ack": "UNVERIFIED",
+        "control_applied": "UNVERIFIED"
+      },
+      {
+        "record_id": "e01b36eef794493f83c33cf6f3445d55",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "hazard_reset",
+        "time_kst": "2026-11-03T11:19:44.424+09:00",
+        "timestamp_ns": 4528369854259,
+        "operator_confirmed": true,
+        "scope": "VISION_LATCH_ONLY",
+        "control_sent": false,
+        "device_ack": "UNVERIFIED",
+        "control_applied": "UNVERIFIED",
+        "trigger_evidence": {
+          "CAM1": {
+            "camera_id": "CAM1",
+            "frame_seq": 262,
+            "capture_ns": 4518102438376,
+            "persons": [
+              {
+                "observation_id": "CAM1:262:1",
+                "kind": "person",
+                "bbox": [
+                  412.9375,
+                  193.5,
+                  470.5859375,
+                  300.625
+                ],
+                "anchor": [
+                  441.76171875,
+                  300.625
+                ],
+                "xy": [
+                  0.7267364143116345,
+                  0.6381540288729254
+                ],
+                "eligible": false,
+                "reliability": "UNRELIABLE",
+                "reasons": [
+                  "OUTSIDE_CALIBRATED_GROUND"
+                ],
+                "warnings": [
+                  "BBOX_FOOT_CONTACT_UNVERIFIED"
+                ],
+                "confidence": 0.8019360303878784,
+                "zone_inside": true,
+                "state": "DANGER",
+                "track_id": "person1",
+                "person_id": "person1",
+                "tracking_method": "camera_pixels_only",
+                "fusion_track_id": "person1"
+              }
+            ],
+            "fused_persons": [
+              {
+                "person_id": "person1",
+                "track_id": "person1",
+                "track_ids": {
+                  "CAM1": "person1"
+                },
+                "camera_states": {
+                  "CAM1": "DANGER",
+                  "CAM2": "UNKNOWN"
+                },
+                "state": "DANGER",
+                "judged": true,
+                "camera_person_ids": {
+                  "CAM1": "person1"
+                },
+                "observations": {
+                  "CAM1": {
+                    "observation_id": "CAM1:262:1",
+                    "kind": "person",
+                    "bbox": [
+                      412.9375,
+                      193.5,
+                      470.5859375,
+                      300.625
+                    ],
+                    "anchor": [
+                      441.76171875,
+                      300.625
+                    ],
+                    "xy": [
+                      0.7267364143116345,
+                      0.6381540288729254
+                    ],
+                    "eligible": false,
+                    "reliability": "UNRELIABLE",
+                    "reasons": [
+                      "OUTSIDE_CALIBRATED_GROUND"
+                    ],
+                    "warnings": [
+                      "BBOX_FOOT_CONTACT_UNVERIFIED"
+                    ],
+                    "confidence": 0.8019360303878784,
+                    "zone_inside": true,
+                    "state": "DANGER",
+                    "track_id": "person1",
+                    "person_id": "person1",
+                    "tracking_method": "camera_pixels_only"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "clear_observations": {
+          "CAM1": {
+            "frame_seq": 568,
+            "capture_ns": 4528302920484,
+            "assessment": {
+              "camera_id": "CAM1",
+              "frame_seq": 568,
+              "state": "UNKNOWN",
+              "reasons": [
+                "PERSON_NOT_DETECTED"
+              ],
+              "persons": [],
+              "intrusion": false,
+              "valid_person_count": 0,
+              "invalid_person_count": 0,
+              "danger_boxes": [
+                {
+                  "detection_index": 0,
+                  "bbox": [
+                    135.0,
+                    38.5,
+                    424.875,
+                    329.6875
+                  ],
+                  "excavator_bbox": [
+                    158.0,
+                    61.5,
+                    401.875,
+                    306.6875
+                  ]
+                }
+              ],
+              "risk_method": "expanded_excavator_bbox"
+            }
+          },
+          "CAM2": {
+            "frame_seq": 244,
+            "capture_ns": 4528231840515,
+            "assessment": {
+              "camera_id": "CAM2",
+              "frame_seq": 244,
+              "state": "UNKNOWN",
+              "reasons": [
+                "PERSON_NOT_DETECTED"
+              ],
+              "persons": [],
+              "intrusion": false,
+              "valid_person_count": 0,
+              "invalid_person_count": 0,
+              "danger_boxes": [
+                {
+                  "detection_index": 0,
+                  "bbox": [
+                    74.5,
+                    0.0,
+                    301.6875,
+                    410.25
+                  ],
+                  "excavator_bbox": [
+                    97.5,
+                    16.0,
+                    278.6875,
+                    387.25
+                  ]
+                }
+              ],
+              "risk_method": "expanded_excavator_bbox"
+            }
+          }
+        }
+      },
+      {
+        "record_id": "a2f72ae306ad4b1ea0dc24f685350768",
+        "event_id": "2f9553a58bca425298d3233d44d3ed95",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:44.424+09:00",
+        "timestamp_ns": 4528370098817,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "PERSON_NOT_DETECTED"
+          ],
+          "CAM2": [
+            "PERSON_NOT_DETECTED"
+          ]
+        },
+        "hazard_latched": false,
+        "release_candidate": false,
+        "reasons": [
+          "NO_JUDGED_PERSONS"
+        ],
+        "revision": 5
+      },
+      {
+        "record_id": "57ef91d60f7349d7a7142d171b0ea0c4",
+        "event_id": "6113f3e746fa4bb79e6ba335ed1f3a03",
+        "kind": "admin_reset_release_result",
+        "time_kst": "2026-11-03T11:19:44.424+09:00",
+        "timestamp_ns": 4528370220873,
+        "episode_id": "3e951d8453684f78b9165e0dd864bb43",
+        "status": "VISION_RELEASED_NO_BLE",
+        "reason": "BLE_DISCONNECTED",
+        "device_ack": "UNVERIFIED",
+        "control_applied": "UNVERIFIED"
+      },
+      {
+        "record_id": "1725eb15246049d1b38252b312a87b4c",
+        "event_id": "61a33f1093a5427badb687e6a7bcbead",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:49.423+09:00",
+        "timestamp_ns": 4533369528609,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "CAMERA_STOPPED"
+          ],
+          "CAM2": [
+            "CAMERA_STOPPED"
+          ]
+        },
+        "hazard_latched": false,
+        "release_candidate": false,
+        "reasons": [
+          "NO_JUDGED_PERSONS"
+        ],
+        "revision": 6
+      }
+    ]
+  },
+  "scheduler": {
+    "mode": "NORMAL",
+    "backend_concurrency": 1,
+    "priority_weight": 1.0,
+    "observation_budget_ms": 500.0,
+    "budget_is_guaranteed": false,
+    "estimated_service_ms": 36.29863,
+    "capacity_limited": false,
+    "mode_execution_counts": {
+      "NORMAL": {
+        "CAM1": 356,
+        "CAM2": 309
+      }
+    },
+    "cameras": {
+      "CAM1": {
+        "selected": 356,
+        "started": 356,
+        "completed": 356,
+        "failed": 0,
+        "deadline_misses": 1,
+        "max_completion_gap_ms": 119.632081,
+        "execution_share": 0.5353383458646617,
+        "priority": false,
+        "reason": "UNKNOWN",
+        "last_dispatch_ns": 4533326543351,
+        "last_completion_ns": 4533369344598
+      },
+      "CAM2": {
+        "selected": 309,
+        "started": 309,
+        "completed": 309,
+        "failed": 0,
+        "deadline_misses": 0,
+        "max_completion_gap_ms": 112.807109,
+        "execution_share": 0.46466165413533833,
+        "priority": false,
+        "reason": "UNKNOWN",
+        "last_dispatch_ns": 4533288385511,
+        "last_completion_ns": 4533326196675
+      }
+    }
+  },
+  "scheduler_mode_counts": {
+    "NORMAL": {
+      "CAM1": 356,
+      "CAM2": 309
+    }
+  },
+  "recording": {
+    "directory": "/home/hansungelec/SAYFE_yeongjun_FP16_copy/runs/20261103T111919+0900_fbb7efe9",
+    "dropped": 0,
+    "written": 688,
+    "failures": 0,
+    "last_error": null,
+    "degraded": false,
+    "queue_size": 0
+  },
+  "run_status": "completed",
+  "measurement_limits": [
+    "시작 시 모델 워밍업은 제외; 캡처 열기 대기는 포함",
+    "capture_ns는 노출 시각이 아닌 OpenCV read 반환 시각",
+    "프레임별 detector_ms는 전처리·추론·후처리·검출 추출을 포함",
+    "추론 FPS 분자는 저장된 고유 결과 수; 기록 손실이 있으면 불완전한 값",
+    "카메라 시각 차이는 비동기 최신 결과 간 소프트웨어 시각 차이",
+    "굴착기 확장 박스 판정 지연은 활성화된 실행에서만 측정; 위험 정확도·실제 제어·방송 지연은 미측정",
+    "GPU allocator 값은 TensorRT 전체 메모리가 아니며 엔진 모드에서는 미수집",
+    "스케줄러 갱신 예산은 목표이며 FPS 보장이 아님; 단일 모델 실행은 선점 불가"
+  ],
+  "unmeasured": {
+    "person_precision": null,
+    "person_recall": null,
+    "false_alarm_rate": null,
+    "missed_danger_rate": null,
+    "risk_latency_ms": null,
+    "control_applied_latency_ms": null,
+    "auracast_receiver_latency_ms": null
+  }
+}

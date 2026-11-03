@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SAYFE · Audio Detection</title><link rel="stylesheet" href="/static/audio.css"></head>
+<body>
+<header><div><h1>SAYFE <span>AUDIO DETECTION</span></h1><p>카메라별 마이크 · 실시간 소리 이벤트</p></div>
+<strong id="overall" data-state="UNKNOWN">연결 중</strong></header>
+<main>
+<div id="model-info" class="notice">모델을 불러오는 중입니다.</div>
+<div id="connection" class="notice" hidden></div>
+<section id="cameras" class="cameras"></section>
+<section class="panel"><h2>위험 소리 이벤트</h2><p>폭발음 감지 시작/해제 기록 · 사이렌 점수는 전체 클래스 목록에서 확인</p>
+<div class="events"><table><thead><tr><th>시간</th><th>입력</th><th>이벤트</th><th>소리</th><th>점수</th><th>감지 기준</th></tr></thead><tbody id="events"></tbody></table></div>
+<p id="no-events">아직 위험 소리 이벤트가 없습니다.</p></section>
+</main>
+<template id="camera-template"><article class="panel camera" data-state="UNKNOWN">
+<div class="camera-header"><div><h2 class="camera-name"></h2><p class="device"></p></div><strong class="status">대기</strong></div>
+<p class="error" hidden></p><p class="metrics">마이크 입력을 기다리고 있습니다.</p>
+<div class="meter"><span></span></div>
+<h3>위험 소리 감지</h3><div class="hazards"></div>
+<h3>현재 상위 10개 소리</h3><div class="top"></div>
+<details><summary>전체 클래스 실시간 점수 <span class="count"></span></summary>
+<label>클래스 검색 <input class="filter" type="search" placeholder="Explosion, Siren, Speech…"></label>
+<div class="all-scores"></div></details>
+</article></template>
+<script type="module" src="/static/audio.js"></script>
+</body></html>

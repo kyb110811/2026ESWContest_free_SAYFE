@@ -1,0 +1,1 @@
+timestamp_ns,cpu_system_percent,cpu_process_percent,ram_used_bytes,ram_total_bytes,process_rss_bytes,gpu_percent,gpu_allocator_bytes,temperatures_json,power_json,tegrastats_age_ms,tegrastats_raw

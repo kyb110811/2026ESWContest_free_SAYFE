@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAYFE | 구역별 소리 관제</title>
+  <link rel="stylesheet" href="/static/zones.css">
+  <script src="/static/zones.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="brand"><b>SAY<span>FE</span></b><span class="brand-divider"></span><span>구역별 소리 관제</span></div>
+    <div class="live-indicator" id="connection"><i></i> 연결 중</div>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">AUDIO × VISION / LIVE MONITOR</p><h1>현장 소리를 구역별로 확인하세요</h1>
+        <p>세 카메라와 마이크의 최신 입력을 함께 표시합니다. 감지 위치는 마이크가 속한 구역을 뜻합니다.</p></div>
+      <div class="summary" id="summary">입력을 확인하는 중입니다</div>
+    </section>
+    <section class="alerts" aria-label="현재 위험 소리" id="alerts" aria-live="polite"></section>
+    <section class="zone-grid" id="zones" aria-label="구역별 관측">
+      <article class="zone" data-zone="A"><div class="zone-head"><div><p class="eyebrow">ZONE A · CAM1 + CAM2</p><h2>A구역</h2></div><span class="zone-state">확인 중</span></div>
+        <div class="video-grid"><figure class="video-card"><img src="/video/CAM1" alt="Logitech C922 실시간 영상"><figcaption><b>CAM1</b><span>Logitech C922</span></figcaption></figure>
+          <figure class="video-card"><img src="/video/CAM2" alt="Logitech 046d:0825 실시간 영상"><figcaption><b>CAM2</b><span>Logitech 046d:0825</span></figcaption></figure></div>
+        <div class="sound-panel sound-columns">
+          <section class="sound-column" data-camera="CAM1"><h3>CAM1 들리는 소리</h3><div class="sound-list">마이크 입력 대기 중</div></section>
+          <section class="sound-column" data-camera="CAM2"><h3>CAM2 들리는 소리</h3><div class="sound-list">마이크 입력 대기 중</div></section>
+        </div>
+      </article>
+      <article class="zone" data-zone="B"><div class="zone-head"><div><p class="eyebrow">ZONE B · CAM3</p><h2>B구역</h2></div><span class="zone-state">확인 중</span></div>
+        <div class="video-grid"><figure class="video-card"><img src="/video/CAM3" alt="SunplusIT FHD60F 실시간 영상"><figcaption><b>CAM3</b><span>SunplusIT FHD60F</span></figcaption></figure></div>
+        <p class="video-message" id="camera3-message"></p>
+        <div class="sound-panel"><h3>CAM3 들리는 소리</h3><div class="sound-list">마이크 입력 대기 중</div></div>
+      </article>
+    </section>
+    <section class="history"><div class="history-head"><div><p class="eyebrow">RECENT EVENTS</p><h2>최근 감지 기록</h2></div><span>마이크 기준 A/B 구역</span></div>
+      <div id="events" class="event-list"><p class="empty">아직 감지 기록이 없습니다.</p></div></section>
+  </main>
+</body>
+</html>

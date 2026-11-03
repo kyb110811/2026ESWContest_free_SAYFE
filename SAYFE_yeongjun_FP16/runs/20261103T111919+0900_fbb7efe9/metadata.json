@@ -1,0 +1,3142 @@
+{
+  "project": "SAYFE",
+  "project_version": "0.3.1",
+  "code": {
+    "sha256": "c719a1be25a9b862d13bf32a6a9bf978cad016788afe42fa991586b3e4c967e5",
+    "files": {
+      "AudioDetection/.deps/torchaudio/__init__.py": "70b653d766713932943f1d0a22ba4175e1d382f4e454200bd63f84eb759aba8a",
+      "AudioDetection/.deps/torchaudio/_backend/__init__.py": "eb331819a8c769a097504fd4ec7b862e9d1fa9cbe26008c165d14323813b0bed",
+      "AudioDetection/.deps/torchaudio/_backend/backend.py": "852adf65c8f914ccf1e59a70b9b37e2cb32f0456fb10dcb0ec7bd3ffaa556155",
+      "AudioDetection/.deps/torchaudio/_backend/common.py": "e79634af432c756ea0bd3393fd9cbad141855dceb40df749eeebf270928ade2b",
+      "AudioDetection/.deps/torchaudio/_backend/ffmpeg.py": "a0bff08438e43ed1f3a3a1c92e210f9461ddaceab38e5bbcd60faf95a3644410",
+      "AudioDetection/.deps/torchaudio/_backend/soundfile.py": "9f4129c3427dac16fcf715495935da0df6fde98173d3e8b6c5aad721d0ddf82c",
+      "AudioDetection/.deps/torchaudio/_backend/soundfile_backend.py": "a891c41175357a00a43c9d98f6e25616f5615b702a0d9ef3ecfee69098c92563",
+      "AudioDetection/.deps/torchaudio/_backend/sox.py": "252f4343d31bd76e20fb750a7306a06f39713a64f5917a107e9e70a1c078529f",
+      "AudioDetection/.deps/torchaudio/_backend/utils.py": "96741a8d83e1d4a498b5ab5bb081d690eef9edce62db2a79217a187de9b4cab8",
+      "AudioDetection/.deps/torchaudio/_extension/__init__.py": "9503c1f0aed54b15a6b5312232617ebbb595ab53b5d3fb799c482192309fe0ab",
+      "AudioDetection/.deps/torchaudio/_extension/utils.py": "e054c3eb1c1c48ba952772a6a71e5cbc9a75a0050a996c118f0bb1a5c6eb9b3c",
+      "AudioDetection/.deps/torchaudio/_internal/__init__.py": "82353c83d1e155df611eb1d724cd313a564be9c4fc92d3bad0c37c44723a65b0",
+      "AudioDetection/.deps/torchaudio/_internal/module_utils.py": "1601b272ad4db9820432a309b69327a6434f6a47d1b6bfc86c7fa2df3ecb1ed5",
+      "AudioDetection/.deps/torchaudio/_torchcodec.py": "b08bd88c95842392781682a0e6419dcfdec56f9cdb65606eae272071c0b26668",
+      "AudioDetection/.deps/torchaudio/backend/__init__.py": "00bf278ce2f98438481aae6d8d1c5f173657c507531a5cf982cf60e114e86e56",
+      "AudioDetection/.deps/torchaudio/backend/_no_backend.py": "f52b376f804c15aa3929f76a87a4bc2522d4a180a875b3e03500a20c76cd8434",
+      "AudioDetection/.deps/torchaudio/backend/_sox_io_backend.py": "3e71fe0a5b223b2d1e90e4d8d51281f9c2fac6b4cfb6bce6b97197dee8004e9b",
+      "AudioDetection/.deps/torchaudio/backend/common.py": "4ff898738bbf1337c887bcdb1bfc56d39d9fc893175171293df0ce68043ab006",
+      "AudioDetection/.deps/torchaudio/backend/no_backend.py": "f7aaf44e15d0cccf670f9b37818386ac82164dd21c14d336dc850a097c4a4043",
+      "AudioDetection/.deps/torchaudio/backend/soundfile_backend.py": "8d978f426f878836e247f6296171d1e5f780ce25b990ba5203bd26e261b8a2ac",
+      "AudioDetection/.deps/torchaudio/backend/sox_io_backend.py": "8852a558a351368dfd994ae20c0b775d56f1289601f13ff14cd4433095d17524",
+      "AudioDetection/.deps/torchaudio/compliance/__init__.py": "86134e6d44b473e7d2f9532e74cef3977f82beea6f0839844a58a49ed48c9f98",
+      "AudioDetection/.deps/torchaudio/compliance/kaldi.py": "5cbea1a584ddea748f6f68a621d794e13334e88d9faa1d40986f7af32f196d29",
+      "AudioDetection/.deps/torchaudio/datasets/__init__.py": "b5a46bdddb836842b53dfce3f4dd5d16e6695dfcbc7b8b8522d7098912c04304",
+      "AudioDetection/.deps/torchaudio/datasets/cmuarctic.py": "2808531d4277839452966b14e6609372fbad3829b73aa71ddfae37bb71cda888",
+      "AudioDetection/.deps/torchaudio/datasets/cmudict.py": "f4e129343629caa784ca29c09f218853c15a9a90e3ef389238747024b225ab63",
+      "AudioDetection/.deps/torchaudio/datasets/commonvoice.py": "f6485e7540a674490228f53afebf155b3e88d95749a246adbb3899e81c49319b",
+      "AudioDetection/.deps/torchaudio/datasets/dr_vctk.py": "2a6e3eb4a9650209ce282baaeba6115a14e5356982ec3d17cf7740b6d451192a",
+      "AudioDetection/.deps/torchaudio/datasets/fluentcommands.py": "bb7b643b8f8001a4d675b4508ba948bda778c76a656605ccdfd2a58c6b6646cc",
+      "AudioDetection/.deps/torchaudio/datasets/gtzan.py": "2397513ff406b90d63a17591c19c2dbe9c22db6b994dbf10666f4caf65b9e4c8",
+      "AudioDetection/.deps/torchaudio/datasets/iemocap.py": "5ff582a173b346a71645146852d6340250fd48971450e00221c81b5748abb78f",
+      "AudioDetection/.deps/torchaudio/datasets/librilight_limited.py": "7c0c295f48443337b9695e7b04feeb8c12f046265adc08defcd5e2ff7a35eb00",
+      "AudioDetection/.deps/torchaudio/datasets/librimix.py": "56d28e85fe9525cd72b160af52f87449bb633a45c90a198133f061a12920ff60",
+      "AudioDetection/.deps/torchaudio/datasets/librispeech.py": "ce4cc91567215ace0092d60023e8219961f865e27ce02d2e0e8f44d7fa538122",
+      "AudioDetection/.deps/torchaudio/datasets/librispeech_biasing.py": "77ed36b72ad723e09219b5c115815c9ccff24fc5921800477e9362171c9a74bd",
+      "AudioDetection/.deps/torchaudio/datasets/libritts.py": "12d58ea020f3effa862d917961c65f9c768bc47e18f102429e8a5a7cb8aa167a",
+      "AudioDetection/.deps/torchaudio/datasets/ljspeech.py": "f7635e2d0b02d622a9a9f88c90a29b7090e9698759295755101409cded709b16",
+      "AudioDetection/.deps/torchaudio/datasets/musdb_hq.py": "4d82a3a5ab7a24aafd6e416a51e72eeff85176c8517d03f651b9276984774345",
+      "AudioDetection/.deps/torchaudio/datasets/quesst14.py": "43219de1f312f36d004db3fc62006dbbb6d248ad3da70e5166496c3c9f097f46",
+      "AudioDetection/.deps/torchaudio/datasets/snips.py": "59a614927185337ae72e494e8f96581d25f99a195ffc27b8a772c165d03dc897",
+      "AudioDetection/.deps/torchaudio/datasets/speechcommands.py": "70b4a089562542310eb983e915e02d7174868abada1f820ca0ff29f5622f5286",
+      "AudioDetection/.deps/torchaudio/datasets/tedlium.py": "6bc1dfd90bce922eff72181770c005324fa98938e8764b5f9dcdc745b5152645",
+      "AudioDetection/.deps/torchaudio/datasets/utils.py": "41a234da539c7accba0e7be5a1fe017930c86e23aa51ca1510fc4be7f4fcbf05",
+      "AudioDetection/.deps/torchaudio/datasets/vctk.py": "b7047f9fc2f241c4fc03f1eb268331dd191a56b4575d90272155357741349e94",
+      "AudioDetection/.deps/torchaudio/datasets/voxceleb1.py": "f6f5347ed078fb6bac3bc662114291fc841311d1e103433c97db1c5c235e867c",
+      "AudioDetection/.deps/torchaudio/datasets/yesno.py": "e2c81f31e4b1cfc1da44393a03650814ffb6d2adbd33010efebf03a04b5f6ef1",
+      "AudioDetection/.deps/torchaudio/functional/__init__.py": "628b7ded4aae7113a4dd6249b7bd47ac0e41361d76956518af5535e94d4aa82a",
+      "AudioDetection/.deps/torchaudio/functional/_alignment.py": "c260dea215afba860e4580de211c67614854aafd6e09491a09960b10afebc948",
+      "AudioDetection/.deps/torchaudio/functional/filtering.py": "a1053474aa3e131a0ba0659ca15f6467a49e6f80c3f0e9041f5469b24a17ed02",
+      "AudioDetection/.deps/torchaudio/functional/functional.py": "dc8fd834e1ddf852bf4934adabba88b1524fbd4c0690d37aa10ca24cb1897bfb",
+      "AudioDetection/.deps/torchaudio/io/__init__.py": "e8fed0cfcfc173cade2c3a96d506546646400955d1d924b8671479d6b618eb0a",
+      "AudioDetection/.deps/torchaudio/io/_effector.py": "00f0eb214d9b8b016c4959a1ad78de9667389dd7266f424bf87d7cf59a7af3d8",
+      "AudioDetection/.deps/torchaudio/io/_playback.py": "ef42311ab18f908d61e2bcfcff4e121421ac6db19991389475185b3ce30b2e04",
+      "AudioDetection/.deps/torchaudio/kaldi_io.py": "ee5a2e2b21a35987f0056a1dda61a8ac277861a35ae53144b503da6cbca3400c",
+      "AudioDetection/.deps/torchaudio/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "AudioDetection/.deps/torchaudio/models/__init__.py": "04d30d1aec29240151b1db701d843ab25182964ad44eedf5ffb99787b163795e",
+      "AudioDetection/.deps/torchaudio/models/_hdemucs.py": "54f9d0ef7940f657c0c518d9f3934218960fdfa98f3704e34be4d4e2a7a5bbf9",
+      "AudioDetection/.deps/torchaudio/models/conformer.py": "e4871e53e8dc64aa1f9074d3a912a8cadb9b43be4ccd93eb3e57e42ec225c5e0",
+      "AudioDetection/.deps/torchaudio/models/conv_tasnet.py": "bfe0c8fc48fd1420416d21fe4a9921dedceaf2b90185b40d03e5a9e7651fdf61",
+      "AudioDetection/.deps/torchaudio/models/decoder/__init__.py": "c77338cc41fe0dcfb7c88e322931756dd8c3423f0694d73da7f9476aa848d260",
+      "AudioDetection/.deps/torchaudio/models/decoder/_ctc_decoder.py": "2b7812b06f61b54d3c7deeed292b8824f0c8b3baee639d2927778d74d8574956",
+      "AudioDetection/.deps/torchaudio/models/decoder/_cuda_ctc_decoder.py": "aeda4dd59fd79e2d4b947807c7a8c9d496a9e139d0d2b45132fc0659afb19ef0",
+      "AudioDetection/.deps/torchaudio/models/deepspeech.py": "9105b707a61c8d8baaef14735a3449146afb64dada63d80c6034f1208ec282d8",
+      "AudioDetection/.deps/torchaudio/models/emformer.py": "9dc0de11c61e814988290a03068b9f5215568f8758a59017c4b5f4aa612ab750",
+      "AudioDetection/.deps/torchaudio/models/rnnt.py": "8f3eba9f00ddd6a193e8a411d656c0feeacf92dca07b0866d051fae93ecfdc49",
+      "AudioDetection/.deps/torchaudio/models/rnnt_decoder.py": "230943b2ec35480fae091ad718c06a9b4e5ab8615285ad9b67ef013889a72b47",
+      "AudioDetection/.deps/torchaudio/models/squim/__init__.py": "6fdf2701a2f6f10e30de5aea77feb051dd009fec4d861267e138fca199734277",
+      "AudioDetection/.deps/torchaudio/models/squim/objective.py": "60f90459d0ccc9e3fb19c4743b350f1ebdb02a120a14c8f2e29798b000666509",
+      "AudioDetection/.deps/torchaudio/models/squim/subjective.py": "374d2420b48f9b46a45b236cacd60a9878199a8a28f206f2526e4854b7fb6f1f",
+      "AudioDetection/.deps/torchaudio/models/tacotron2.py": "162998846488f052b059bf3b08b938877c8a59ab425361ef166535b795949f81",
+      "AudioDetection/.deps/torchaudio/models/wav2letter.py": "28d72ae29d2a646d81c1f75a92fed8c0b0af8bfc864fea81e1f27018cb854218",
+      "AudioDetection/.deps/torchaudio/models/wav2vec2/__init__.py": "5a569fba457a1b0b92361d026627eb614b78579979f648ef197ec064da278df9",
+      "AudioDetection/.deps/torchaudio/models/wav2vec2/components.py": "0d1996f861d87fe25178283fd25d68bcd58906701abde3cedd2daf3d8fb5cdee",
+      "AudioDetection/.deps/torchaudio/models/wav2vec2/model.py": "67654de8a6c338e76ae49b4fee5c4f41e6f062ab312a6b3512ee088c326d65a4",
+      "AudioDetection/.deps/torchaudio/models/wav2vec2/utils/__init__.py": "aa631bcf81c03799041329787121a6fc9419238edb7b2878c22b7274f0bfaa7b",
+      "AudioDetection/.deps/torchaudio/models/wav2vec2/utils/import_fairseq.py": "a02c06eaaa46d1b097b9ed95e7a7e30dc0bc700dab832e1bdcefe7bbf148f596",
+      "AudioDetection/.deps/torchaudio/models/wav2vec2/utils/import_huggingface.py": "d675428a9a7e94e500ca5ffe3f5d370d62d47933998bd5ff7df5fdddb397c449",
+      "AudioDetection/.deps/torchaudio/models/wav2vec2/wavlm_attention.py": "d4353fa64a0b09e1d0c12178949d3a71ecf43ec315a1737189828fd18bf4a854",
+      "AudioDetection/.deps/torchaudio/models/wavernn.py": "e715326a8e60ebd8d15d7e1178d8b898ffda4d22289c93cfe9770faea2b26c49",
+      "AudioDetection/.deps/torchaudio/pipelines/__init__.py": "5f2f0d9889cac1370d047c0b4d38c78eb7dccd12ee42af1aebb10db753935573",
+      "AudioDetection/.deps/torchaudio/pipelines/_source_separation_pipeline.py": "5b19e0075775dc7e4856ab3844fa922f9dd9198b09ded9df0a9c6073914d48e3",
+      "AudioDetection/.deps/torchaudio/pipelines/_squim_pipeline.py": "7828a64dea2a357f0b8a521034699bf14691b672c85dae0b352857163a1d7193",
+      "AudioDetection/.deps/torchaudio/pipelines/_tts/__init__.py": "3cfee5f17cd5511a9e970b8c24581f382bf87efcd9ba70e2cbdd19425464bfb8",
+      "AudioDetection/.deps/torchaudio/pipelines/_tts/impl.py": "4e2838ff9b084c9003c3137979919e93b02d87ff9edec57c093339b7a5297945",
+      "AudioDetection/.deps/torchaudio/pipelines/_tts/interface.py": "c94692d142b73d346bb985d15858a5ee5021afed62622c8168304b9849c93d44",
+      "AudioDetection/.deps/torchaudio/pipelines/_tts/utils.py": "dbe3f715d2b30785ba94fdfe3676c9b30d90bd88c60e2ccaed733007308ba978",
+      "AudioDetection/.deps/torchaudio/pipelines/_wav2vec2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "AudioDetection/.deps/torchaudio/pipelines/_wav2vec2/aligner.py": "a48591810fa4758531b4bf1b75cd2a93dc018f046b1d8d6e4962f72f87b6bf1b",
+      "AudioDetection/.deps/torchaudio/pipelines/_wav2vec2/impl.py": "cdd5c58f2b493b932f9c1fb76b283351414ac424e440653f397feb85487d7349",
+      "AudioDetection/.deps/torchaudio/pipelines/_wav2vec2/utils.py": "43cfdf58e4762439c7bb44d34661f346323704e25ad21188025d1c8ed00b82c4",
+      "AudioDetection/.deps/torchaudio/pipelines/rnnt_pipeline.py": "432dfbcfbbfa7758cb38777aef36d1bb6d5d80be859a5d6b4ddee3e0997536c3",
+      "AudioDetection/.deps/torchaudio/prototype/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "AudioDetection/.deps/torchaudio/prototype/datasets/__init__.py": "19231ca760b291c05cfa4ae19474eb3e6e430af0c5c2703bffa1853421b0b1a4",
+      "AudioDetection/.deps/torchaudio/prototype/datasets/musan.py": "43c3b746347a34dd81d83da102eebeda0f7663277f4021abb83edc50aa77d405",
+      "AudioDetection/.deps/torchaudio/prototype/functional/__init__.py": "1a56e19c31dc37251675177747e013cd1906d855ec6ea8cbe7a3a9b724d7a5e7",
+      "AudioDetection/.deps/torchaudio/prototype/functional/_dsp.py": "65bb22b9382ae3c8915895a34c30b8456a1b557db1e1a528c53af789247630d2",
+      "AudioDetection/.deps/torchaudio/prototype/functional/_rir.py": "d3d8f7f0b87e747778cfd32fc45cb97832937f91be99463259eac1a6e368b5ba",
+      "AudioDetection/.deps/torchaudio/prototype/functional/functional.py": "10fca77a116e2a8a4ff8f1393be0b7b2f900701de23802e25058904c15f37513",
+      "AudioDetection/.deps/torchaudio/prototype/models/__init__.py": "2d61b2cd6680f9940f57480e5f1950f038a4c406e14687f98710103502a9e22a",
+      "AudioDetection/.deps/torchaudio/prototype/models/_conformer_wav2vec2.py": "1b3a53696f6cb951f2ec1d52a201547a29c21103a51822b09847c738232503f6",
+      "AudioDetection/.deps/torchaudio/prototype/models/_emformer_hubert.py": "54f2568b1ca3a27ccdd7b527667e27b823c36fbc296b4ed3c1b5cd8ce5f7b4e0",
+      "AudioDetection/.deps/torchaudio/prototype/models/conv_emformer.py": "e2eccd5bf744faf78bf209ce4c10f1afe101b11135e4e3c10b51f281f2b8796d",
+      "AudioDetection/.deps/torchaudio/prototype/models/hifi_gan.py": "9c0c9b0e20a254378664d35432dd39dc0c25e89665a003d05db76a1b1499f8a6",
+      "AudioDetection/.deps/torchaudio/prototype/models/rnnt.py": "5e55bebff4a82f5ab383d5b940a5fb5b390de33ea5f626413038653735bfb4d6",
+      "AudioDetection/.deps/torchaudio/prototype/models/rnnt_decoder.py": "bfe470102bcaa1e351c7504afcbab1310f4a46fe4996498a28cd9916c30044cd",
+      "AudioDetection/.deps/torchaudio/prototype/pipelines/__init__.py": "63a8df630cc99d751fc0995c49d10dfeb2db172dfcc3cc282742f3e08f88616e",
+      "AudioDetection/.deps/torchaudio/prototype/pipelines/_vggish/__init__.py": "3ba1db2474fbedb60624b18fd996ac16ba666ed868afc75b0de63a512024fd42",
+      "AudioDetection/.deps/torchaudio/prototype/pipelines/_vggish/_vggish_impl.py": "89a01df9819b4abf368adaeac2e9445d165d79a6f7ceca5f93c1687cec095c70",
+      "AudioDetection/.deps/torchaudio/prototype/pipelines/_vggish/_vggish_pipeline.py": "4d841ed6aa71e2f2b5e96afb93f2a8153168c538430e44b46dedee49761a2aaa",
+      "AudioDetection/.deps/torchaudio/prototype/pipelines/hifigan_pipeline.py": "233adf3f346cc1ac1dd8105b600c8ffe8467c1db834cd89f856b1cbfaaf74d05",
+      "AudioDetection/.deps/torchaudio/prototype/pipelines/rnnt_pipeline.py": "df0c250a0deb79fce6b0003af57ba5151cb81888b1036107e59a856cd14a5e19",
+      "AudioDetection/.deps/torchaudio/prototype/transforms/__init__.py": "d4f70ac5cf005a54919267214fa203603b1e3bb8ad598eee799ae57005199646",
+      "AudioDetection/.deps/torchaudio/prototype/transforms/_transforms.py": "d42b365c01fc573bebd932f41cb717b3e8b0dcc4b0f66a21f31dec66ab36b79c",
+      "AudioDetection/.deps/torchaudio/sox_effects/__init__.py": "802c5d8b01cade576518279873d55ab495b91f2ce3588830fd2cff92ba7facec",
+      "AudioDetection/.deps/torchaudio/sox_effects/sox_effects.py": "45b1f6c1b4000e211ef82246f052276690095bfe77b6994981332ea9b86e75dc",
+      "AudioDetection/.deps/torchaudio/transforms/__init__.py": "f12fd76113d003d3c4e3d4af1d67fef1138ebb7b9bff12410d12d4124b6424f3",
+      "AudioDetection/.deps/torchaudio/transforms/_multi_channel.py": "199dabaf016dd8ab521bb02dee44bd06a8752a6618c341f07149c48dcf805abf",
+      "AudioDetection/.deps/torchaudio/transforms/_transforms.py": "99fc0c34a35dae389aa45bbdd9b0eb50e106fc9af0ed6bd99ae2437ecd619328",
+      "AudioDetection/.deps/torchaudio/utils/__init__.py": "342b5f7485310e2d6ed3369a9ac7126e25b36f19f64ce23e3071d638a5344674",
+      "AudioDetection/.deps/torchaudio/utils/download.py": "fe2fbee68c98b5823190a7e33869004db610eba631726f29773faec772a2fccd",
+      "AudioDetection/.deps/torchaudio/utils/ffmpeg_utils.py": "dc8e9833de5e3723808362be79b132f648c1cc40eadff381aa0817ced3c80dc5",
+      "AudioDetection/.deps/torchaudio/utils/sox_utils.py": "0623b20ed42486ad5e87f9e4b9eca32bd2944f18315379cc64723e82878b798b",
+      "AudioDetection/.deps/torchaudio/version.py": "11a233cfb21127a56fec02b1ec7555cc53991d14fcaec4ed6dcef1c717b4a83e",
+      "AudioDetection/.deps/torio/__init__.py": "697f6cd17007c478445c4d5a910b7be0167470c5038013e16981d01f59426d74",
+      "AudioDetection/.deps/torio/_extension/__init__.py": "ab98e378e852af3aa7d164c4c2bc7ad45af5dda0a36fb2100831ac06a01d1845",
+      "AudioDetection/.deps/torio/_extension/utils.py": "92d1342ffcfe445d6a9292d51a0746e031061dad999faba890e026c02ec4befa",
+      "AudioDetection/.deps/torio/io/__init__.py": "c73ed11249327d1840012cd50807e836bb85b40188c7523efaeb0f01adad330c",
+      "AudioDetection/.deps/torio/io/_streaming_media_decoder.py": "2dd5a207caef35ba61b465218eb3c5285007fdf6aa2a2f7f439cda471bce15cb",
+      "AudioDetection/.deps/torio/io/_streaming_media_encoder.py": "ad24d8987762ed13c9e983e003218985b42f9f899cc4b7a6de7967affa29853b",
+      "AudioDetection/.deps/torio/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "AudioDetection/.deps/torio/utils/__init__.py": "49c1ed9e89edca6443367f6a1080b49deb9ee667c6f36ca107c6f011339bd19e",
+      "AudioDetection/.deps/torio/utils/ffmpeg_utils.py": "e64ea11b40a42114cb209558a05a5cd3a9495e872bafaa1587ed0047437f3111",
+      "AudioDetection/README.md": "1cec0c21439490616b34780fc6f89792ecfcc84ad7799ddf6bd99c3530ee012e",
+      "AudioDetection/__init__.py": "5ae693797b329ffea04f1da61f9338e31191bf518e307827e264c6574cef06ad",
+      "AudioDetection/app.py": "0dd7b3686ae8770fbbe8e44d5543d8a64cb42a0009ad6f3d6d9726bdb8a0f951",
+      "AudioDetection/backend.py": "5cb4d85ebdb306afbb027f34781911c8b892205704bbb3b83effa56be3438e77",
+      "AudioDetection/bootstrap.py": "256012d0dc0c878f923857bdc15fa860d6f6976561105c861b6efbca98ce864f",
+      "AudioDetection/config.json": "f2e122f0fb0ced230dc0797911babf3af3074ee950b57341ac4cad4da1a50d0c",
+      "AudioDetection/core.py": "ecaa483b6e68977d69976be8be4a141875066fa15e5e5268dc8a7a16c1a61681",
+      "AudioDetection/embedded.py": "2d8f791a276015d5d25ec4130bccf557d25383047e42e62150bee508f1bd2202",
+      "AudioDetection/resources/frame_mn06_strong_1.pt.json": "269ddebd301ab839632115407301237dadf70ffc6e65ac89c6e139eb070b52e5",
+      "AudioDetection/run.sh": "dd671a0a3799df8d4f5f26885bb3e366d877833ce9775e9371c8a2deb3644971",
+      "AudioDetection/runtime.py": "d2c8ca67ed1001df2f23bbbbed7c403d2f046de35a585f79297bd3fa540e6767",
+      "AudioDetection/settings.py": "670641143255b0e8b7cc9178d12124649ce697499e91fe1a4828a61ef93f8b9d",
+      "AudioDetection/setup.sh": "dd55391af766f52a68462d6c64b34dc2a119c2ac051070a28a9690d349a92107",
+      "AudioDetection/static/audio.css": "37302e774496398667498c97b1f79c77dcd76582b8f255bee6f1b098e988cbc4",
+      "AudioDetection/static/audio.js": "56b3c3479e4224f6ec61a0b9324f3545bd71bcdf71500da978c20ade66b75519",
+      "AudioDetection/static/zones.css": "40e289de6a783e8b9ef7a43264c480f4a87aba7eea46d327632dbf4a4e72ed46",
+      "AudioDetection/static/zones.js": "04229400f31ab624dc010e1b33ae27ba97fa5a43ad580c56476650754fde8565",
+      "AudioDetection/templates/index.html": "43a1a85e59f0520c26d8771805d19a50cd8d68be79e1b591193109e026803d61",
+      "AudioDetection/templates/zones.html": "d1652a91cd33e4a69b39b4aeba5a49b21d22e172484399143163058008add427",
+      "AudioDetection/vendor/PretrainedSED/README.md": "b6f9101fcad76e50a6a5d564198fa52a1199bb6c803ee48743fd10c0d1897fe5",
+      "AudioDetection/vendor/PretrainedSED/config.py": "10e4012076a9b884d1222c9b199b8bbd7a916775d46d1c2425c264d12cebe683",
+      "AudioDetection/vendor/PretrainedSED/data_util/audioset_classes.py": "771adb63768b349171a1668b4b0c2f932f6db1b21e10450c7e9136c0397e076f",
+      "AudioDetection/vendor/PretrainedSED/data_util/audioset_strong.py": "5100b4c19053032ae0286afadf0fd30135f89e4afeaa325a60a914dfe5310a99",
+      "AudioDetection/vendor/PretrainedSED/data_util/dcase2016task2.py": "fd448b235291fe122bcc23684bee75e79238c86100cccbd1e18894fbe8f9b284",
+      "AudioDetection/vendor/PretrainedSED/data_util/transforms.py": "8fdcd20797eee5ff9a5a8844a3275fac0fa9c63c7641c74f3a3f4fb4c841fe16",
+      "AudioDetection/vendor/PretrainedSED/ex_audioset_strong.py": "6fd672ca86b09c6eb345f53876e4eef2cabdc3ee8c92452201b526af8efaf76f",
+      "AudioDetection/vendor/PretrainedSED/ex_dcase2016task2.py": "3e5070e9593845e02d452463421022bd2ba008be1af4eb906a48c36c2ed28c5a",
+      "AudioDetection/vendor/PretrainedSED/helpers/augment.py": "3fa355c7e53b9aaeef548dc6a5ad22cc3a7f9e161073adfc07beaff45a597931",
+      "AudioDetection/vendor/PretrainedSED/helpers/decode.py": "efa229db161c68dfac38c23c0eda425c1014f68da3f2dae0053e198c879457bf",
+      "AudioDetection/vendor/PretrainedSED/helpers/encode.py": "abc436cf1a85a65ae8459f6f666a5e559a271f54ed868727818f565e9a470513",
+      "AudioDetection/vendor/PretrainedSED/helpers/score.py": "acd3fbe4c16954a52ab39933d0597453ccd8da0d0cf88ef51865fa63d5ac5fe3",
+      "AudioDetection/vendor/PretrainedSED/helpers/utils.py": "d14f30a5aa6ad31ec8138201263b002f19757c34e28233f888552e4e53bea0d0",
+      "AudioDetection/vendor/PretrainedSED/inference.py": "8c918e9aff94243d3c189b18dbb056044b52457274f1689fffc718c904c4502a",
+      "AudioDetection/vendor/PretrainedSED/models/asit/ASIT_wrapper.py": "12d6886284e9c4ab03e2909416b055e0c91d41667cba403845b12d91020c85a9",
+      "AudioDetection/vendor/PretrainedSED/models/asit/data_transformations.py": "97850ef1391cca64e27f1a0ea56f87b417b676e36b8cb5cf13b1bc7522593156",
+      "AudioDetection/vendor/PretrainedSED/models/asit/utils.py": "c151f751c74d8fdd94f10856950f360ce256026b35c00ffbab11d19c047ee222",
+      "AudioDetection/vendor/PretrainedSED/models/asit/vision_transformer.py": "008c8c58a38529bf05ce4043f51cd300cd80c5b114a690a123d9da005f89b20a",
+      "AudioDetection/vendor/PretrainedSED/models/atstframe/ATSTF_wrapper.py": "76e5d0d03460541fc713d9830c544c22f31b6d4393f81e752d47dc0802a6ead2",
+      "AudioDetection/vendor/PretrainedSED/models/atstframe/audio_transformer.py": "c63cf97ab58e9ad4095cf5ccb27fdd9bf630a7916a00a3253d7f81e0b1e3c54a",
+      "AudioDetection/vendor/PretrainedSED/models/atstframe/transformer.py": "5470ea310ff28d3b592ff3f8e9a17c0119cbb1f6f4f28f05074eb1991162148f",
+      "AudioDetection/vendor/PretrainedSED/models/beats/BEATs.py": "c7dba46d9f83a09b0096337816795a2239cbab5f9e979c558c57f15953667765",
+      "AudioDetection/vendor/PretrainedSED/models/beats/BEATs_wrapper.py": "2b8b73b6752c58feb5f26432e659d3345a68ef10f5928c4af8c70eed23d6e04f",
+      "AudioDetection/vendor/PretrainedSED/models/beats/Tokenizers.py": "fccb1fafc35cd7e9474593408b071ebe05dbbe7c877965edb77130552617e068",
+      "AudioDetection/vendor/PretrainedSED/models/beats/backbone.py": "5df93ef883d2fea0f9a3763caa93690b706905094d6ec727f86f68a827b87c5d",
+      "AudioDetection/vendor/PretrainedSED/models/beats/modules.py": "c4b4170b1c4286717b606788f617a0a768af076cdeaaa9b1d35bf70d6c3859fe",
+      "AudioDetection/vendor/PretrainedSED/models/beats/quantizer.py": "322f1f55f4d522ee927d036e70f93e5e15bf0ff36a6def5b4587de7c35053590",
+      "AudioDetection/vendor/PretrainedSED/models/frame_mn/Frame_MN_wrapper.py": "c9f9be29be6cb5dfb94b03a0cb95a22c35519aaefabf913fdebc0e3fc2f40d77",
+      "AudioDetection/vendor/PretrainedSED/models/frame_mn/block_types.py": "1dfa5636aadb209eeaa7e412d5fc422bfefe230b4b30f49a14fe11776eab825c",
+      "AudioDetection/vendor/PretrainedSED/models/frame_mn/model.py": "6c316eab1744c3a6d45537532bd4dfc91718f7132f1de42e79a922c8c5b48077",
+      "AudioDetection/vendor/PretrainedSED/models/frame_mn/utils.py": "b952d15279cf2fb21658e6916ce23e00e3338187564b4ad9c635a10dd261aac5",
+      "AudioDetection/vendor/PretrainedSED/models/frame_passt/fpasst.py": "b34aed30db2ea1be27c18bbb6fd819786b04b9d14570d87e9fd160619e57ecb1",
+      "AudioDetection/vendor/PretrainedSED/models/frame_passt/fpasst_wrapper.py": "49b3c50a5c6c7fad6c3f3954bd4a369841d42876c7de8f07c7217d5b8fc87ee3",
+      "AudioDetection/vendor/PretrainedSED/models/frame_passt/preprocess.py": "1ac324f812566924ab52879077186dcaffdc8a4062ee186153be48e99b658db0",
+      "AudioDetection/vendor/PretrainedSED/models/frame_passt/vit_helpers.py": "b17f7f784537210604f34184f74b7e8f80c25e9690e4e44a92d39125d567a27c",
+      "AudioDetection/vendor/PretrainedSED/models/m2d/M2D_wrapper.py": "ab9f5691847f99470c90e8b648dd9aedb9be9fe6132f551f9feebabea0053785",
+      "AudioDetection/vendor/PretrainedSED/models/m2d/portable_m2d.py": "addb6cc3ee17dbc179dacaebf0baeea59989dd39e5219d2a2b0af85480448e88",
+      "AudioDetection/vendor/PretrainedSED/models/prediction_wrapper.py": "53f37f7870a85e64242d07dd087ffb4c72a8a8413d43a593ab46bba85b3983eb",
+      "AudioDetection/vendor/PretrainedSED/models/seq_models.py": "d7ac2ab967ce65e3dad7dd3cf717163a107e8cc0b57bdab0d775a72f075ca667",
+      "AudioDetection/vendor/PretrainedSED/models/transformer_wrapper.py": "8ca7284475e47dc00a5f476bd8d937400e35c95ae3164b8fd9111505c4a4dee8",
+      "AudioDetection/vendor/PretrainedSED/resources/README.md": "edf88af19a5bd791c30df7894ee936879fa909c0c37b4cbe1b798b83132234fd",
+      "AudioDetection/verify_live.py": "6866eba1110f953076c864a2ef9b4e138b0124f84de9e4cc74f366f00d5e2db8",
+      "AudioDetection/vision_bridge.py": "d62f41b248c14a8060599c24c29edd801623ff544eb8040360e1004bcb08d524",
+      "AudioDetection/web.py": "53c0b5418eafe32ee7debc1b5b0eea6a92247a7c7b5606a5be64d12613dcb50f",
+      "AudioDetection/zone_web.py": "927464a802696ac51a8f05ead22ed4b8d242db5fdb682ce43ab4de779f1a5ca1",
+      "INTEGRATION.md": "c3fe9a53d8b87719fd4d1bc033ac66d44ba8c90f18612c0d9e674f0b921bc9ac",
+      "README.md": "f5f35ce210aa2efc604cf5535dcd414587adfa75c8b49b6cacfa80bff06056ad",
+      "ble_excavator.py": "d893be7db52589653c0d67cf9402ad95abb5e837f1d2d187b3e3ff112d901322",
+      "calibration/CAM1.json": "55d9d8dc2c8a96057be0ebef249079532e242838e9bd793cc68334955c0c6364",
+      "calibration/CAM2.json": "a7b062505cd79247baa3b27e6d5be3dbe4a52f820bc3eefe705fb8e34a306fee",
+      "camera.py": "59fbdcc735cbcf49563173c7c7a7263fb513820c047b3fae5c68f5ae5a6e0877",
+      "config.json": "91308f7a0026834049c34b86aedbacafb98c567d45a43c75a1c81597d75a93bf",
+      "detector.py": "a25a8bb956b28340be962aa16b62f014fc353e5dc244af91d37ca6a470ae7ef1",
+      "docs/admin_reset_safe_restore_20261031.md": "1d0c08505e3ea10c6d94686e3bafe50a632486b7380ac179e1b58aaecb799e0d",
+      "docs/camera_diagnostics.md": "2a5c5335d59ea0b3a3a00759645a2717bd79d82e4cc5defabf7d79c5f0b82fb1",
+      "docs/development_measurement_policy.md": "f8af01f3a2569475ce9adec70e2515b3afb7ac33fe33ce76edfec876008f886e",
+      "docs/excavator_ble_integration.md": "e1fc80d6c953e82a8b6e31478d480726fb1d8e896ff2339af547c7f3dcf8c49f",
+      "docs/excavator_ble_test_report.md": "f1380101aa2974828cd9f67123c4c13a534e9cbc03a04f55f55c1b0fe70cfcb5",
+      "docs/fusion_labels_20261031.md": "eff16338527d1dc4aca317331223b9a7dea119f78ca0c8f51f4f4eb4bb52a40a",
+      "docs/heartbeat_integration.md": "4d06b907a77310257a6322ea3b1a7597de9e2255208ea5a695df8dc2d59e3cf3",
+      "docs/runtime_fix_20261030.md": "d41ffb197e895a6129b62b4ca4b6e5bea7dba85e22b8134e4b4b9defaffc765f",
+      "docs/tracking_mapping_20261030.md": "d7d75ae487b0eb6af6534c610d7795e74c974076721dc704cdd36bb94561db84",
+      "docs/tracking_mapping_20261031.md": "87700c6d75a8dac013ba5c6669df662964e8a2799f9843dd7ecffb0914ae0921",
+      "excavator_ble.py": "e46990a09eb9ab00d3b478085ba3ebc0936d38fad9d4530bed9fcdf73e3fa186",
+      "excavator_ble_heartbeat_monitor.py": "daf715097319629d01f44531a15a2572a889e994e93523ceadeb55b337ffbeb6",
+      "excavator_ble_manual.py": "16584b84a6719b04fb50ab257765fee1e7e9e0a80d7967256ee2a587c35f8821",
+      "excavator_bridge.py": "c81269a8342226d187a37e87297c137e5d7ece7d951d52a442f085167a668d11",
+      "excavator_heartbeat.py": "a4f4d310ff38ef547038364320616cd4883437d174c4a851a3976d7672a63ffa",
+      "ground.py": "a7dcecbf10b0249a4cab8bf81ed5906592a03df65ba25ab90e81b49e4a9ea386",
+      "main.py": "4d66a634ba6935e3aeec85262a2c2b9009c10bf13e5fbd3af16573955e1a544b",
+      "manual_events.py": "aa83b36f7437401aecd4cd5fdc04d5341984245bb73ca02662bc7074057a1c02",
+      "metrics.py": "66356989c78ce3c88ec9acf960fbaa4dc82e0e8d6d50a4b5444cbf244b573815",
+      "observations.py": "8f84a655c184e6486208b38ff27b4339e7c41970bf5fc9924aff3d3ae6a76afe",
+      "pipeline.py": "734fd99f0ec5fdd13c1370a122b7d9f501628750f3ee4c20ece99b3c2a448120",
+      "risk.py": "73c7f519bcc147890e02b36ba05958f5f61cf3e88069e7c5fe44d34bc9ab5b1a",
+      "run.sh": "66f7ac99d731139d4e248f418b666e8e0b5fa8137681023dbce729013b350f64",
+      "scheduler.py": "9824665a17ebd0eb4b5c1c7cd3ec2a565787432a2991e0682ee3929021f20ae0",
+      "state.py": "53ab4f5e7f118cca3c34fcc2e4a00bae0e9712fa921827eab01198800c9d30fa",
+      "static/admin.css": "c297bd483f466325674dc4a9c013593e7fe7397b26cbd3c195eb1d613b7518ac",
+      "static/admin.js": "4ef496c2857672f185c134a74f115810244e21854fdcc74a96ff606dc4969fb6",
+      "static/dashboard.css": "881436d22aa64a662e60fd625ec32d6c4230ce3dad722f200d18ec6f2745f118",
+      "static/dashboard.js": "0412fcc8a636687cd2f2f5556ffa81ba05b2cb02ce5fd4c2ad5f392aa03e1117",
+      "templates/dashboard.html": "cef70356fcf8e139c6a6f8496cd81df71e4f362631cca5193bd4a6a9ea0d8aa1",
+      "templates/diagnostics.html": "95ac081b619c152a34857e88eefd87e8571583db975530ef841e03b9a6e04f4e",
+      "tools/check_environment.py": "ef9b6208a473585e93e42affc4570c17be030dc6ea4b89f54e9286f2b4727562",
+      "tracking.py": "f338ce2c7fb119edd2ae5fd3654a495dcbc39ceeac5259eeac2e8a1c083f6b1f",
+      "vision_heartbeat.py": "aeadbd967c7535fc49ee7885f944e49ac094cbafeec14a87ce0e60b3d7436de0",
+      "web_app.py": "153c014279a10f6c58a1662a35b6b63b5961b042f27a17ff505ff8d212f6ff18"
+    }
+  },
+  "config": {
+    "project_version": "0.3.1",
+    "excavator_ble": {
+      "enabled": true,
+      "device_name": "ESP32C3_EXCAVATOR",
+      "characteristic_uuid": "7f4a1002-8c21-4b7d-9a31-123456789002",
+      "danger_message": "excavator_danger",
+      "scan_timeout_sec": 5.0,
+      "io_timeout_sec": 10.0,
+      "retry_interval_sec": 2.0
+    },
+    "heartbeat": {
+      "enabled": true,
+      "target_host": "192.168.100.2",
+      "target_port": 8766,
+      "interval_sec": 1.0,
+      "component_timeout_sec": 2.5,
+      "connect_timeout_sec": 0.5,
+      "node_id": "vision-jetson"
+    },
+    "model": {
+      "path": "/home/hansungelec/SAYFE_yeongjun_FP16_copy/models/yolo26m_480x640_fp16.engine",
+      "sha256": "692f83ee9f4cce51573459aed420dcee0cb8431569c0b056e7c0f4af56a84e7d",
+      "imgsz": [
+        480,
+        640
+      ],
+      "confidence": 0.25,
+      "device": 0,
+      "warmup_iterations": 5,
+      "classes": {
+        "5": "Person",
+        "8": "machinery"
+      },
+      "class_roles": {
+        "5": "person",
+        "8": "excavator"
+      },
+      "rect": false,
+      "iou": 0.7,
+      "max_det": 300,
+      "agnostic_nms": false,
+      "precision": "FP16"
+    },
+    "cameras": [
+      {
+        "id": "CAM1",
+        "name": "Logitech C922",
+        "source": "/dev/v4l/by-id/usb-046d_C922_Pro_Stream_Webcam_716A275F-video-index0",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG"
+      },
+      {
+        "id": "CAM2",
+        "name": "Logitech 046d:0825",
+        "source": "/dev/v4l/by-id/usb-046d_0825_D6055E10-video-index0",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG"
+      }
+    ],
+    "observation": {
+      "stale_seconds": 1.0
+    },
+    "web": {
+      "host": "0.0.0.0",
+      "port": 5010,
+      "jpeg_quality": 75,
+      "stream_fps": 15
+    },
+    "recording": {
+      "directory": "runs",
+      "queue_size": 4096,
+      "resource_interval_seconds": 1.0
+    },
+    "risk": {
+      "enter_confirm_frames": 1,
+      "camera_state_hold_seconds": 1.0,
+      "max_person_height_ratio": 0.33,
+      "max_person_area_ratio": 0.025,
+      "excavator_box_offset_px": 23
+    },
+    "homography": {
+      "enabled": true,
+      "directory": "calibration",
+      "min_confidence": 0.4,
+      "min_person_height_px": 20,
+      "min_upright_ratio": 1.4,
+      "overlap_limit": 0.2,
+      "legacy": {
+        "CAM1": {
+          "path": "../model_test/ground_xy_calibration.json",
+          "camera": 0,
+          "device_id": "usb-046d_C922_Pro_Stream_Webcam_716A275F-video-index0"
+        },
+        "CAM2": {
+          "path": "../model_test/ground_xy_dual_cam2_640x480.json",
+          "camera": 2,
+          "device_id": "usb-046d_0825_D6055E10-video-index0"
+        }
+      }
+    },
+    "scheduler": {
+      "priority_weight": 1.0,
+      "max_observation_gap_seconds": 0.5,
+      "boost_hold_seconds": 0.5,
+      "recovery_seconds": 0.5
+    },
+    "tracking": {
+      "max_distance_m": 0.15,
+      "ttl_seconds": 2.0,
+      "fallback_distance_px": 80.0
+    }
+  },
+  "scenario": "기본 2카메라 관측",
+  "web_enabled": true,
+  "risk_implemented": true,
+  "control_connected": false,
+  "audio_connected": true,
+  "timing_schema_version": 6,
+  "risk_method": "expanded_excavator_bbox",
+  "inference_execution": "single_model_owner_with_camera_workers",
+  "ground_projection_enabled": true,
+  "clock": {
+    "interval": "time.monotonic_ns",
+    "wall": "Asia/Seoul",
+    "capture_timestamp": "OpenCV read 반환; 노출 시각 아님",
+    "cross_device_sync": "미구현"
+  },
+  "resources_enabled": false,
+  "run_status": "completed",
+  "run_id": "20261103T111919+0900_fbb7efe9",
+  "mode": "normal",
+  "started_at_kst": "2026-11-03T11:19:19.325+09:00",
+  "environment": {
+    "python": "3.10.12 (main, Jul 15 2026, 23:40:17) [GCC 11.4.0]",
+    "executable": "/home/hansungelec/venvs/sayfe_vision/bin/python",
+    "prefix": "/home/hansungelec/venvs/sayfe_vision",
+    "expected_venv": "/home/hansungelec/venvs/sayfe_vision",
+    "correct_venv": true,
+    "user_site_disabled": true,
+    "platform": "Linux-5.15.185-tegra-aarch64-with-glibc2.35",
+    "machine": "aarch64",
+    "modules": {
+      "numpy": {
+        "version": "1.26.4",
+        "file": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages/numpy/__init__.py"
+      },
+      "cv2": {
+        "version": "4.8.0",
+        "file": "/usr/lib/python3.10/dist-packages/cv2/__init__.py"
+      },
+      "torch": {
+        "version": "2.8.0",
+        "file": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages/torch/__init__.py"
+      },
+      "torchvision": {
+        "version": "0.23.0",
+        "file": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages/torchvision/__init__.py"
+      },
+      "tensorrt": {
+        "version": "10.3.0",
+        "file": "/usr/lib/python3.10/dist-packages/tensorrt/__init__.py"
+      },
+      "ultralytics": {
+        "version": "8.4.173",
+        "file": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages/ultralytics/__init__.py"
+      },
+      "flask": {
+        "version": "3.1.3",
+        "file": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages/flask/__init__.py"
+      },
+      "psutil": {
+        "version": "7.2.2",
+        "file": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages/psutil/__init__.py"
+      }
+    },
+    "cuda_build": "12.6",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "system_files": {
+      "/etc/os-release": "PRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n",
+      "/etc/nv_tegra_release": "# R36 (release), REVISION: 5.0, GCID: 43688277, BOARD: generic, EABI: aarch64, DATE: Fri Jan 16 03:50:45 UTC 2026\n# KERNEL_VARIANT: oot\nTARGET_USERSPACE_LIB_DIR=nvidia\nTARGET_USERSPACE_LIB_DIR_PATH=usr/lib/aarch64-linux-gnu/nvidia\n",
+      "/usr/local/cuda/version.json": "{\n   \"cuda\" : {\n      \"name\" : \"CUDA SDK\",\n      \"version\" : \"12.6.11\"\n   },\n   \"cuda_cccl\" : {\n      \"name\" : \"CUDA C++ Core Compute Libraries\",\n      \"version\" : \"12.6.37\"\n   },\n   \"cuda_compat\" : {\n      \"name\" : \"CUDA Specific Libraries\",\n      \"version\" : \"12.6.36890662\"\n   },\n   \"cuda_cudart\" : {\n      \"name\" : \"CUDA Runtime (cudart)\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_cuobjdump\" : {\n      \"name\" : \"cuobjdump\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_cupti\" : {\n      \"name\" : \"CUPTI\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_cuxxfilt\" : {\n      \"name\" : \"CUDA cu++ filt\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_gdb\" : {\n      \"name\" : \"CUDA GDB\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_nvcc\" : {\n      \"name\" : \"CUDA NVCC\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_nvdisasm\" : {\n      \"name\" : \"CUDA nvdisasm\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_nvml_dev\" : {\n      \"name\" : \"CUDA NVML Headers\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_nvprune\" : {\n      \"name\" : \"CUDA nvprune\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_nvrtc\" : {\n      \"name\" : \"CUDA NVRTC\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_nvtx\" : {\n      \"name\" : \"CUDA NVTX\",\n      \"version\" : \"12.6.68\"\n   },\n   \"cuda_sanitizer_api\" : {\n      \"name\" : \"CUDA Compute Sanitizer API\",\n      \"version\" : \"12.6.68\"\n   },\n   \"libcublas\" : {\n      \"name\" : \"CUDA cuBLAS\",\n      \"version\" : \"12.6.1.4\"\n   },\n   \"libcudla\" : {\n      \"name\" : \"CUDA cuDLA\",\n      \"version\" : \"12.6.68\"\n   },\n   \"libcufft\" : {\n      \"name\" : \"CUDA cuFFT\",\n      \"version\" : \"11.2.6.59\"\n   },\n   \"libcufile\" : {\n      \"name\" : \"GPUDirect Storage (cufile)\",\n      \"version\" : \"1.11.1.6\"\n   },\n   \"libcurand\" : {\n      \"name\" : \"CUDA cuRAND\",\n      \"version\" : \"10.3.7.68\"\n   },\n   \"libcusolver\" : {\n      \"name\" : \"CUDA cuSOLVER\",\n      \"version\" : \"11.6.4.69\"\n   },\n   \"libcusparse\" : {\n      \"name\" : \"CUDA cuSPARSE\",\n      \"version\" : \"12.5.3.3\"\n   },\n   \"libnpp\" : {\n      \"name\" : \"CUDA NPP\",\n      \"version\" : \"12.3.1.54\"\n   },\n   \"libnvfatbin\" : {\n      \"name\" : \"Fatbin interaction library\",\n      \"version\" : \"12.6.68\"\n   },\n   \"libnvjitlink\" : {\n      \"name\" : \"JIT Linker Library\",\n      \"version\" : \"12.6.68\"\n   },\n   \"libnvjpeg\" : {\n      \"name\" : \"CUDA nvJPEG\",\n      \"version\" : \"12.3.3.54\"\n   },\n   \"nsight_compute\" : {\n      \"name\" : \"Nsight Compute\",\n      \"version\" : \"2024.3.1.2\"\n   },\n   \"nvidia_fs\" : {\n      \"name\" : \"NVIDIA file-system\",\n      \"version\" : \"2.22.3\"\n   }\n}\n",
+      "/home/hansungelec/venvs/sayfe_vision/pyvenv.cfg": "home = /usr/bin\ninclude-system-site-packages = true\nversion = 3.10.12\n"
+    },
+    "power_mode": {
+      "returncode": 0,
+      "stdout": "NV Power Mode: MAXN_SUPER\n2",
+      "stderr": ""
+    },
+    "clocks": {
+      "returncode": 1,
+      "stdout": "SOC family:tegra234  Machine:NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super\nError: Run this script(/usr/bin/jetson_clocks) as a root user",
+      "stderr": ""
+    },
+    "system_packages": {
+      "returncode": 0,
+      "stdout": "libnvinfer10 10.3.0.30-1+cuda12.5\nlibopencv 4.8.0-1-g6371ee1\nlibopencv-calib3d-dev \nlibopencv-calib3d4.0 \nlibopencv-calib3d4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-contrib4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-core-dev \nlibopencv-core4.0 \nlibopencv-core4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-dev 4.8.0-1-g6371ee1\nlibopencv-dnn-dev \nlibopencv-dnn4.0 \nlibopencv-dnn4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-features2d-dev \nlibopencv-features2d4.0 \nlibopencv-features2d4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-flann-dev \nlibopencv-flann4.0 \nlibopencv-flann4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-gapi-dev \nlibopencv-gapi4.0 \nlibopencv-highgui-dev \nlibopencv-highgui4.0 \nlibopencv-highgui4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-imgcodecs-dev \nlibopencv-imgcodecs4.0 \nlibopencv-imgcodecs4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-imgproc-dev \nlibopencv-imgproc4.0 \nlibopencv-imgproc4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-ml-dev \nlibopencv-ml4.0 \nlibopencv-ml4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-objdetect-dev \nlibopencv-objdetect4.0 \nlibopencv-objdetect4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-photo-dev \nlibopencv-photo4.0 \nlibopencv-photo4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-python 4.8.0-1-g6371ee1\nlibopencv-samples 4.8.0-1-g6371ee1\nlibopencv-shape4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-stitching-dev \nlibopencv-stitching4.0 \nlibopencv-stitching4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-ts-dev \nlibopencv-ts4.0 \nlibopencv-video-dev \nlibopencv-video4.0 \nlibopencv-video4.5d 4.5.4+dfsg-9ubuntu4\nlibopencv-videoio-dev \nlibopencv-videoio4.0 \nlibopencv-viz4.5d 4.5.4+dfsg-9ubuntu4\nnvidia-container-toolkit 1.16.2-1\nnvidia-jetpack 6.2.3+b81\nnvidia-l4t-core 36.5.0-20260115194252\npython3-libnvinfer 10.3.0.30-1+cuda12.5\nv4l-utils 1.22.1-2build1",
+      "stderr": ""
+    },
+    "packages": [
+      {
+        "name": "absl-py",
+        "version": "2.5.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "appdirs",
+        "version": "1.4.4",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "apturl",
+        "version": "0.5.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "async-timeout",
+        "version": "5.0.1",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "attrs",
+        "version": "21.2.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "bcrypt",
+        "version": "3.2.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "beautifulsoup4",
+        "version": "4.15.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "beniget",
+        "version": "0.4.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "bleak",
+        "version": "3.0.2",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "blinker",
+        "version": "1.9.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "blinker",
+        "version": "1.4",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "Brlapi",
+        "version": "0.8.3",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "Brotli",
+        "version": "1.0.9",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "certifi",
+        "version": "2020.6.20",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "chardet",
+        "version": "4.0.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "click",
+        "version": "8.5.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "click",
+        "version": "8.0.3",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.4",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "cpuset",
+        "version": "1.6",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "cryptography",
+        "version": "3.4.8",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "cupshelpers",
+        "version": "1.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "cycler",
+        "version": "0.11.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "dbus-fast",
+        "version": "5.0.26",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "dbus-python",
+        "version": "1.2.18",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "decorator",
+        "version": "4.4.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "defer",
+        "version": "1.0.6",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "distro",
+        "version": "1.7.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "distro-info",
+        "version": "1.1+ubuntu0.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "duplicity",
+        "version": "0.8.21",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "fasteners",
+        "version": "0.14.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "filelock",
+        "version": "4.0.12",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "Flask",
+        "version": "3.1.3",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "fonttools",
+        "version": "4.29.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "fs",
+        "version": "2.4.12",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "fsspec",
+        "version": "2026.9.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "future",
+        "version": "0.18.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "gast",
+        "version": "0.5.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "gdown",
+        "version": "6.4.1",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "grpcio",
+        "version": "1.84.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "httplib2",
+        "version": "0.20.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "idna",
+        "version": "3.3",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "importlib-metadata",
+        "version": "4.6.4",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "itsdangerous",
+        "version": "2.2.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "jeepney",
+        "version": "0.7.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "jetson-stats",
+        "version": "7.2.1",
+        "location": "/usr/local/lib/python3.10/dist-packages"
+      },
+      {
+        "name": "Jetson.GPIO",
+        "version": "2.1.9",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "Jinja2",
+        "version": "3.1.6",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "keyring",
+        "version": "23.5.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "kiwisolver",
+        "version": "1.3.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "language-selector",
+        "version": "0.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "launchpadlib",
+        "version": "1.10.16",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "lazr.restfulclient",
+        "version": "0.14.4",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "lazr.uri",
+        "version": "1.0.6",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "lockfile",
+        "version": "0.12.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "louis",
+        "version": "3.20.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "lxml",
+        "version": "4.8.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "lz4",
+        "version": "3.1.3+dfsg",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "macaroonbakery",
+        "version": "1.3.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "Mako",
+        "version": "1.1.3",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "Markdown",
+        "version": "3.10.3",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "MarkupSafe",
+        "version": "3.0.4",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "MarkupSafe",
+        "version": "2.0.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.5.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "ml_dtypes",
+        "version": "0.6.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "monotonic",
+        "version": "1.6",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "more-itertools",
+        "version": "8.10.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "mpmath",
+        "version": "0.0.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "networkx",
+        "version": "3.4.2",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "numpy",
+        "version": "1.21.5",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "nvidia-ml-py",
+        "version": "13.615.71",
+        "location": "/usr/local/lib/python3.10/dist-packages"
+      },
+      {
+        "name": "oauthlib",
+        "version": "3.2.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "olefile",
+        "version": "0.46",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "onboard",
+        "version": "1.4.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "onnx",
+        "version": "1.23.1",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "packaging",
+        "version": "21.3",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pandas",
+        "version": "1.3.5",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "paramiko",
+        "version": "2.9.3",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pexpect",
+        "version": "4.8.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "Pillow",
+        "version": "9.0.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pip",
+        "version": "22.0.2",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "pip",
+        "version": "22.0.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "ply",
+        "version": "3.11",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "polars",
+        "version": "1.44.2",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "polars-runtime-32",
+        "version": "1.44.2",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "protobuf",
+        "version": "7.36.2",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "protobuf",
+        "version": "3.12.4",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "psutil",
+        "version": "7.2.2",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "ptyprocess",
+        "version": "0.7.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pycairo",
+        "version": "1.20.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pycups",
+        "version": "2.0.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "PyGObject",
+        "version": "3.42.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "PyJWT",
+        "version": "2.3.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pymacaroons",
+        "version": "0.13.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "PyNaCl",
+        "version": "1.5.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "PyOpenGL",
+        "version": "3.1.5",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pyparsing",
+        "version": "2.4.7",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pyRFC3339",
+        "version": "1.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "PySocks",
+        "version": "1.7.1",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "python-apt",
+        "version": "2.4.0+ubuntu4.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "python-dateutil",
+        "version": "2.8.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "python-dbusmock",
+        "version": "0.27.5",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "python-debian",
+        "version": "0.1.43+ubuntu1.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pythran",
+        "version": "0.10.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pytz",
+        "version": "2022.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "pyxdg",
+        "version": "0.27",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "PyYAML",
+        "version": "5.4.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "requests",
+        "version": "2.25.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "scipy",
+        "version": "1.8.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "SecretStorage",
+        "version": "3.3.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "setuptools",
+        "version": "59.6.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "setuptools",
+        "version": "59.6.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "six",
+        "version": "1.16.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "smbus2",
+        "version": "0.6.1",
+        "location": "/usr/local/lib/python3.10/dist-packages"
+      },
+      {
+        "name": "soupsieve",
+        "version": "2.10",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "sympy",
+        "version": "1.9",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "systemd-python",
+        "version": "234",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "tensorboard",
+        "version": "2.21.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "tensorboard-data-server",
+        "version": "0.7.2",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "tensorrt",
+        "version": "10.3.0",
+        "location": "/usr/lib/python3.10/dist-packages"
+      },
+      {
+        "name": "tensorrt_dispatch",
+        "version": "10.3.0",
+        "location": "/usr/lib/python3.10/dist-packages"
+      },
+      {
+        "name": "tensorrt_lean",
+        "version": "10.3.0",
+        "location": "/usr/lib/python3.10/dist-packages"
+      },
+      {
+        "name": "torch",
+        "version": "2.8.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "torchvision",
+        "version": "0.23.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "tqdm",
+        "version": "4.70.1",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "ubuntu-advantage-tools",
+        "version": "8001",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "ubuntu-drivers-common",
+        "version": "0.0.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "ufoLib2",
+        "version": "0.13.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "ultralytics",
+        "version": "8.4.173",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "ultralytics-thop",
+        "version": "2.2.2",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "unicodedata2",
+        "version": "14.0.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "urllib3",
+        "version": "1.26.5",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "urwid",
+        "version": "2.1.2",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "wadllib",
+        "version": "1.3.6",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "Werkzeug",
+        "version": "3.1.9",
+        "location": "/home/hansungelec/venvs/sayfe_vision/lib/python3.10/site-packages"
+      },
+      {
+        "name": "wheel",
+        "version": "0.37.1",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "xdg",
+        "version": "5",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "xkit",
+        "version": "0.0.0",
+        "location": "/usr/lib/python3/dist-packages"
+      },
+      {
+        "name": "zipp",
+        "version": "1.0.0",
+        "location": "/usr/lib/python3/dist-packages"
+      }
+    ]
+  },
+  "model": {
+    "path": "/home/hansungelec/SAYFE_yeongjun_FP16_copy/models/yolo26m_480x640_fp16.engine",
+    "sha256": "692f83ee9f4cce51573459aed420dcee0cb8431569c0b056e7c0f4af56a84e7d",
+    "size_bytes": 44663629,
+    "backend": "TensorRT",
+    "tensorrt_version": "10.3.0",
+    "engine_metadata": {
+      "description": "Ultralytics YOLO26m model trained on cv_dataset/all_data_train.yaml",
+      "author": "Ultralytics",
+      "date": "2026-10-27T13:53:13.032051+09:00",
+      "version": "8.4.173",
+      "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+      "docs": "https://docs.ultralytics.com",
+      "stride": 32,
+      "task": "detect",
+      "head": "Detect",
+      "batch": 1,
+      "imgsz": [
+        480,
+        640
+      ],
+      "names": {
+        "0": "Hardhat",
+        "1": "Mask",
+        "2": "NO-Hardhat",
+        "3": "NO-Mask",
+        "4": "NO-Safety Vest",
+        "5": "Person",
+        "6": "Safety Cone",
+        "7": "Safety Vest",
+        "8": "machinery",
+        "9": "utility pole",
+        "10": "vehicle"
+      },
+      "args": {
+        "data": null,
+        "batch": 1,
+        "fraction": 1.0,
+        "quantize": 16,
+        "nms": null,
+        "dynamic": false,
+        "simplify": false,
+        "opset": 18,
+        "workspace": 1.0
+      },
+      "channels": 3,
+      "end2end": false
+    },
+    "engine_export_quantize_bits": 16,
+    "class_names": {
+      "0": "Hardhat",
+      "1": "Mask",
+      "2": "NO-Hardhat",
+      "3": "NO-Mask",
+      "4": "NO-Safety Vest",
+      "5": "Person",
+      "6": "Safety Cone",
+      "7": "Safety Vest",
+      "8": "machinery",
+      "9": "utility pole",
+      "10": "vehicle"
+    },
+    "selected_classes": {
+      "5": "Person",
+      "8": "machinery"
+    },
+    "class_roles": {
+      "5": "person",
+      "8": "excavator"
+    },
+    "gpu": "Orin",
+    "prediction_settings": {
+      "imgsz": [
+        480,
+        640
+      ],
+      "conf": 0.25,
+      "device": 0,
+      "classes": [
+        5,
+        8
+      ],
+      "rect": false,
+      "iou": 0.7,
+      "max_det": 300,
+      "agnostic_nms": false,
+      "verbose": false,
+      "save": false,
+      "save_txt": false,
+      "save_crop": false,
+      "show": false
+    },
+    "rect": false,
+    "requested_imgsz": [
+      480,
+      640
+    ],
+    "observed_tensor_shapes": [
+      [
+        1,
+        3,
+        480,
+        640
+      ]
+    ],
+    "actual_tensor_shape": [
+      1,
+      3,
+      480,
+      640
+    ],
+    "input_dtype": "torch.float32",
+    "runtime_backend": "TensorRTBackend",
+    "input_fp16": false,
+    "predictor_imgsz": [
+      480,
+      640
+    ],
+    "warmup_input_shape": [
+      1,
+      3,
+      480,
+      640
+    ],
+    "warmup_ms": 877.506191,
+    "warmup_iterations": 5,
+    "engine_layer_precision_verified": false,
+    "io_tensors": [
+      {
+        "name": "images",
+        "dtype": "float32",
+        "shape": [
+          1,
+          3,
+          480,
+          640
+        ],
+        "mode": "input"
+      },
+      {
+        "name": "output0",
+        "dtype": "float32",
+        "shape": [
+          1,
+          15,
+          6300
+        ],
+        "mode": "output"
+      }
+    ]
+  },
+  "measurement_start_ns": 4508759639032,
+  "measurement_duration_s": 24.660439243,
+  "final_cameras": {
+    "CAM1": {
+      "health": "STOPPED",
+      "opened": false,
+      "error": null,
+      "capture_count": 720,
+      "capture_errors": 0,
+      "capture_ns": 4533374487746,
+      "capture_age_ms": 45.590529,
+      "capture_fps": 29.5,
+      "capture_elapsed_s": 24.660415722,
+      "actual": {
+        "width": 640,
+        "height": 480,
+        "configured_fps": 30.0,
+        "fourcc": "MJPG",
+        "property_set_accepted": {
+          "fourcc": true,
+          "width": true,
+          "height": true,
+          "fps": true,
+          "buffer_size": true
+        }
+      },
+      "thread_alive": false
+    },
+    "CAM2": {
+      "health": "STOPPED",
+      "opened": false,
+      "error": null,
+      "capture_count": 322,
+      "capture_errors": 0,
+      "capture_ns": 4533398316558,
+      "capture_age_ms": 21.761717,
+      "capture_fps": 15.0,
+      "capture_elapsed_s": 24.659728129,
+      "actual": {
+        "width": 640,
+        "height": 480,
+        "configured_fps": 30.0,
+        "fourcc": "MJPG",
+        "property_set_accepted": {
+          "fourcc": true,
+          "width": true,
+          "height": true,
+          "fps": true,
+          "buffer_size": true
+        }
+      },
+      "thread_alive": false
+    }
+  },
+  "inference_attempted": {
+    "CAM1": 356,
+    "CAM2": 309
+  },
+  "inference_completed": {
+    "CAM1": 356,
+    "CAM2": 309
+  },
+  "inference_errors": {
+    "CAM1": 0,
+    "CAM2": 0
+  },
+  "scheduler": {
+    "mode": "NORMAL",
+    "backend_concurrency": 1,
+    "priority_weight": 1.0,
+    "observation_budget_ms": 500.0,
+    "budget_is_guaranteed": false,
+    "estimated_service_ms": 36.29863,
+    "capacity_limited": false,
+    "mode_execution_counts": {
+      "NORMAL": {
+        "CAM1": 356,
+        "CAM2": 309
+      }
+    },
+    "cameras": {
+      "CAM1": {
+        "selected": 356,
+        "started": 356,
+        "completed": 356,
+        "failed": 0,
+        "deadline_misses": 1,
+        "max_completion_gap_ms": 119.632081,
+        "execution_share": 0.5353383458646617,
+        "priority": false,
+        "reason": "UNKNOWN",
+        "last_dispatch_ns": 4533326543351,
+        "last_completion_ns": 4533369344598
+      },
+      "CAM2": {
+        "selected": 309,
+        "started": 309,
+        "completed": 309,
+        "failed": 0,
+        "deadline_misses": 0,
+        "max_completion_gap_ms": 112.807109,
+        "execution_share": 0.46466165413533833,
+        "priority": false,
+        "reason": "UNKNOWN",
+        "last_dispatch_ns": 4533288385511,
+        "last_completion_ns": 4533326196675
+      }
+    }
+  },
+  "workers_stopped": true,
+  "final_risk_state": {
+    "project": "SAYFE",
+    "version": "0.3.1",
+    "run_id": "20261103T111919+0900_fbb7efe9",
+    "mode": "normal",
+    "site_state": "SAFE",
+    "risk": "SAFE",
+    "risk_implemented": true,
+    "persons": [],
+    "fusion_table": {
+      "SAFE": {
+        "SAFE": "SAFE",
+        "DANGER": "SAFE",
+        "UNKNOWN": "SAFE"
+      },
+      "DANGER": {
+        "SAFE": "SAFE",
+        "DANGER": "DANGER",
+        "UNKNOWN": "DANGER"
+      },
+      "UNKNOWN": {
+        "SAFE": "SAFE",
+        "DANGER": "DANGER",
+        "UNKNOWN": "SAFE"
+      }
+    },
+    "person_matching": "camera_display_label",
+    "risk_method": "expanded_excavator_bbox",
+    "camera_states": {
+      "CAM1": "UNKNOWN",
+      "CAM2": "UNKNOWN"
+    },
+    "camera_reasons": {
+      "CAM1": [
+        "PROCESS_STOPPED",
+        "INFERENCE_UNAVAILABLE",
+        "CAMERA_STOPPED"
+      ],
+      "CAM2": [
+        "PROCESS_STOPPED",
+        "INFERENCE_UNAVAILABLE",
+        "CAMERA_STOPPED"
+      ]
+    },
+    "observation_fault": true,
+    "judged_person_count": 0,
+    "unjudged_person_count": 0,
+    "intrusion_detected": false,
+    "revision": 6,
+    "decision_ns": 4533420677446,
+    "reasons": [
+      "NO_JUDGED_PERSONS"
+    ],
+    "restriction_required": false,
+    "control_status": "ERROR",
+    "control_connected": false,
+    "hazard_latched": false,
+    "danger_streak": {
+      "CAM1": 0,
+      "CAM2": 0
+    },
+    "release_candidate": false,
+    "reset_allowed": false,
+    "reset_block_reason": "NO_CURRENT_LATCH",
+    "episode_id": null,
+    "trigger_evidence": {},
+    "latest_danger_evidence": {},
+    "excavator_ble": {
+      "enabled": true,
+      "connected": false,
+      "pending": false,
+      "command": null,
+      "episode_id": null,
+      "last_sent": null,
+      "last_error": "지정된 굴착기 ESP32 MAC/이름을 찾을 수 없습니다",
+      "status": "ERROR",
+      "connection_state": "DISCONNECTED",
+      "heartbeat_status": "DISCONNECTED",
+      "online": false,
+      "fault": true,
+      "last_heartbeat_at": null,
+      "heartbeat_age_sec": null,
+      "heartbeat_count": 0,
+      "heartbeat_timeout_sec": 3.0,
+      "last_heartbeat_error": null,
+      "ack_verified": false
+    },
+    "admin_reset_status": "VISION_RELEASED_NO_BLE",
+    "excavator_box_offset_px": 23,
+    "observation": "UNAVAILABLE",
+    "running": false,
+    "inference_alive": false,
+    "pipeline_error": null,
+    "total_inference_fps": 22.0,
+    "camera_skew_ms": null,
+    "calibration": {
+      "CAM1": {
+        "status": "READY",
+        "reasons": [],
+        "error": null,
+        "revision": 1,
+        "calibration_id": "b230731847f74d6a949fa5b1bf7b36f6",
+        "imported_legacy": false,
+        "origin": "D",
+        "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+        "world_xy_m": [
+          [
+            0.0,
+            0.6
+          ],
+          [
+            0.84,
+            0.6
+          ],
+          [
+            0.84,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "image_size": [
+          640,
+          480
+        ],
+        "image_points": [
+          [
+            132.8000030517578,
+            292.3428649902344
+          ],
+          [
+            493.94287109375,
+            307.1999816894531
+          ],
+          [
+            627.6571655273438,
+            432.9142761230469
+          ],
+          [
+            18.514286041259766,
+            408.9142761230469
+          ]
+        ],
+        "physical_alignment_verified": false,
+        "profile_id": "legacy",
+        "version": 2,
+        "method": "getPerspectiveTransform",
+        "transform_valid": true,
+        "quality_evaluated": false,
+        "quality_approved": false,
+        "quality_approval": "LEGACY_UNVERIFIED",
+        "calibration_point_count": 4,
+        "used_point_count": 4,
+        "validation_point_count": 0,
+        "mean_error_m": null,
+        "rmse_m": null,
+        "max_error_m": null
+      },
+      "CAM2": {
+        "status": "READY",
+        "reasons": [],
+        "error": null,
+        "revision": 1,
+        "calibration_id": "68814979beb04dd79be3bc8c4d6f0088",
+        "imported_legacy": false,
+        "origin": "D",
+        "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+        "world_xy_m": [
+          [
+            0.0,
+            0.6
+          ],
+          [
+            0.84,
+            0.6
+          ],
+          [
+            0.84,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "image_size": [
+          640,
+          480
+        ],
+        "image_points": [
+          [
+            57.14285659790039,
+            412.34820556640625
+          ],
+          [
+            209.14285278320312,
+            243.20535278320312
+          ],
+          [
+            488.0,
+            243.20535278320312
+          ],
+          [
+            592.0,
+            418.0625
+          ]
+        ],
+        "physical_alignment_verified": false,
+        "profile_id": "legacy",
+        "version": 2,
+        "method": "getPerspectiveTransform",
+        "transform_valid": true,
+        "quality_evaluated": false,
+        "quality_approved": false,
+        "quality_approval": "LEGACY_UNVERIFIED",
+        "calibration_point_count": 4,
+        "used_point_count": 4,
+        "validation_point_count": 0,
+        "mean_error_m": null,
+        "rmse_m": null,
+        "max_error_m": null
+      }
+    },
+    "scheduler": {
+      "mode": "NORMAL",
+      "backend_concurrency": 1,
+      "priority_weight": 1.0,
+      "observation_budget_ms": 500.0,
+      "budget_is_guaranteed": false,
+      "estimated_service_ms": 36.29863,
+      "capacity_limited": false,
+      "mode_execution_counts": {
+        "NORMAL": {
+          "CAM1": 356,
+          "CAM2": 309
+        }
+      },
+      "cameras": {
+        "CAM1": {
+          "selected": 356,
+          "started": 356,
+          "completed": 356,
+          "failed": 0,
+          "deadline_misses": 1,
+          "max_completion_gap_ms": 119.632081,
+          "execution_share": 0.5353383458646617,
+          "priority": false,
+          "reason": "UNKNOWN",
+          "last_dispatch_ns": 4533326543351,
+          "last_completion_ns": 4533369344598
+        },
+        "CAM2": {
+          "selected": 309,
+          "started": 309,
+          "completed": 309,
+          "failed": 0,
+          "deadline_misses": 0,
+          "max_completion_gap_ms": 112.807109,
+          "execution_share": 0.46466165413533833,
+          "priority": false,
+          "reason": "UNKNOWN",
+          "last_dispatch_ns": 4533288385511,
+          "last_completion_ns": 4533326196675
+        }
+      }
+    },
+    "external": {
+      "audio": "미연결",
+      "esp32": "미연결",
+      "auracast": "미연결",
+      "control": "BLE 연결 대기"
+    },
+    "recording": {
+      "directory": "/home/hansungelec/SAYFE_yeongjun_FP16_copy/runs/20261103T111919+0900_fbb7efe9",
+      "dropped": 0,
+      "written": 687,
+      "failures": 0,
+      "last_error": null,
+      "degraded": false,
+      "queue_size": 0
+    },
+    "cameras": [
+      {
+        "id": "CAM1",
+        "name": "Logitech C922",
+        "source": "/dev/v4l/by-id/usb-046d_C922_Pro_Stream_Webcam_716A275F-video-index0",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG",
+        "health": "STOPPED",
+        "opened": false,
+        "error": null,
+        "capture_count": 720,
+        "capture_errors": 0,
+        "capture_ns": 4533374487746,
+        "capture_age_ms": 521.9005289999999,
+        "capture_fps": 22.5,
+        "capture_elapsed_s": 25.136725722,
+        "actual": {
+          "width": 640,
+          "height": 480,
+          "configured_fps": 30.0,
+          "fourcc": "MJPG",
+          "property_set_accepted": {
+            "fourcc": true,
+            "width": true,
+            "height": true,
+            "fps": true,
+            "buffer_size": true
+          }
+        },
+        "thread_alive": false,
+        "observation_valid": false,
+        "risk": "UNKNOWN",
+        "risk_reasons": [
+          "PROCESS_STOPPED",
+          "INFERENCE_UNAVAILABLE",
+          "CAMERA_STOPPED"
+        ],
+        "inference_fps": 11.0,
+        "result_age_ms": 589.98,
+        "result": {
+          "detections": [
+            {
+              "class_id": 8,
+              "class_name": "excavator",
+              "model_class_name": "machinery",
+              "bbox": [
+                158.0,
+                61.5,
+                402.0,
+                306.5625
+              ],
+              "confidence": 0.9227616190910339
+            }
+          ],
+          "inference_start_ns": 4533326794118,
+          "inference_end_ns": 4533367637586,
+          "predict_call_ms": 40.422068,
+          "detector_ms": 40.843468,
+          "extract_ms": 0.4214,
+          "preprocess_ms": 2.025206000325852,
+          "inference_ms": 18.092638999405608,
+          "postprocess_ms": 18.540377000135777,
+          "input_shape_json": "[1, 3, 480, 640]",
+          "input_dtype": "torch.float32",
+          "camera_id": "CAM1",
+          "scheduler_mode": "NORMAL",
+          "scheduler_reason": "WEIGHTED_WAIT",
+          "scheduler_priority_reason": "UNKNOWN",
+          "scheduler_weight": 1.0,
+          "scheduled_ns": 4533326543351,
+          "scheduler_deadline_ns": 4533788133529,
+          "dispatch_gap_ms": 72.570277,
+          "frame_seq": 718,
+          "capture_ns": 4533306406370,
+          "result_ns": 4533367729336,
+          "scheduler_wait_ms": 0.250767,
+          "queue_age_ms": 20.387748,
+          "capture_to_result_ms": 61.322966,
+          "camera_skew_ms": null,
+          "result_stale": 0,
+          "skipped_capture_frames": 1,
+          "detections_count": 1,
+          "zone_ms": 0.110087,
+          "homography_ms": 0.265871,
+          "risk_ms": 0.894676,
+          "camera_processing_wait_ms": 0.239118,
+          "ground": {
+            "camera_id": "CAM1",
+            "frame_seq": 718,
+            "capture_ns": 4533306406370,
+            "calibration": {
+              "status": "READY",
+              "reasons": [],
+              "error": null,
+              "revision": 1,
+              "calibration_id": "b230731847f74d6a949fa5b1bf7b36f6",
+              "imported_legacy": false,
+              "origin": "D",
+              "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+              "world_xy_m": [
+                [
+                  0.0,
+                  0.6
+                ],
+                [
+                  0.84,
+                  0.6
+                ],
+                [
+                  0.84,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ]
+              ],
+              "image_size": [
+                640,
+                480
+              ],
+              "image_points": [
+                [
+                  132.8000030517578,
+                  292.3428649902344
+                ],
+                [
+                  493.94287109375,
+                  307.1999816894531
+                ],
+                [
+                  627.6571655273438,
+                  432.9142761230469
+                ],
+                [
+                  18.514286041259766,
+                  408.9142761230469
+                ]
+              ],
+              "physical_alignment_verified": false,
+              "profile_id": "legacy",
+              "version": 2,
+              "method": "getPerspectiveTransform",
+              "transform_valid": true,
+              "quality_evaluated": false,
+              "quality_approved": false,
+              "quality_approval": "LEGACY_UNVERIFIED",
+              "calibration_point_count": 4,
+              "used_point_count": 4,
+              "validation_point_count": 0,
+              "mean_error_m": null,
+              "rmse_m": null,
+              "max_error_m": null
+            },
+            "valid": true,
+            "persons": [],
+            "danger_zone_image_px": null
+          },
+          "risk_assessment": {
+            "camera_id": "CAM1",
+            "frame_seq": 718,
+            "state": "UNKNOWN",
+            "reasons": [
+              "PERSON_NOT_DETECTED"
+            ],
+            "persons": [],
+            "intrusion": false,
+            "valid_person_count": 0,
+            "invalid_person_count": 0,
+            "danger_boxes": [
+              {
+                "detection_index": 0,
+                "bbox": [
+                  135.0,
+                  38.5,
+                  425.0,
+                  329.5625
+                ],
+                "excavator_bbox": [
+                  158.0,
+                  61.5,
+                  402.0,
+                  306.5625
+                ]
+              }
+            ],
+            "risk_method": "expanded_excavator_bbox"
+          },
+          "camera_risk": "UNKNOWN",
+          "person_count": 0,
+          "danger_person_count": 0,
+          "ground_details_json": "{\"camera_id\":\"CAM1\",\"frame_seq\":718,\"capture_ns\":4533306406370,\"calibration\":{\"status\":\"READY\",\"reasons\":[],\"error\":null,\"revision\":1,\"calibration_id\":\"b230731847f74d6a949fa5b1bf7b36f6\",\"imported_legacy\":false,\"origin\":\"D\",\"coordinate_system\":\"D_X_RIGHT_Y_TO_A_METRES\",\"world_xy_m\":[[0.0,0.6],[0.84,0.6],[0.84,0.0],[0.0,0.0]],\"image_size\":[640,480],\"image_points\":[[132.8000030517578,292.3428649902344],[493.94287109375,307.1999816894531],[627.6571655273438,432.9142761230469],[18.514286041259766,408.9142761230469]],\"physical_alignment_verified\":false,\"profile_id\":\"legacy\",\"version\":2,\"method\":\"getPerspectiveTransform\",\"transform_valid\":true,\"quality_evaluated\":false,\"quality_approved\":false,\"quality_approval\":\"LEGACY_UNVERIFIED\",\"calibration_point_count\":4,\"used_point_count\":4,\"validation_point_count\":0,\"mean_error_m\":null,\"rmse_m\":null,\"max_error_m\":null},\"valid\":true,\"persons\":[],\"danger_zone_image_px\":null}",
+          "risk_details_json": "{\"camera_id\":\"CAM1\",\"frame_seq\":718,\"state\":\"UNKNOWN\",\"reasons\":[\"PERSON_NOT_DETECTED\"],\"persons\":[],\"intrusion\":false,\"valid_person_count\":0,\"invalid_person_count\":0,\"danger_boxes\":[{\"detection_index\":0,\"bbox\":[135.0,38.5,425.0,329.5625],\"excavator_bbox\":[158.0,61.5,402.0,306.5625]}],\"risk_method\":\"expanded_excavator_bbox\"}",
+          "publication_status": "PUBLISHED",
+          "decision_ns": 4533369344598,
+          "site_ms": 0.518718,
+          "capture_to_decision_ms": 62.938228,
+          "site_state": "SAFE",
+          "final_risk": "SAFE",
+          "hazard_latched": 0,
+          "risk_episode_id": null,
+          "risk_revision": 6,
+          "decision_stale": 0,
+          "completion_gap_ms": 81.211069,
+          "scheduler_deadline_missed": 0
+        },
+        "calibration": {
+          "status": "READY",
+          "reasons": [],
+          "error": null,
+          "revision": 1,
+          "calibration_id": "b230731847f74d6a949fa5b1bf7b36f6",
+          "imported_legacy": false,
+          "origin": "D",
+          "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+          "world_xy_m": [
+            [
+              0.0,
+              0.6
+            ],
+            [
+              0.84,
+              0.6
+            ],
+            [
+              0.84,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "image_size": [
+            640,
+            480
+          ],
+          "image_points": [
+            [
+              132.8000030517578,
+              292.3428649902344
+            ],
+            [
+              493.94287109375,
+              307.1999816894531
+            ],
+            [
+              627.6571655273438,
+              432.9142761230469
+            ],
+            [
+              18.514286041259766,
+              408.9142761230469
+            ]
+          ],
+          "physical_alignment_verified": false,
+          "profile_id": "legacy",
+          "version": 2,
+          "method": "getPerspectiveTransform",
+          "transform_valid": true,
+          "quality_evaluated": false,
+          "quality_approved": false,
+          "quality_approval": "LEGACY_UNVERIFIED",
+          "calibration_point_count": 4,
+          "used_point_count": 4,
+          "validation_point_count": 0,
+          "mean_error_m": null,
+          "rmse_m": null,
+          "max_error_m": null
+        },
+        "ground": {
+          "camera_id": "CAM1",
+          "frame_seq": 718,
+          "capture_ns": 4533306406370,
+          "calibration": {
+            "status": "READY",
+            "reasons": [],
+            "error": null,
+            "revision": 1,
+            "calibration_id": "b230731847f74d6a949fa5b1bf7b36f6",
+            "imported_legacy": false,
+            "origin": "D",
+            "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+            "world_xy_m": [
+              [
+                0.0,
+                0.6
+              ],
+              [
+                0.84,
+                0.6
+              ],
+              [
+                0.84,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "image_size": [
+              640,
+              480
+            ],
+            "image_points": [
+              [
+                132.8000030517578,
+                292.3428649902344
+              ],
+              [
+                493.94287109375,
+                307.1999816894531
+              ],
+              [
+                627.6571655273438,
+                432.9142761230469
+              ],
+              [
+                18.514286041259766,
+                408.9142761230469
+              ]
+            ],
+            "physical_alignment_verified": false,
+            "profile_id": "legacy",
+            "version": 2,
+            "method": "getPerspectiveTransform",
+            "transform_valid": true,
+            "quality_evaluated": false,
+            "quality_approved": false,
+            "quality_approval": "LEGACY_UNVERIFIED",
+            "calibration_point_count": 4,
+            "used_point_count": 4,
+            "validation_point_count": 0,
+            "mean_error_m": null,
+            "rmse_m": null,
+            "max_error_m": null
+          },
+          "valid": true,
+          "persons": [],
+          "danger_zone_image_px": null,
+          "observation_valid": false
+        }
+      },
+      {
+        "id": "CAM2",
+        "name": "Logitech 046d:0825",
+        "source": "/dev/v4l/by-id/usb-046d_0825_D6055E10-video-index0",
+        "width": 640,
+        "height": 480,
+        "fps": 30,
+        "fourcc": "MJPG",
+        "health": "STOPPED",
+        "opened": false,
+        "error": null,
+        "capture_count": 322,
+        "capture_errors": 0,
+        "capture_ns": 4533398316558,
+        "capture_age_ms": 498.07171700000004,
+        "capture_fps": 11.5,
+        "capture_elapsed_s": 25.136038129,
+        "actual": {
+          "width": 640,
+          "height": 480,
+          "configured_fps": 30.0,
+          "fourcc": "MJPG",
+          "property_set_accepted": {
+            "fourcc": true,
+            "width": true,
+            "height": true,
+            "fps": true,
+            "buffer_size": true
+          }
+        },
+        "thread_alive": false,
+        "observation_valid": false,
+        "risk": "UNKNOWN",
+        "risk_reasons": [
+          "PROCESS_STOPPED",
+          "INFERENCE_UNAVAILABLE",
+          "CAMERA_STOPPED"
+        ],
+        "inference_fps": 11.0,
+        "result_age_ms": 633.99,
+        "result": {
+          "detections": [
+            {
+              "class_id": 8,
+              "class_name": "excavator",
+              "model_class_name": "machinery",
+              "bbox": [
+                95.875,
+                15.75,
+                280.46875,
+                391.75
+              ],
+              "confidence": 0.6770471334457397
+            }
+          ],
+          "inference_start_ns": 4533288618293,
+          "inference_end_ns": 4533323693905,
+          "predict_call_ms": 34.708487,
+          "detector_ms": 35.075612,
+          "extract_ms": 0.367125,
+          "preprocess_ms": 2.0531109994408325,
+          "inference_ms": 18.10694399955537,
+          "postprocess_ms": 12.572573000397824,
+          "input_shape_json": "[1, 3, 480, 640]",
+          "input_dtype": "torch.float32",
+          "camera_id": "CAM2",
+          "scheduler_mode": "NORMAL",
+          "scheduler_reason": "WEIGHTED_WAIT",
+          "scheduler_priority_reason": "UNKNOWN",
+          "scheduler_weight": 1.0,
+          "scheduled_ns": 4533288385511,
+          "scheduler_deadline_ns": 4533753701442,
+          "dispatch_gap_ms": 67.390583,
+          "frame_seq": 320,
+          "capture_ns": 4533262394365,
+          "result_ns": 4533323837338,
+          "scheduler_wait_ms": 0.232782,
+          "queue_age_ms": 26.223928,
+          "capture_to_result_ms": 61.442973,
+          "camera_skew_ms": 19.943915,
+          "result_stale": 0,
+          "skipped_capture_frames": 0,
+          "detections_count": 1,
+          "zone_ms": 0.115527,
+          "homography_ms": 0.26168,
+          "risk_ms": 1.05411,
+          "camera_processing_wait_ms": 0.821295,
+          "ground": {
+            "camera_id": "CAM2",
+            "frame_seq": 320,
+            "capture_ns": 4533262394365,
+            "calibration": {
+              "status": "READY",
+              "reasons": [],
+              "error": null,
+              "revision": 1,
+              "calibration_id": "68814979beb04dd79be3bc8c4d6f0088",
+              "imported_legacy": false,
+              "origin": "D",
+              "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+              "world_xy_m": [
+                [
+                  0.0,
+                  0.6
+                ],
+                [
+                  0.84,
+                  0.6
+                ],
+                [
+                  0.84,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ]
+              ],
+              "image_size": [
+                640,
+                480
+              ],
+              "image_points": [
+                [
+                  57.14285659790039,
+                  412.34820556640625
+                ],
+                [
+                  209.14285278320312,
+                  243.20535278320312
+                ],
+                [
+                  488.0,
+                  243.20535278320312
+                ],
+                [
+                  592.0,
+                  418.0625
+                ]
+              ],
+              "physical_alignment_verified": false,
+              "profile_id": "legacy",
+              "version": 2,
+              "method": "getPerspectiveTransform",
+              "transform_valid": true,
+              "quality_evaluated": false,
+              "quality_approved": false,
+              "quality_approval": "LEGACY_UNVERIFIED",
+              "calibration_point_count": 4,
+              "used_point_count": 4,
+              "validation_point_count": 0,
+              "mean_error_m": null,
+              "rmse_m": null,
+              "max_error_m": null
+            },
+            "valid": true,
+            "persons": [],
+            "danger_zone_image_px": null
+          },
+          "risk_assessment": {
+            "camera_id": "CAM2",
+            "frame_seq": 320,
+            "state": "UNKNOWN",
+            "reasons": [
+              "PERSON_NOT_DETECTED"
+            ],
+            "persons": [],
+            "intrusion": false,
+            "valid_person_count": 0,
+            "invalid_person_count": 0,
+            "danger_boxes": [
+              {
+                "detection_index": 0,
+                "bbox": [
+                  72.875,
+                  0.0,
+                  303.46875,
+                  414.75
+                ],
+                "excavator_bbox": [
+                  95.875,
+                  15.75,
+                  280.46875,
+                  391.75
+                ]
+              }
+            ],
+            "risk_method": "expanded_excavator_bbox"
+          },
+          "camera_risk": "UNKNOWN",
+          "person_count": 0,
+          "danger_person_count": 0,
+          "ground_details_json": "{\"camera_id\":\"CAM2\",\"frame_seq\":320,\"capture_ns\":4533262394365,\"calibration\":{\"status\":\"READY\",\"reasons\":[],\"error\":null,\"revision\":1,\"calibration_id\":\"68814979beb04dd79be3bc8c4d6f0088\",\"imported_legacy\":false,\"origin\":\"D\",\"coordinate_system\":\"D_X_RIGHT_Y_TO_A_METRES\",\"world_xy_m\":[[0.0,0.6],[0.84,0.6],[0.84,0.0],[0.0,0.0]],\"image_size\":[640,480],\"image_points\":[[57.14285659790039,412.34820556640625],[209.14285278320312,243.20535278320312],[488.0,243.20535278320312],[592.0,418.0625]],\"physical_alignment_verified\":false,\"profile_id\":\"legacy\",\"version\":2,\"method\":\"getPerspectiveTransform\",\"transform_valid\":true,\"quality_evaluated\":false,\"quality_approved\":false,\"quality_approval\":\"LEGACY_UNVERIFIED\",\"calibration_point_count\":4,\"used_point_count\":4,\"validation_point_count\":0,\"mean_error_m\":null,\"rmse_m\":null,\"max_error_m\":null},\"valid\":true,\"persons\":[],\"danger_zone_image_px\":null}",
+          "risk_details_json": "{\"camera_id\":\"CAM2\",\"frame_seq\":320,\"state\":\"UNKNOWN\",\"reasons\":[\"PERSON_NOT_DETECTED\"],\"persons\":[],\"intrusion\":false,\"valid_person_count\":0,\"invalid_person_count\":0,\"danger_boxes\":[{\"detection_index\":0,\"bbox\":[72.875,0.0,303.46875,414.75],\"excavator_bbox\":[95.875,15.75,280.46875,391.75]}],\"risk_method\":\"expanded_excavator_bbox\"}",
+          "publication_status": "PUBLISHED",
+          "decision_ns": 4533326196675,
+          "site_ms": 0.676903,
+          "capture_to_decision_ms": 63.80231,
+          "site_state": "SAFE",
+          "final_risk": "SAFE",
+          "hazard_latched": 0,
+          "risk_episode_id": null,
+          "risk_revision": 5,
+          "decision_stale": 0,
+          "completion_gap_ms": 72.495233,
+          "scheduler_deadline_missed": 0
+        },
+        "calibration": {
+          "status": "READY",
+          "reasons": [],
+          "error": null,
+          "revision": 1,
+          "calibration_id": "68814979beb04dd79be3bc8c4d6f0088",
+          "imported_legacy": false,
+          "origin": "D",
+          "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+          "world_xy_m": [
+            [
+              0.0,
+              0.6
+            ],
+            [
+              0.84,
+              0.6
+            ],
+            [
+              0.84,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "image_size": [
+            640,
+            480
+          ],
+          "image_points": [
+            [
+              57.14285659790039,
+              412.34820556640625
+            ],
+            [
+              209.14285278320312,
+              243.20535278320312
+            ],
+            [
+              488.0,
+              243.20535278320312
+            ],
+            [
+              592.0,
+              418.0625
+            ]
+          ],
+          "physical_alignment_verified": false,
+          "profile_id": "legacy",
+          "version": 2,
+          "method": "getPerspectiveTransform",
+          "transform_valid": true,
+          "quality_evaluated": false,
+          "quality_approved": false,
+          "quality_approval": "LEGACY_UNVERIFIED",
+          "calibration_point_count": 4,
+          "used_point_count": 4,
+          "validation_point_count": 0,
+          "mean_error_m": null,
+          "rmse_m": null,
+          "max_error_m": null
+        },
+        "ground": {
+          "camera_id": "CAM2",
+          "frame_seq": 320,
+          "capture_ns": 4533262394365,
+          "calibration": {
+            "status": "READY",
+            "reasons": [],
+            "error": null,
+            "revision": 1,
+            "calibration_id": "68814979beb04dd79be3bc8c4d6f0088",
+            "imported_legacy": false,
+            "origin": "D",
+            "coordinate_system": "D_X_RIGHT_Y_TO_A_METRES",
+            "world_xy_m": [
+              [
+                0.0,
+                0.6
+              ],
+              [
+                0.84,
+                0.6
+              ],
+              [
+                0.84,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "image_size": [
+              640,
+              480
+            ],
+            "image_points": [
+              [
+                57.14285659790039,
+                412.34820556640625
+              ],
+              [
+                209.14285278320312,
+                243.20535278320312
+              ],
+              [
+                488.0,
+                243.20535278320312
+              ],
+              [
+                592.0,
+                418.0625
+              ]
+            ],
+            "physical_alignment_verified": false,
+            "profile_id": "legacy",
+            "version": 2,
+            "method": "getPerspectiveTransform",
+            "transform_valid": true,
+            "quality_evaluated": false,
+            "quality_approved": false,
+            "quality_approval": "LEGACY_UNVERIFIED",
+            "calibration_point_count": 4,
+            "used_point_count": 4,
+            "validation_point_count": 0,
+            "mean_error_m": null,
+            "rmse_m": null,
+            "max_error_m": null
+          },
+          "valid": true,
+          "persons": [],
+          "danger_zone_image_px": null,
+          "observation_valid": false
+        }
+      }
+    ],
+    "events": [
+      {
+        "record_id": "8294e726c1db4cf89d2776ccd6f3b193",
+        "event_id": "d2dfb39f2a2740ff94f13676efbab452",
+        "kind": "startup",
+        "time_kst": "2026-11-03T11:19:19.388+09:00",
+        "timestamp_ns": 4503334257760,
+        "mode": "normal",
+        "scenario": "기본 2카메라 관측"
+      },
+      {
+        "record_id": "cc4b0982e0e54baf8b63e891af1c8b4d",
+        "event_id": "b5d2a3571b53475ebf862517cbe29aa5",
+        "kind": "warmup_completed",
+        "time_kst": "2026-11-03T11:19:24.812+09:00",
+        "timestamp_ns": 4508757978901,
+        "warmup_ms": 877.506191
+      },
+      {
+        "record_id": "b93633b34782493cb129815fa691886d",
+        "event_id": "9a948b0d22894e778d729afd452aa4e3",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:24.918+09:00",
+        "timestamp_ns": 4508864285209,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "CAMERA_WAITING",
+            "NO_RESULT",
+            "NO_ASSESSMENT"
+          ],
+          "CAM2": [
+            "CAMERA_WAITING",
+            "NO_RESULT",
+            "NO_ASSESSMENT"
+          ]
+        },
+        "hazard_latched": false,
+        "release_candidate": false,
+        "reasons": [
+          "NO_JUDGED_PERSONS"
+        ],
+        "revision": 1
+      },
+      {
+        "record_id": "7fb342172c60407cbb9fd0b867cef0e8",
+        "event_id": "6da67f2c936045aea1ec3fe1f8a6da5e",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:24.918+09:00",
+        "timestamp_ns": 4508864412672,
+        "camera_id": "CAM1",
+        "health": "WAITING",
+        "valid": false,
+        "error": "캡처 준비 중"
+      },
+      {
+        "record_id": "423faf180e544488b550250b0c70c06d",
+        "event_id": "f8d414e3cf82481d86a4c3ebce3e1c77",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:24.918+09:00",
+        "timestamp_ns": 4508864454243,
+        "camera_id": "CAM2",
+        "health": "WAITING",
+        "valid": false,
+        "error": "캡처 준비 중"
+      },
+      {
+        "record_id": "c4fdadede407463da558a3c4e7a72318",
+        "event_id": "664dd9391e4e4fd7a1d8e928eb82a591",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:25.536+09:00",
+        "timestamp_ns": 4509482460541,
+        "camera_id": "CAM1",
+        "health": "OBSERVING",
+        "valid": false,
+        "error": null
+      },
+      {
+        "record_id": "f394878f7eb64a24850f1e671f7a9c8b",
+        "event_id": "e516b74c57c64af8a8e116231cb00fe1",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:26.365+09:00",
+        "timestamp_ns": 4510311610019,
+        "camera_id": "CAM1",
+        "health": "OBSERVING",
+        "valid": true,
+        "error": null
+      },
+      {
+        "record_id": "a25331e78bfb4d69895c9aefb76b5cdf",
+        "event_id": "081119eb5f4f4a00aee37bcb35986967",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:28.187+09:00",
+        "timestamp_ns": 4512132993883,
+        "camera_id": "CAM2",
+        "health": "OBSERVING",
+        "valid": false,
+        "error": null
+      },
+      {
+        "record_id": "d33f24096b894091bf987a317910b487",
+        "event_id": "3738007390d441f1af7acea64b5e0d59",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:28.226+09:00",
+        "timestamp_ns": 4512172120144,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "PERSON_NOT_DETECTED"
+          ],
+          "CAM2": [
+            "CAMERA_STATE_HOLD"
+          ]
+        },
+        "hazard_latched": false,
+        "release_candidate": false,
+        "reasons": [
+          "NO_JUDGED_PERSONS"
+        ],
+        "revision": 2
+      },
+      {
+        "record_id": "ce16a5b277b44fcc8562cbcb1134124f",
+        "event_id": "7c01c2d8ee5040a1bf34cdd4b8218bda",
+        "kind": "observation_changed",
+        "time_kst": "2026-11-03T11:19:28.291+09:00",
+        "timestamp_ns": 4512236996671,
+        "camera_id": "CAM2",
+        "health": "OBSERVING",
+        "valid": true,
+        "error": null
+      },
+      {
+        "record_id": "a36431de1e704083a9e0a62740936177",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "risk_candidate",
+        "time_kst": "2026-11-03T11:19:34.201+09:00",
+        "timestamp_ns": 4518147184380,
+        "evidence": {
+          "camera_id": "CAM1",
+          "frame_seq": 262,
+          "capture_ns": 4518102438376,
+          "persons": [
+            {
+              "observation_id": "CAM1:262:1",
+              "kind": "person",
+              "bbox": [
+                412.9375,
+                193.5,
+                470.5859375,
+                300.625
+              ],
+              "anchor": [
+                441.76171875,
+                300.625
+              ],
+              "xy": [
+                0.7267364143116345,
+                0.6381540288729254
+              ],
+              "eligible": false,
+              "reliability": "UNRELIABLE",
+              "reasons": [
+                "OUTSIDE_CALIBRATED_GROUND"
+              ],
+              "warnings": [
+                "BBOX_FOOT_CONTACT_UNVERIFIED"
+              ],
+              "confidence": 0.8019360303878784,
+              "zone_inside": true,
+              "state": "DANGER",
+              "track_id": "person1",
+              "person_id": "person1",
+              "tracking_method": "camera_pixels_only",
+              "fusion_track_id": "person1"
+            }
+          ],
+          "fused_persons": [
+            {
+              "person_id": "person1",
+              "track_id": "person1",
+              "track_ids": {
+                "CAM1": "person1"
+              },
+              "camera_states": {
+                "CAM1": "DANGER",
+                "CAM2": "UNKNOWN"
+              },
+              "state": "DANGER",
+              "judged": true,
+              "camera_person_ids": {
+                "CAM1": "person1"
+              },
+              "observations": {
+                "CAM1": {
+                  "observation_id": "CAM1:262:1",
+                  "kind": "person",
+                  "bbox": [
+                    412.9375,
+                    193.5,
+                    470.5859375,
+                    300.625
+                  ],
+                  "anchor": [
+                    441.76171875,
+                    300.625
+                  ],
+                  "xy": [
+                    0.7267364143116345,
+                    0.6381540288729254
+                  ],
+                  "eligible": false,
+                  "reliability": "UNRELIABLE",
+                  "reasons": [
+                    "OUTSIDE_CALIBRATED_GROUND"
+                  ],
+                  "warnings": [
+                    "BBOX_FOOT_CONTACT_UNVERIFIED"
+                  ],
+                  "confidence": 0.8019360303878784,
+                  "zone_inside": true,
+                  "state": "DANGER",
+                  "track_id": "person1",
+                  "person_id": "person1",
+                  "tracking_method": "camera_pixels_only"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "record_id": "7b94c8c59d134dd6817538ccccb2d71c",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "hazard_latched",
+        "time_kst": "2026-11-03T11:19:34.201+09:00",
+        "timestamp_ns": 4518147274689,
+        "trigger_evidence": {
+          "CAM1": {
+            "camera_id": "CAM1",
+            "frame_seq": 262,
+            "capture_ns": 4518102438376,
+            "persons": [
+              {
+                "observation_id": "CAM1:262:1",
+                "kind": "person",
+                "bbox": [
+                  412.9375,
+                  193.5,
+                  470.5859375,
+                  300.625
+                ],
+                "anchor": [
+                  441.76171875,
+                  300.625
+                ],
+                "xy": [
+                  0.7267364143116345,
+                  0.6381540288729254
+                ],
+                "eligible": false,
+                "reliability": "UNRELIABLE",
+                "reasons": [
+                  "OUTSIDE_CALIBRATED_GROUND"
+                ],
+                "warnings": [
+                  "BBOX_FOOT_CONTACT_UNVERIFIED"
+                ],
+                "confidence": 0.8019360303878784,
+                "zone_inside": true,
+                "state": "DANGER",
+                "track_id": "person1",
+                "person_id": "person1",
+                "tracking_method": "camera_pixels_only",
+                "fusion_track_id": "person1"
+              }
+            ],
+            "fused_persons": [
+              {
+                "person_id": "person1",
+                "track_id": "person1",
+                "track_ids": {
+                  "CAM1": "person1"
+                },
+                "camera_states": {
+                  "CAM1": "DANGER",
+                  "CAM2": "UNKNOWN"
+                },
+                "state": "DANGER",
+                "judged": true,
+                "camera_person_ids": {
+                  "CAM1": "person1"
+                },
+                "observations": {
+                  "CAM1": {
+                    "observation_id": "CAM1:262:1",
+                    "kind": "person",
+                    "bbox": [
+                      412.9375,
+                      193.5,
+                      470.5859375,
+                      300.625
+                    ],
+                    "anchor": [
+                      441.76171875,
+                      300.625
+                    ],
+                    "xy": [
+                      0.7267364143116345,
+                      0.6381540288729254
+                    ],
+                    "eligible": false,
+                    "reliability": "UNRELIABLE",
+                    "reasons": [
+                      "OUTSIDE_CALIBRATED_GROUND"
+                    ],
+                    "warnings": [
+                      "BBOX_FOOT_CONTACT_UNVERIFIED"
+                    ],
+                    "confidence": 0.8019360303878784,
+                    "zone_inside": true,
+                    "state": "DANGER",
+                    "track_id": "person1",
+                    "person_id": "person1",
+                    "tracking_method": "camera_pixels_only"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "record_id": "e533add6c53a4ed18e98b5518fa84c52",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:34.201+09:00",
+        "timestamp_ns": 4518147352006,
+        "risk": "DANGER",
+        "site_state": "DANGER",
+        "persons": [
+          {
+            "person_id": "person1",
+            "track_id": "person1",
+            "track_ids": {
+              "CAM1": "person1"
+            },
+            "camera_states": {
+              "CAM1": "DANGER",
+              "CAM2": "UNKNOWN"
+            },
+            "state": "DANGER",
+            "judged": true,
+            "camera_person_ids": {
+              "CAM1": "person1"
+            },
+            "observations": {
+              "CAM1": {
+                "observation_id": "CAM1:262:1",
+                "kind": "person",
+                "bbox": [
+                  412.9375,
+                  193.5,
+                  470.5859375,
+                  300.625
+                ],
+                "anchor": [
+                  441.76171875,
+                  300.625
+                ],
+                "xy": [
+                  0.7267364143116345,
+                  0.6381540288729254
+                ],
+                "eligible": false,
+                "reliability": "UNRELIABLE",
+                "reasons": [
+                  "OUTSIDE_CALIBRATED_GROUND"
+                ],
+                "warnings": [
+                  "BBOX_FOOT_CONTACT_UNVERIFIED"
+                ],
+                "confidence": 0.8019360303878784,
+                "zone_inside": true,
+                "state": "DANGER",
+                "track_id": "person1",
+                "person_id": "person1",
+                "tracking_method": "camera_pixels_only"
+              }
+            }
+          }
+        ],
+        "camera_states": {
+          "CAM1": "DANGER",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "PERSON_IN_EXCAVATOR_BOX"
+          ],
+          "CAM2": [
+            "PERSON_NOT_DETECTED"
+          ]
+        },
+        "hazard_latched": true,
+        "release_candidate": false,
+        "reasons": [
+          "FUSED_PERSON_DANGER"
+        ],
+        "revision": 3
+      },
+      {
+        "record_id": "cbaab3cdb9b54d46979756cf88222954",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:42.861+09:00",
+        "timestamp_ns": 4526807439834,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "PERSON_NOT_DETECTED"
+          ],
+          "CAM2": [
+            "PERSON_NOT_DETECTED"
+          ]
+        },
+        "hazard_latched": true,
+        "release_candidate": true,
+        "reasons": [
+          "NO_JUDGED_PERSONS",
+          "ZONE_CLEAR_RESET_CANDIDATE"
+        ],
+        "revision": 4
+      },
+      {
+        "record_id": "75aaccd84a5a43a0bd2ed5a46c1903b0",
+        "event_id": "ec23bc22af754d31a3c9506ae75b50f6",
+        "kind": "admin_reset_requested",
+        "time_kst": "2026-11-03T11:19:44.422+09:00",
+        "timestamp_ns": 4528368563176,
+        "episode_id": "3e951d8453684f78b9165e0dd864bb43"
+      },
+      {
+        "record_id": "7136ae4fd5ad4696b169a568d8b5b130",
+        "event_id": "d8f083ad435346ccacd7d51acbe04331",
+        "kind": "admin_reset_validation",
+        "time_kst": "2026-11-03T11:19:44.423+09:00",
+        "timestamp_ns": 4528369083846,
+        "episode_id": "3e951d8453684f78b9165e0dd864bb43",
+        "accepted": true,
+        "cameras": [
+          "CAM1",
+          "CAM2"
+        ]
+      },
+      {
+        "record_id": "7797f20fe8ee441e8453ff4ba59a2e6b",
+        "event_id": "8e759acfcf95476b9de1137486957110",
+        "kind": "admin_reset_transmission",
+        "time_kst": "2026-11-03T11:19:44.424+09:00",
+        "timestamp_ns": 4528369733932,
+        "episode_id": "3e951d8453684f78b9165e0dd864bb43",
+        "status": "SKIPPED",
+        "reason": "BLE_DISCONNECTED",
+        "device_ack": "UNVERIFIED",
+        "control_applied": "UNVERIFIED"
+      },
+      {
+        "record_id": "e01b36eef794493f83c33cf6f3445d55",
+        "event_id": "3e951d8453684f78b9165e0dd864bb43",
+        "kind": "hazard_reset",
+        "time_kst": "2026-11-03T11:19:44.424+09:00",
+        "timestamp_ns": 4528369854259,
+        "operator_confirmed": true,
+        "scope": "VISION_LATCH_ONLY",
+        "control_sent": false,
+        "device_ack": "UNVERIFIED",
+        "control_applied": "UNVERIFIED",
+        "trigger_evidence": {
+          "CAM1": {
+            "camera_id": "CAM1",
+            "frame_seq": 262,
+            "capture_ns": 4518102438376,
+            "persons": [
+              {
+                "observation_id": "CAM1:262:1",
+                "kind": "person",
+                "bbox": [
+                  412.9375,
+                  193.5,
+                  470.5859375,
+                  300.625
+                ],
+                "anchor": [
+                  441.76171875,
+                  300.625
+                ],
+                "xy": [
+                  0.7267364143116345,
+                  0.6381540288729254
+                ],
+                "eligible": false,
+                "reliability": "UNRELIABLE",
+                "reasons": [
+                  "OUTSIDE_CALIBRATED_GROUND"
+                ],
+                "warnings": [
+                  "BBOX_FOOT_CONTACT_UNVERIFIED"
+                ],
+                "confidence": 0.8019360303878784,
+                "zone_inside": true,
+                "state": "DANGER",
+                "track_id": "person1",
+                "person_id": "person1",
+                "tracking_method": "camera_pixels_only",
+                "fusion_track_id": "person1"
+              }
+            ],
+            "fused_persons": [
+              {
+                "person_id": "person1",
+                "track_id": "person1",
+                "track_ids": {
+                  "CAM1": "person1"
+                },
+                "camera_states": {
+                  "CAM1": "DANGER",
+                  "CAM2": "UNKNOWN"
+                },
+                "state": "DANGER",
+                "judged": true,
+                "camera_person_ids": {
+                  "CAM1": "person1"
+                },
+                "observations": {
+                  "CAM1": {
+                    "observation_id": "CAM1:262:1",
+                    "kind": "person",
+                    "bbox": [
+                      412.9375,
+                      193.5,
+                      470.5859375,
+                      300.625
+                    ],
+                    "anchor": [
+                      441.76171875,
+                      300.625
+                    ],
+                    "xy": [
+                      0.7267364143116345,
+                      0.6381540288729254
+                    ],
+                    "eligible": false,
+                    "reliability": "UNRELIABLE",
+                    "reasons": [
+                      "OUTSIDE_CALIBRATED_GROUND"
+                    ],
+                    "warnings": [
+                      "BBOX_FOOT_CONTACT_UNVERIFIED"
+                    ],
+                    "confidence": 0.8019360303878784,
+                    "zone_inside": true,
+                    "state": "DANGER",
+                    "track_id": "person1",
+                    "person_id": "person1",
+                    "tracking_method": "camera_pixels_only"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "clear_observations": {
+          "CAM1": {
+            "frame_seq": 568,
+            "capture_ns": 4528302920484,
+            "assessment": {
+              "camera_id": "CAM1",
+              "frame_seq": 568,
+              "state": "UNKNOWN",
+              "reasons": [
+                "PERSON_NOT_DETECTED"
+              ],
+              "persons": [],
+              "intrusion": false,
+              "valid_person_count": 0,
+              "invalid_person_count": 0,
+              "danger_boxes": [
+                {
+                  "detection_index": 0,
+                  "bbox": [
+                    135.0,
+                    38.5,
+                    424.875,
+                    329.6875
+                  ],
+                  "excavator_bbox": [
+                    158.0,
+                    61.5,
+                    401.875,
+                    306.6875
+                  ]
+                }
+              ],
+              "risk_method": "expanded_excavator_bbox"
+            }
+          },
+          "CAM2": {
+            "frame_seq": 244,
+            "capture_ns": 4528231840515,
+            "assessment": {
+              "camera_id": "CAM2",
+              "frame_seq": 244,
+              "state": "UNKNOWN",
+              "reasons": [
+                "PERSON_NOT_DETECTED"
+              ],
+              "persons": [],
+              "intrusion": false,
+              "valid_person_count": 0,
+              "invalid_person_count": 0,
+              "danger_boxes": [
+                {
+                  "detection_index": 0,
+                  "bbox": [
+                    74.5,
+                    0.0,
+                    301.6875,
+                    410.25
+                  ],
+                  "excavator_bbox": [
+                    97.5,
+                    16.0,
+                    278.6875,
+                    387.25
+                  ]
+                }
+              ],
+              "risk_method": "expanded_excavator_bbox"
+            }
+          }
+        }
+      },
+      {
+        "record_id": "a2f72ae306ad4b1ea0dc24f685350768",
+        "event_id": "2f9553a58bca425298d3233d44d3ed95",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:44.424+09:00",
+        "timestamp_ns": 4528370098817,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "PERSON_NOT_DETECTED"
+          ],
+          "CAM2": [
+            "PERSON_NOT_DETECTED"
+          ]
+        },
+        "hazard_latched": false,
+        "release_candidate": false,
+        "reasons": [
+          "NO_JUDGED_PERSONS"
+        ],
+        "revision": 5
+      },
+      {
+        "record_id": "57ef91d60f7349d7a7142d171b0ea0c4",
+        "event_id": "6113f3e746fa4bb79e6ba335ed1f3a03",
+        "kind": "admin_reset_release_result",
+        "time_kst": "2026-11-03T11:19:44.424+09:00",
+        "timestamp_ns": 4528370220873,
+        "episode_id": "3e951d8453684f78b9165e0dd864bb43",
+        "status": "VISION_RELEASED_NO_BLE",
+        "reason": "BLE_DISCONNECTED",
+        "device_ack": "UNVERIFIED",
+        "control_applied": "UNVERIFIED"
+      },
+      {
+        "record_id": "1725eb15246049d1b38252b312a87b4c",
+        "event_id": "61a33f1093a5427badb687e6a7bcbead",
+        "kind": "vision_risk_changed",
+        "time_kst": "2026-11-03T11:19:49.423+09:00",
+        "timestamp_ns": 4533369528609,
+        "risk": "SAFE",
+        "site_state": "SAFE",
+        "persons": [],
+        "camera_states": {
+          "CAM1": "UNKNOWN",
+          "CAM2": "UNKNOWN"
+        },
+        "camera_reasons": {
+          "CAM1": [
+            "CAMERA_STOPPED"
+          ],
+          "CAM2": [
+            "CAMERA_STOPPED"
+          ]
+        },
+        "hazard_latched": false,
+        "release_candidate": false,
+        "reasons": [
+          "NO_JUDGED_PERSONS"
+        ],
+        "revision": 6
+      }
+    ]
+  },
+  "ended_at_kst": "2026-11-03T11:19:49.953+09:00",
+  "recording": {
+    "directory": "/home/hansungelec/SAYFE_yeongjun_FP16_copy/runs/20261103T111919+0900_fbb7efe9",
+    "dropped": 0,
+    "written": 688,
+    "failures": 0,
+    "last_error": null,
+    "degraded": false,
+    "queue_size": 0
+  }
+}
